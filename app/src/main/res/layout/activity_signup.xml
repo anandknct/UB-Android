@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@drawable/iv_login_bg"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/rl_unitybound"
+        android:layout_width="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_unity"
+            android:layout_width="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@mipmap/ic_launcher_round"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_below="@+id/iv_unity"
+            android:id="@+id/tv_createacc"
+            android:layout_width="match_parent"
+            android:textSize="18sp"
+            android:gravity="center"
+            android:padding="8dp"
+            android:textColor="@color/color_white"
+            android:text="@string/str_create_new_account"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_below="@+id/rl_unitybound"
+        android:id="@+id/sv_main"
+        android:layout_width="match_parent"
+        android:scrollbars="none"
+        android:layout_marginTop="@dimen/dimen_eight"
+        android:layout_above="@+id/ll_donthav"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            style="@style/margin"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/edt_firstname"
+                    android:hint="First name"
+                    style="@style/edit_text_height"
+                    android:padding="10dp"
+                    android:singleLine="true"
+                    android:background="@drawable/edit_text_border"
+                    android:textColorHint="@android:color/white"
+                    android:textColor="@android:color/white"
+                    android:inputType="text"
+                    android:imeOptions="actionNext"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/edt_lastname"
+                    android:hint="Last name"
+                    android:singleLine="true"
+                    android:background="@drawable/edit_text_border"
+                    android:textColorHint="@android:color/white"
+                    android:textColor="@android:color/white"
+                    android:inputType="text"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerInParent="true"
+                    android:imeOptions="actionNext"
+                    style="@style/edit_text_height"
+                    android:layout_below="@+id/edt_firstname"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/edt_email"
+                    android:hint="Email ID"
+                    android:singleLine="true"
+                    style="@style/edit_text_height"
+                    android:background="@drawable/edit_text_border"
+                    android:textColorHint="@android:color/white"
+                    android:textColor="@android:color/white"
+                    android:inputType="textEmailAddress"
+                    android:imeOptions="actionNext"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerInParent="true"
+                    android:layout_below="@+id/edt_lastname"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/edt_password"
+                    android:hint="Password"
+                    android:singleLine="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/edit_text_border"
+                    android:textColorHint="@android:color/white"
+                    android:textColor="@android:color/white"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPassword"
+                    style="@style/edit_text_height"
+                    android:layout_below="@+id/edt_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/edt_dob"
+                    android:hint="Date of Birth"
+                    android:imeOptions="actionNext"
+                    android:inputType="date"
+                    android:singleLine="true"
+                    style="@style/edit_text_height"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/edit_text_border"
+                    android:textColorHint="@android:color/white"
+                    android:textColor="@android:color/white"
+                    android:layout_below="@+id/edt_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <android.support.v7.widget.AppCompatEditText
+                    android:id="@+id/edt_accesscode"
+                    android:hint="Access Code"
+                    android:singleLine="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerInParent="true"
+                    style="@style/edit_text_height"
+                    android:background="@drawable/edit_text_border"
+                    android:textColorHint="@android:color/white"
+                    android:textColor="@android:color/white"
+                    android:imeOptions="actionDone"
+                    android:layout_below="@+id/edt_dob"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <TextView
+                    android:id="@+id/tv_declare"
+                    android:layout_width="wrap_content"
+                    android:layout_below="@+id/edt_accesscode"
+                    android:gravity="center"
+                    android:layout_marginTop="8dp"
+                    android:textSize="12sp"
+                    android:textColor="@android:color/white"
+                    android:layout_centerInParent="true"
+                    android:text="@string/str_privacy_policy"
+                    android:layout_height="wrap_content" />
+
+                <android.support.v7.widget.AppCompatButton
+                    android:id="@+id/btn_createacc"
+                    android:layout_width="match_parent"
+                    style="@style/edit_text_height"
+                    android:text="Create an Account"
+                    android:textColor="@color/color_orange"
+                    android:background="@color/color_white"
+                    android:layout_below="@+id/tv_declare"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:id="@+id/ll_divider"
+                    android:layout_width="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:layout_below="@+id/btn_createacc"
+                    android:layout_height="?attr/actionBarSize">
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_weight="0.40"
+                        android:background="@color/color_white"
+                        android:layout_height="1dp"/>
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:text="OR"
+                        android:textSize="16sp"
+                        android:textColor="@color/color_white"
+                        android:layout_weight="0.20"
+                        android:gravity="center"
+                        android:layout_height="wrap_content" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_weight="0.40"
+                        android:background="@color/color_white"
+                        android:layout_height="1dp"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_below="@+id/ll_divider"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <include layout="@layout/social_login_layout"/>
+                </LinearLayout>
+
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
+    <LinearLayout
+        android:id="@+id/ll_donthav"
+        android:layout_width="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:layout_height="?attr/actionBarSize">
+
+        <TextView
+            android:id="@+id/tv_alreadyaccount"
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:background="@color/color_dont_account_bg"
+            android:textColor="@color/color_dont_account"
+            android:text="@string/str_already_account_login"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+</RelativeLayout>

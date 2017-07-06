@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:weightSum="1"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_loginwith"
+            android:layout_width="0dp"
+            android:text="Login with"
+            android:textSize="18sp"
+            android:gravity="center|left"
+            android:layout_weight="0.40"
+            android:textColor="@color/color_white"
+            android:layout_height="match_parent" />
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_weight="0.60"
+            android:layout_toRightOf="@+id/tv_loginwith"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/iv_fbicon"
+                android:layout_gravity="center"
+                android:layout_margin="10dp"
+                android:layout_width="wrap_content"
+                android:background="@drawable/iv_fbicon"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/iv_googleicon"
+                android:layout_margin="10dp"
+                android:layout_alignParentRight="true"
+                android:layout_width="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/iv_googleicon"
+                android:layout_height="wrap_content" />
+
+            <ImageView
+                android:id="@+id/iv_twitter"
+               android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_margin="10dp"
+                android:background="@drawable/iv_twitter"
+                android:layout_height="wrap_content" />
+        </RelativeLayout>
+
+
+
+    </LinearLayout>
+
+</LinearLayout>

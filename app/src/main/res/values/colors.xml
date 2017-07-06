@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="color_ligh_blue">#568FA7</color>
+    <color name="color_green">#23AA60</color>
+    <color name="color_light_blue">#4e9cb8</color>
+    <color name="color_toolbar">#323245</color>
+    <color name="color_orange">#F35733</color>
+    <color name="color_sidenav_textcolor">#535367</color>
+    <color name="color_bgsidenav">#B4B5C8</color>
+    <color name="color_forgot_pwd_submit">#F65D38</color>
+
+
+
+    <!--Login Screen-->
+    <color name="color_dont_account">#ABAEDB</color>
+    <color name="color_dont_account_bg">#252536</color>
+    <color name="color_white">#ffffff</color>
+</resources>

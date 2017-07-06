@@ -1,0 +1,68 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="dialog_padding">10dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+    <dimen name="str_privacydimen">10dp</dimen>
+    <dimen name="str_supportdimen">5dp</dimen>
+    <dimen name="str_forgotdimen">5dp</dimen>
+    <dimen name="dimen_privacy_text">15sp</dimen>
+    <dimen name="dimen_loginlayoutpadding">30dp</dimen>
+    <dimen name="dimen_forgotdialog">3dp</dimen>
+
+    <dimen name="dimen_forgot_padding">15dip</dimen>
+    <dimen name="str_forgot_password_textsie">20sp</dimen>
+    <dimen name="str_forgotsubmenutext">16sp</dimen>
+
+    <dimen name="str_settings_text_size">17sp</dimen>
+
+    <!-- REgister Padding-->
+    <dimen name="dimen_registerpadding">25dp</dimen>
+    <dimen name="str_toolbartextsize">20sp</dimen>
+    <dimen name="str_edittext_size">16sp</dimen>
+
+    <!-- Main activity item row padding-->
+    <dimen name="dimen_mainactivity_row_padding">10dp</dimen>
+
+
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="dimen_one">1dip</dimen>
+    <dimen name="dimen_two">2dip</dimen>
+    <dimen name="dimen_three">3dip</dimen>
+    <dimen name="dimen_four">4dip</dimen>
+    <dimen name="dimen_five">5dip</dimen>
+    <dimen name="dimen_six">6dip</dimen>
+    <dimen name="dimen_seven">7dip</dimen>
+    <dimen name="dimen_eight">7dip</dimen>
+    <dimen name="dimen_nine">9dip</dimen>
+    <dimen name="dimen_ten">10dip</dimen>
+    <dimen name="dimen_eleven">11dip</dimen>
+    <dimen name="dimen_twelve">12dip</dimen>
+    <dimen name="dimen_thirteen">13dip</dimen>
+    <dimen name="dimen_fourteen">14dip</dimen>
+    <dimen name="dimen_fifteen">15dip</dimen>
+    <dimen name="dimen_sixteen">16dip</dimen>
+    <dimen name="dimen_seventeen">17dip</dimen>
+    <dimen name="dimen_eighteen">18dip</dimen>
+    <dimen name="dimen_nineteen">19dip</dimen>
+    <dimen name="dimen_twenty">20dip</dimen>
+
+    <dimen name="dimen_twentyfive">25dip</dimen>
+    <dimen name="dimen_thirty">30dip</dimen>
+    <dimen name="dimen_thirtytwo">32dip</dimen>
+    <dimen name="dimen_thirtyfive">35dip</dimen>
+    <dimen name="dimen_thirtyeight">38dip</dimen>
+    <dimen name="dimen_fourty">40dip</dimen>
+    <dimen name="dimen_fourty_five">45dip</dimen>
+    <dimen name="dimen_fifty">50dip</dimen>
+    <dimen name="dimen_eighty">80dip</dimen>
+    <dimen name="dimen_hundred">100dip</dimen>
+    <dimen name="dimen_hundredten">110dip</dimen>
+    <dimen name="dimen_hundredtwenty">120dip</dimen>
+
+    <dimen name="profile_width">75dp</dimen>
+    <dimen name="profile_height">75dp</dimen>
+    <dimen name="nav_header_vertical_spacing">16dp</dimen>
+    <dimen name="nav_header_height">120dp</dimen>
+</resources>
