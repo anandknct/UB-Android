@@ -1,59 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/view_container"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/nav_header_height"
-    android:gravity="bottom"
+    android:layout_height="?attr/actionBarSize"
+    android:background="@color/colorPrimary"
+    android:gravity="center_vertical"
     android:orientation="vertical"
-    android:background="@color/color_light_blue"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
     <ImageView
         android:id="@+id/img_header_bg"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scaleType="fitXY" />
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <RelativeLayout
-            android:id="@+id/rl_contenlayout"
-            android:layout_width="wrap_content"
-            android:paddingBottom="8dp"
-            android:layout_marginLeft="15dp"
-            android:layout_alignParentBottom="true"
-            android:layout_height="wrap_content">
-            <TextView
-                android:id="@+id/tv_welcome"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingTop="@dimen/nav_header_vertical_spacing"
-                android:textColor="@color/color_white"
-                android:text="Welcome,"
-                android:textSize="@dimen/str_settings_text_size"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
-
-            <TextView
-                android:id="@+id/tv_name"
-                android:layout_below="@+id/tv_welcome"
-                android:text="@string/app_name"
-                android:textSize="@dimen/str_settings_text_size"
-                android:textColor="@color/color_white"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-        </RelativeLayout>
-
-    </RelativeLayout>
-    <ImageView
-        android:id="@+id/iv_settings"
-        android:layout_alignParentBottom="true"
-        android:layout_margin="@dimen/dimen_eight"
         android:layout_width="wrap_content"
-        android:layout_centerInParent="true"
-        android:layout_alignParentRight="true"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:scaleType="fitXY"
+        android:tint="#FFFFFF"
+        android:src="@android:drawable/ic_menu_close_clear_cancel" />
+
+
 </RelativeLayout>

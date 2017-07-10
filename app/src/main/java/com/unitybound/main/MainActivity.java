@@ -117,12 +117,6 @@ public class MainActivity extends BaseActivity {
     }
 
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-
-    }
-
     public ArrayList<SideMenu> generateSideMenu() {
         menuArrayList = new ArrayList<>();
         menuArrayList.add(new SideMenu(getResources().getString(R.string.str_church), R.mipmap.ic_launcher, true));

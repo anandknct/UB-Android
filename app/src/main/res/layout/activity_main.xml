@@ -17,7 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@color/color_bgsidenav"
+        android:background="@color/navigation_menu_bg"
         android:fitsSystemWindows="true"
         android:visibility="visible">
         <LinearLayout
@@ -25,7 +25,7 @@
             android:layout_marginTop="?attr/actionBarSize"
             android:layout_height="match_parent"
             android:orientation="vertical">
-            <!--<include layout="@layout/nav_header_main" />-->
+            <include layout="@layout/nav_header_main" />
             <ListView
                 android:id="@+id/lst_menu_items"
                 android:layout_width="match_parent"
