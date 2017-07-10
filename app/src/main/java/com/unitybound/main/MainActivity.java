@@ -2,8 +2,10 @@ package com.unitybound.main;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -11,12 +13,16 @@ import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
+import android.widget.RelativeLayout;
+
 import com.unitybound.R;
 import com.unitybound.account.fragment.MyAccountFragment;
 import com.unitybound.church.fragment.ChurchesFragment;
@@ -31,17 +37,18 @@ import com.unitybound.settings.fragment.SettingsFragment;
 import com.unitybound.utility.AppSession;
 import com.unitybound.utility.Util;
 import com.unitybound.weddings.fragment.WeddingsFragment;
+
 import java.util.ArrayList;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class MainActivity extends BaseActivity {
     //SocialIntegrations mSocialIntegrations = null;
     AppSession mAppSession;
     Handler mHandler;
     SliderCustomAdapter sliderCustomAdapter;
-    @BindView(R.id.toolbar_title)
-    TextView toolbarTitle;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.frame)
@@ -52,6 +59,10 @@ public class MainActivity extends BaseActivity {
     NavigationView navView;
     @BindView(R.id.drawer_layout)
     DrawerLayout drawerLayout;
+    @BindView(R.id.img_close_menu)
+    ImageView imgCloseMenu;
+    @BindView(R.id.view_container)
+    RelativeLayout viewContainer;
     private ArrayList<SideMenu> menuArrayList;
     public static int sNavItemIndex = 0;
     // tags used to attach the fragments
@@ -88,11 +99,12 @@ public class MainActivity extends BaseActivity {
         activityTitles = getResources().getStringArray(R.array.nav_item_activity_titles);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.GINGERBREAD)
     private void initToolbarData() {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
-         toolbar.setNavigationIcon(R.drawable.iv_menu);
+        toolbar.setNavigationIcon(R.drawable.iv_menu);
     }
 
     private void initClass() {
@@ -119,7 +131,7 @@ public class MainActivity extends BaseActivity {
 
     public ArrayList<SideMenu> generateSideMenu() {
         menuArrayList = new ArrayList<>();
-        menuArrayList.add(new SideMenu(getResources().getString(R.string.str_church), R.mipmap.ic_launcher, true));
+        menuArrayList.add(new SideMenu(getResources().getString(R.string.str_church), R.mipmap.ic_launcher, false));
         menuArrayList.add(new SideMenu(getResources().getString(R.string.str_event), R.mipmap.ic_launcher, false));
         menuArrayList.add(new SideMenu(getResources().getString(R.string.str_grp), R.mipmap.ic_launcher, false));
         menuArrayList.add(new SideMenu(getResources().getString(R.string.str_obituaries), R.mipmap.ic_launcher, false));
@@ -176,7 +188,7 @@ public class MainActivity extends BaseActivity {
     }
 
     private void setToolbarTitle() {
-        toolbarTitle.setText(activityTitles[sNavItemIndex]);
+//        toolbarTitle.setText(activityTitles[sNavItemIndex]);
     }
 
     /***
@@ -309,5 +321,58 @@ public class MainActivity extends BaseActivity {
         }
         sliderCustomAdapter.notifyDataSetChanged();
         lstMenuItems.setAdapter(sliderCustomAdapter);
+    }
+
+    @OnClick(R.id.img_close_menu)
+    public void onViewClicked() {
+        drawerLayout.closeDrawers();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);//Menu Resource, Menu
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+
+            case R.id.action_home:
+                if (Util.checkNetworkAvailablity(this)) {
+//                    if (null != mSlotDataListAdapter.getCheckedItem() && mSlotDataListAdapter.getCheckedItem().size() > 0
+//                            && null != mSlotDataListAdapter.getData() && mSlotDataListAdapter.getData().size() > 0) {
+
+                } else {
+//                    Util.showAlertDialog(this, getResources().getString(R.string.alt_checknet));
+                }
+                return true;
+            case R.id.action_notification:
+                if (Util.checkNetworkAvailablity(this)) {
+//                    if (null != mSlotDataListAdapter.getCheckedItem() && mSlotDataListAdapter.getCheckedItem().size() > 0
+//                            && null != mSlotDataListAdapter.getData() && mSlotDataListAdapter.getData().size() > 0) {
+
+                } else {
+//                    Util.showAlertDialog(this, getResources().getString(R.string.alt_checknet));
+                }
+                return true;
+            case R.id.action_friend_request:
+                if (Util.checkNetworkAvailablity(this)) {
+
+
+                } else {
+//                    Util.showAlertDialog(this, getResources().getString(R.string.alt_checknet));
+                }
+                return true;
+            case R.id.action_friend_list:
+
+                return true;
+
+
+            case android.R.id.home:
+                finish();
+                return true;
+        }
+        return false;
     }
 }

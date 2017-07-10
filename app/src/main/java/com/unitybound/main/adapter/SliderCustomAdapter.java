@@ -1,7 +1,6 @@
 package com.unitybound.main.adapter;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.unitybound.R;
 import com.unitybound.main.model.SideMenu;
 
@@ -68,7 +68,7 @@ public class SliderCustomAdapter extends BaseAdapter {
 
         titleView.setText(sideMenu.getName());
         iconView.setImageResource(sideMenu.getDrawable());
-        if (sideMenu.isSelected()) {
+       /* if (sideMenu.isSelected()) {
             //arrowImageView.setVisibility(View.VISIBLE);
             parentLayout.setBackgroundColor(ContextCompat.getColor(mContext, R.color.color_ligh_blue));
           //  topLine.setVisibility(View.VISIBLE);
@@ -76,7 +76,7 @@ public class SliderCustomAdapter extends BaseAdapter {
           //  topLine.setVisibility(View.INVISIBLE);
            // arrowImageView.setVisibility(View.INVISIBLE);
            // parentLayout.setBackgroundColor(ContextCompat.getColor(mContext, android.R.color.white));
-        }
+        }*/
 
         return view;
     }
