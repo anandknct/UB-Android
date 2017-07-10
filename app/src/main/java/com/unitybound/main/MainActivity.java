@@ -29,6 +29,7 @@ import com.unitybound.church.fragment.ChurchesFragment;
 import com.unitybound.events.fragment.EventsFragment;
 import com.unitybound.groups.fragment.GroupsFragment;
 import com.unitybound.main.adapter.SliderCustomAdapter;
+import com.unitybound.main.home.fragment.HomeFeedsFragment;
 import com.unitybound.main.model.SideMenu;
 import com.unitybound.notification.fragment.NotificationsFragment;
 import com.unitybound.obtiuaries.fragment.ObtiuariesFragment;
@@ -242,7 +243,8 @@ public class MainActivity extends BaseActivity {
         switch (sNavItemIndex) {
             case 0:
                 // Churches Fragment
-                return new ChurchesFragment();
+//                return new ChurchesFragment();
+                return new HomeFeedsFragment();
             case 1:
                 // View Queue fragment
                 return new EventsFragment();
