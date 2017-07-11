@@ -5,9 +5,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <TextView
+        android:id="@+id/tv_notification_label"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dimen_ten"
+        android:text="Notifications"
+        android:textColor="@color/text_color_secondary" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/tv_notification_label"
+        android:layout_height="1dp"
+        android:background="@color/color_bgsidenav"/>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_list_layout"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent"
+        android:layout_marginTop="@dimen/dimen_ten"
+        android:layout_below="@+id/divider"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 </RelativeLayout>

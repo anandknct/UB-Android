@@ -65,7 +65,11 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.view_container)
     RelativeLayout viewContainer;
     private ArrayList<SideMenu> menuArrayList;
-    public static int sNavItemIndex = 0;
+    public static int sNavItemIndex = 100;
+    public final int HOME_INDEX = 100;
+    public final int NOTIFICATION_INDEX = 200;
+    public final int FRIEND_REQUEST_INDEX = 300;
+    public final int LIST_INDEX = 400;
     // tags used to attach the fragments
     private static final String TAG_SEARCH_QUEUE = "searchqueue";
     private static final String TAG_VIEW_QUEUE = "viewqueue";
@@ -78,6 +82,24 @@ public class MainActivity extends BaseActivity {
     private String[] activityTitles;
 
     @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("FragmentPosition", sNavItemIndex);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        sNavItemIndex = savedInstanceState.getInt("FragmentPosition");
+        // Load Default Fragment
+        if (savedInstanceState == null)
+        {
+            // Display the fragment as the main content.
+            loadHomeScreenFragments(sNavItemIndex);
+        }
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initClass();
@@ -86,8 +108,12 @@ public class MainActivity extends BaseActivity {
         initToolbarData();
         initAdapter();
         setUpNavigationView();
-        // Load Default Fragment
-        loadHomeScreenFragments(1);
+// Load Default Fragment
+        if (savedInstanceState == null)
+        {
+            // Display the fragment as the main content.
+            loadHomeScreenFragments(sNavItemIndex);
+        }
         lstMenuItems.setOnItemClickListener(navBarListListner);
     }
 
@@ -338,17 +364,17 @@ public class MainActivity extends BaseActivity {
         switch (item.getItemId()) {
 
             case R.id.action_home:
-                if (Util.checkNetworkAvailablity(this)) {
+//                if (Util.checkNetworkAvailablity(this)) {
 //                    if (null != mSlotDataListAdapter.getCheckedItem() && mSlotDataListAdapter.getCheckedItem().size() > 0
 //                            && null != mSlotDataListAdapter.getData() && mSlotDataListAdapter.getData().size() > 0) {
-                    loadHomeScreenFragments(1);
-                } else {
+                    loadHomeScreenFragments(HOME_INDEX);
+//                } else {
 //                    Util.showAlertDialog(this, getResources().getString(R.string.alt_checknet));
-                }
+//                }
                 return true;
             case R.id.action_notification:
 //                if (Util.checkNetworkAvailablity(this)) {
-                    loadHomeScreenFragments(2);
+                    loadHomeScreenFragments(NOTIFICATION_INDEX);
 //                } else {
 //                    Util.showAlertDialog(this, getResources().getString(R.string.alt_checknet));
 //                }
@@ -377,17 +403,20 @@ public class MainActivity extends BaseActivity {
         Fragment fragment = null;
 
         switch (POSITION){
-
-            case 1:
+            case HOME_INDEX:
+                sNavItemIndex = POSITION;
                 fragment = new HomeFeedsFragment();
                 break;
-            case 2:
+            case NOTIFICATION_INDEX:
+                sNavItemIndex = POSITION;
                 fragment = new NotificationsFragment();
                 break;
-            case 3:
+            case FRIEND_REQUEST_INDEX:
+                sNavItemIndex = POSITION;
 //                fragment = new NotificationsFragment();
                 break;
-            case 4:
+            case LIST_INDEX:
+                sNavItemIndex = POSITION;
 //                fragment = new NotificationsFragment();
                 break;
         }
