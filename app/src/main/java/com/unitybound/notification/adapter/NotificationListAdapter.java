@@ -2,6 +2,7 @@ package com.unitybound.notification.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,7 +24,7 @@ public class NotificationListAdapter extends RecyclerView.Adapter<RecyclerView.V
     private final Context context;
     private final ArrayList<NotificationData> mViewListRecord;
 
-    public NotificationListAdapter(Context context, ArrayList<NotificationData> mViewListRecord ) {
+    public NotificationListAdapter(Context context, ArrayList<NotificationData> mViewListRecord) {
         this.context = context;
 //        this.cellSizeWidth = Utils.getScreenWidth(context) / 2;
 //        this.cellSizeHeight = Utils.getScreenHeight(context) / 8;
@@ -56,7 +57,7 @@ public class NotificationListAdapter extends RecyclerView.Adapter<RecyclerView.V
      * @param POSITION the adapter position
      */
     private void bindViewListData(final NotificationListAdapter.ViewHolder holder, final int POSITION) {
-//        holder.tv_name.setText(mViewListRecord.get(POSITION).getUsername());
+        holder.tvHeaderTxt.setText(Html.fromHtml("<B>Andrian Phillips</B> likes he has post that\\nyou shared"));
 //        String mobileNumber = String.valueOf(mViewListRecord.get(POSITION).getMobileNumber());
 //        holder.tv_number.setText(Util.getContactNumberEnc(mobileNumber));
 //        holder.flRoot.setMinimumHeight(cellSizeHeight - 20);

@@ -86,11 +86,8 @@ public class MainActivity extends BaseActivity {
         initToolbarData();
         initAdapter();
         setUpNavigationView();
-        if (savedInstanceState == null) {
-            sNavItemIndex = 0;
-            CURRENT_TAG = TAG_SEARCH_QUEUE;
-            loadFragment();
-        }
+        // Load Default Fragment
+        loadHomeScreenFragments(1);
         lstMenuItems.setOnItemClickListener(navBarListListner);
     }
 
@@ -344,19 +341,17 @@ public class MainActivity extends BaseActivity {
                 if (Util.checkNetworkAvailablity(this)) {
 //                    if (null != mSlotDataListAdapter.getCheckedItem() && mSlotDataListAdapter.getCheckedItem().size() > 0
 //                            && null != mSlotDataListAdapter.getData() && mSlotDataListAdapter.getData().size() > 0) {
-
+                    loadHomeScreenFragments(1);
                 } else {
 //                    Util.showAlertDialog(this, getResources().getString(R.string.alt_checknet));
                 }
                 return true;
             case R.id.action_notification:
-                if (Util.checkNetworkAvailablity(this)) {
-//                    if (null != mSlotDataListAdapter.getCheckedItem() && mSlotDataListAdapter.getCheckedItem().size() > 0
-//                            && null != mSlotDataListAdapter.getData() && mSlotDataListAdapter.getData().size() > 0) {
-
-                } else {
+//                if (Util.checkNetworkAvailablity(this)) {
+                    loadHomeScreenFragments(2);
+//                } else {
 //                    Util.showAlertDialog(this, getResources().getString(R.string.alt_checknet));
-                }
+//                }
                 return true;
             case R.id.action_friend_request:
                 if (Util.checkNetworkAvailablity(this)) {
@@ -379,24 +374,44 @@ public class MainActivity extends BaseActivity {
     }
 
     private void loadHomeScreenFragments(int POSITION){
+        Fragment fragment = null;
 
-        
-        Runnable mPendingRunnable = new Runnable() {
-            @Override
-            public void run() {
-                // update the main content by replacing fragments
-                Fragment fragment = navigateOnFragment();
-                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.setCustomAnimations(android.R.anim.fade_in,
-                        android.R.anim.fade_out);
-                fragmentTransaction.replace(R.id.frame, fragment, CURRENT_TAG);
-                fragmentTransaction.commitAllowingStateLoss();
+        switch (POSITION){
+
+            case 1:
+                fragment = new HomeFeedsFragment();
+                break;
+            case 2:
+                fragment = new NotificationsFragment();
+                break;
+            case 3:
+//                fragment = new NotificationsFragment();
+                break;
+            case 4:
+//                fragment = new NotificationsFragment();
+                break;
+        }
+
+
+        final Fragment finalFragment = fragment;
+        if (fragment!=null) {
+            Runnable mPendingRunnable = new Runnable() {
+                @Override
+                public void run() {
+                    // update the main content by replacing fragments
+
+                    FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                    fragmentTransaction.setCustomAnimations(android.R.anim.fade_in,
+                            android.R.anim.fade_out);
+                    fragmentTransaction.replace(R.id.frame, finalFragment, CURRENT_TAG);
+                    fragmentTransaction.commitAllowingStateLoss();
+                }
+            };
+
+            // If mPendingRunnable is not null, then add to the message queue
+            if (mPendingRunnable != null) {
+                mHandler.post(mPendingRunnable);
             }
-        };
-
-        // If mPendingRunnable is not null, then add to the message queue
-        if (mPendingRunnable != null) {
-            mHandler.post(mPendingRunnable);
         }
     }
 
