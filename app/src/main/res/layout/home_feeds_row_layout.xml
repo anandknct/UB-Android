@@ -18,9 +18,9 @@
 
         <ImageView
             android:id="@+id/iv_user_image"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:src="@drawable/iv_googleicon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/ic_me"
             android:tint="@color/btn_bg_color" />
 
         <RelativeLayout
@@ -28,35 +28,35 @@
             android:layout_height="wrap_content"
             android:paddingLeft="@dimen/dimen_five">
 
-            <LinearLayout
-                android:id="@+id/ll_header_sub_labels"
-                android:layout_width="match_parent"
+
+            <TextView
+                android:id="@+id/tv_tittle_text"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/tv_tittle_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight=".35"
-                    android:padding="2dp"
-                    android:text="Gunnar Heinemann"
-                    android:textColor="@color/text_color_primary" />
-
-
-            </LinearLayout>
+                android:layout_weight=".35"
+                android:padding="2dp"
+                android:text="Gunnar Heinemann"
+                android:textColor="@color/text_color_primary" />
 
             <TextView
                 android:id="@+id/tv_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/ll_header_sub_labels"
+                android:layout_below="@+id/tv_tittle_text"
                 android:maxLines="3"
                 android:nestedScrollingEnabled="true"
                 android:padding="2dp"
                 android:scrollbarAlwaysDrawVerticalTrack="true"
                 android:text="8 min ago"
                 android:textColor="@color/text_color_secondary" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/dimen_five">
+
+
         </RelativeLayout>
 
     </LinearLayout>
@@ -70,10 +70,31 @@
         <ImageView
             android:id="@+id/iv_image_prev"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="120dp"
             android:scaleType="fitXY" />
 
         <!--android:src="@drawable/placeholder"-->
+
+        <TextView
+            android:id="@+id/tv_description_header"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/iv_image_prev"
+            android:layout_margin="@dimen/dimen_five"
+            android:text="Please pray for Scot"
+            android:textColor="@color/text_color_primary"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_description_secondary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_description_header"
+            android:layout_margin="@dimen/dimen_five"
+            android:text="adnri  jfajk bhfkjb akjfbajg akjgakagj agaj g
+a g hajghkja ghakjghkja ghakj gha ghah"
+            android:textColor="@color/text_color_secondary"
+            android:textStyle="normal" />
 
     </RelativeLayout>
 
@@ -87,6 +108,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="@dimen/dimen_five"
         android:orientation="horizontal">
 
 
@@ -95,10 +118,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_gravity="center_vertical"
-            android:drawableLeft="@android:drawable/sym_call_incoming"
+            android:drawableLeft="@drawable/ic_like"
             android:drawablePadding="7dp"
-            android:gravity="center_horizontal"
+            android:gravity="center_horizontal|center_vertical"
             android:text="Like" />
 
         <TextView
@@ -107,16 +129,18 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_gravity="center_vertical"
+            android:layout_marginLeft="@dimen/dimen_ten"
             android:layout_toRightOf="@+id/tv_share"
-            android:drawableLeft="@android:drawable/sym_call_incoming"
+            android:drawableLeft="@drawable/ic_comment"
             android:drawablePadding="7dp"
-            android:gravity="clip_vertical"
+            android:gravity="center_horizontal|center_vertical"
             android:text="Comment" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:text="2 Like and  24 Comment" />
     </RelativeLayout>
 

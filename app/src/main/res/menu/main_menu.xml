@@ -4,7 +4,7 @@
 
     <item
         android:id="@+id/action_home"
-        android:icon="@android:drawable/star_on"
+        android:icon="@drawable/ac_home"
         android:menuCategory="secondary"
         android:orderInCategory="1"
         android:title=""
@@ -12,7 +12,7 @@
 
     <item
         android:id="@+id/action_notification"
-        android:icon="@android:drawable/ic_notification_clear_all"
+        android:icon="@drawable/ac_notifications_icon_white"
         android:menuCategory="secondary"
         android:orderInCategory="1"
         android:title=""
@@ -20,7 +20,7 @@
 
     <item
         android:id="@+id/action_friend_request"
-        android:icon="@android:drawable/stat_notify_sdcard_usb"
+        android:icon="@drawable/ac_friend_reqst"
         android:menuCategory="secondary"
         android:orderInCategory="1"
         android:title=""
@@ -28,7 +28,7 @@
 
     <item
         android:id="@+id/action_friend_list"
-        android:icon="@android:drawable/stat_sys_download"
+        android:icon="@drawable/ac_prayerlist"
         android:menuCategory="secondary"
         android:orderInCategory="1"
         android:title=""

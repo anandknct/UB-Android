@@ -23,4 +23,7 @@
     <color name="color_dont_account">#ABAEDB</color>
     <color name="color_dont_account_bg">#252536</color>
     <color name="color_white">#ffffff</color>
+
+    <color name="notification_accept_color">#65C5C1</color>
+    <color name="notification_reject_color">#C91427</color>
 </resources>

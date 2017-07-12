@@ -29,6 +29,7 @@ import com.unitybound.church.fragment.ChurchesFragment;
 import com.unitybound.events.fragment.EventsFragment;
 import com.unitybound.groups.fragment.GroupsFragment;
 import com.unitybound.main.adapter.SliderCustomAdapter;
+import com.unitybound.main.friendrequest.fragment.FriendRequestFragment;
 import com.unitybound.main.home.fragment.HomeFeedsFragment;
 import com.unitybound.main.model.SideMenu;
 import com.unitybound.notification.fragment.NotificationsFragment;
@@ -80,6 +81,7 @@ public class MainActivity extends BaseActivity {
     public static String CURRENT_TAG = TAG_SEARCH_QUEUE;
     // mToolbar titles respected to selected nav menu item
     private String[] activityTitles;
+    private Menu mOptionMenu = null;
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -92,10 +94,11 @@ public class MainActivity extends BaseActivity {
         super.onRestoreInstanceState(savedInstanceState);
         sNavItemIndex = savedInstanceState.getInt("FragmentPosition");
         // Load Default Fragment
-        if (savedInstanceState == null)
-        {
+        if (savedInstanceState == null) {
             // Display the fragment as the main content.
             loadHomeScreenFragments(sNavItemIndex);
+            if (mOptionMenu!=null)
+            mOptionMenu.findItem(R.id.action_home).setIcon(R.drawable.ac_home_active);
         }
     }
 
@@ -109,8 +112,7 @@ public class MainActivity extends BaseActivity {
         initAdapter();
         setUpNavigationView();
 // Load Default Fragment
-        if (savedInstanceState == null)
-        {
+        if (savedInstanceState == null) {
             // Display the fragment as the main content.
             loadHomeScreenFragments(sNavItemIndex);
         }
@@ -356,7 +358,24 @@ public class MainActivity extends BaseActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);//Menu Resource, Menu
+        mOptionMenu = menu;
         return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        if (sNavItemIndex == HOME_INDEX) {
+            menu.findItem(R.id.action_home).setIcon(R.drawable.ac_home_active);
+        } else if (sNavItemIndex == NOTIFICATION_INDEX) {
+            menu.findItem(R.id.action_notification).setIcon(R.drawable.ac_notifications_icon_active);
+        } else if (sNavItemIndex == FRIEND_REQUEST_INDEX) {
+            menu.findItem(R.id.action_friend_request).setIcon(R.drawable.ac_friend_reqst_active);
+        } else if (sNavItemIndex == LIST_INDEX) {
+            menu.findItem(R.id.action_friend_list).setIcon(R.drawable.ac_prayerlist_active);
+        } else{
+
+        }
+        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
@@ -367,28 +386,34 @@ public class MainActivity extends BaseActivity {
 //                if (Util.checkNetworkAvailablity(this)) {
 //                    if (null != mSlotDataListAdapter.getCheckedItem() && mSlotDataListAdapter.getCheckedItem().size() > 0
 //                            && null != mSlotDataListAdapter.getData() && mSlotDataListAdapter.getData().size() > 0) {
-                    loadHomeScreenFragments(HOME_INDEX);
+
+                mOptionMenu.findItem(R.id.action_home).setIcon(R.drawable.ac_home_active);
+                loadHomeScreenFragments(HOME_INDEX);
 //                } else {
 //                    Util.showAlertDialog(this, getResources().getString(R.string.alt_checknet));
 //                }
                 return true;
             case R.id.action_notification:
 //                if (Util.checkNetworkAvailablity(this)) {
-                    loadHomeScreenFragments(NOTIFICATION_INDEX);
+                mOptionMenu.findItem(R.id.action_notification).setIcon(R.drawable.ac_notifications_icon_active);
+                loadHomeScreenFragments(NOTIFICATION_INDEX);
+
 //                } else {
 //                    Util.showAlertDialog(this, getResources().getString(R.string.alt_checknet));
 //                }
                 return true;
             case R.id.action_friend_request:
-                if (Util.checkNetworkAvailablity(this)) {
+//                if (Util.checkNetworkAvailablity(this)) {
 
-
-                } else {
+                mOptionMenu.findItem(R.id.action_friend_request).setIcon(R.drawable.ac_friend_reqst_active);
+                loadHomeScreenFragments(FRIEND_REQUEST_INDEX);
+//                } else {
 //                    Util.showAlertDialog(this, getResources().getString(R.string.alt_checknet));
-                }
+//                }
                 return true;
             case R.id.action_friend_list:
 
+                mOptionMenu.findItem(R.id.action_friend_list).setIcon(R.drawable.ac_prayerlist_active);
                 return true;
 
 
@@ -399,10 +424,10 @@ public class MainActivity extends BaseActivity {
         return false;
     }
 
-    private void loadHomeScreenFragments(int POSITION){
+    private void loadHomeScreenFragments(int POSITION) {
         Fragment fragment = null;
 
-        switch (POSITION){
+        switch (POSITION) {
             case HOME_INDEX:
                 sNavItemIndex = POSITION;
                 fragment = new HomeFeedsFragment();
@@ -413,7 +438,7 @@ public class MainActivity extends BaseActivity {
                 break;
             case FRIEND_REQUEST_INDEX:
                 sNavItemIndex = POSITION;
-//                fragment = new NotificationsFragment();
+                fragment = new FriendRequestFragment();
                 break;
             case LIST_INDEX:
                 sNavItemIndex = POSITION;
@@ -423,7 +448,7 @@ public class MainActivity extends BaseActivity {
 
 
         final Fragment finalFragment = fragment;
-        if (fragment!=null) {
+        if (fragment != null) {
             Runnable mPendingRunnable = new Runnable() {
                 @Override
                 public void run() {

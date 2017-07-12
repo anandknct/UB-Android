@@ -23,6 +23,8 @@
         reset your password</string>
     <string name="str_cancel">Cancel</string>
     <string name="str_submit">Submit</string>
+    <string name="str_accept">Accept</string>
+    <string name="str_decline">Decline</string>
 
     <string-array name="nav_item_activity_titles">
         <item>Churches</item>
