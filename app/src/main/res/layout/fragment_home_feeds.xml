@@ -3,10 +3,99 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <LinearLayout
+        android:id="@+id/ll_top_menu"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentTop="true"
+        android:weightSum="4">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:paddingLeft="@dimen/dimen_five"
+            android:paddingRight="@dimen/dimen_five"
+            android:background="@color/btn_bg_color"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:paddingLeft="@dimen/dimen_ten"
+                android:src="@drawable/ic_all_types" />
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="1dp"
+                android:background="@color/btn_bg_color" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/iv_everyone"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="1dp"
+            android:layout_weight="1"
+            android:background="@color/btn_bg_color"
+            android:drawableLeft="@drawable/ic_everyone"
+            android:drawablePadding="@dimen/dimen_five"
+            android:gravity="center_vertical"
+            android:text="Everyone"
+            android:textAllCaps="true"
+            android:paddingLeft="@dimen/dimen_five"
+            android:paddingRight="@dimen/dimen_five"
+            android:textColor="@color/color_white"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/iv_me"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="1dp"
+            android:layout_weight="1"
+            android:background="@color/btn_bg_color"
+            android:drawableLeft="@drawable/ic_me"
+            android:paddingLeft="@dimen/dimen_five"
+            android:paddingRight="@dimen/dimen_five"
+            android:drawablePadding="@dimen/dimen_five"
+            android:gravity="center_vertical"
+            android:text="me"
+            android:textAllCaps="true"
+            android:textColor="@color/color_white"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/iv_favourite"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_margin="1dp"
+            android:paddingLeft="@dimen/dimen_five"
+            android:paddingRight="@dimen/dimen_five"
+            android:layout_weight="1"
+            android:background="@color/btn_bg_color"
+            android:drawableLeft="@drawable/ic_favorites"
+            android:drawablePadding="@dimen/dimen_five"
+            android:gravity="center_vertical"
+            android:text="Favourite"
+            android:textAllCaps="true"
+            android:textColor="@color/color_white"
+            android:textSize="10sp" />
+    </LinearLayout>
+
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipe_refresh"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ll_top_menu">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_view"

@@ -26,12 +26,13 @@ import android.widget.RelativeLayout;
 import com.unitybound.R;
 import com.unitybound.account.fragment.MyAccountFragment;
 import com.unitybound.church.fragment.ChurchesFragment;
-import com.unitybound.events.fragment.EventsFragment;
+import com.unitybound.events.fragment.fragment.EventsFragment;
 import com.unitybound.groups.fragment.GroupsFragment;
 import com.unitybound.main.adapter.SliderCustomAdapter;
 import com.unitybound.main.friendrequest.fragment.FriendRequestFragment;
 import com.unitybound.main.home.fragment.HomeFeedsFragment;
 import com.unitybound.main.model.SideMenu;
+import com.unitybound.main.my.prayer.request.fragment.MyPrayerRequestFragment;
 import com.unitybound.notification.fragment.NotificationsFragment;
 import com.unitybound.obtiuaries.fragment.ObtiuariesFragment;
 import com.unitybound.prefrence.fragment.PrefrenceFragment;
@@ -442,10 +443,9 @@ public class MainActivity extends BaseActivity {
                 break;
             case LIST_INDEX:
                 sNavItemIndex = POSITION;
-//                fragment = new NotificationsFragment();
+                fragment = new MyPrayerRequestFragment();
                 break;
         }
-
 
         final Fragment finalFragment = fragment;
         if (fragment != null) {

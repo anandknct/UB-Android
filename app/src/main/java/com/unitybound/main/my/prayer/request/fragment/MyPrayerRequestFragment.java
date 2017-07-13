@@ -1,4 +1,4 @@
-package com.unitybound.main.home.fragment;
+package com.unitybound.main.my.prayer.request.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 
 import com.unitybound.R;
 import com.unitybound.main.home.fragment.adapter.HomeFeedsAdapter;
+import com.unitybound.main.my.prayer.request.adapter.MyPrayerRequestAdapter;
 
 import java.util.ArrayList;
 
@@ -21,23 +22,26 @@ import butterknife.ButterKnife;
 
 import static com.unitybound.R.id.swipe_refresh;
 
-/**
- * Live feed Fragment
- */
-public class HomeFeedsFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener,
-        HomeFeedsAdapter.IListAdapterCallback{
+public class MyPrayerRequestFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener,
+        HomeFeedsAdapter.IListAdapterCallback, MyPrayerRequestAdapter.IListAdapterCallback {
 
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
     @BindView(swipe_refresh)
     SwipeRefreshLayout swipeRefresh;
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_home_feeds, container, false);
+        View view = inflater.inflate(R.layout.fragment_my_prayer_request, container, false);
         ButterKnife.bind(this, view);
         initViews(view);
         return view;
@@ -51,15 +55,15 @@ public class HomeFeedsFragment extends Fragment implements SwipeRefreshLayout.On
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        swipeRefresh.setOnRefreshListener(HomeFeedsFragment.this);
+        swipeRefresh.setOnRefreshListener(MyPrayerRequestFragment.this);
 
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add("");
         arrayList.add("");
         arrayList.add("");
         arrayList.add("");
-        HomeFeedsAdapter adapter = new HomeFeedsAdapter(getActivity(), arrayList,
-                HomeFeedsFragment.this);
+        MyPrayerRequestAdapter adapter = new MyPrayerRequestAdapter(getActivity(), arrayList,
+                MyPrayerRequestFragment.this);
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
@@ -81,5 +85,4 @@ public class HomeFeedsFragment extends Fragment implements SwipeRefreshLayout.On
     public void onCommentClickListner(String s, int position) {
 
     }
-
 }
