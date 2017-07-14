@@ -93,8 +93,9 @@ public class EventsFragment extends Fragment implements EventsListAdapter.IListA
         FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
         fragmentTransaction.setCustomAnimations(android.R.anim.fade_in,
                 android.R.anim.fade_out);
-        fragmentTransaction.add(R.id.frame, fragment, fragment.getClass().getName());
+        fragmentTransaction.replace(R.id.frame, fragment, fragment.getClass().getName());
         fragmentTransaction.addToBackStack(fragment.getClass().getName());
         fragmentTransaction.commitAllowingStateLoss();
     }
+
 }

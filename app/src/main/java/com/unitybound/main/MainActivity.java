@@ -98,8 +98,8 @@ public class MainActivity extends BaseActivity {
         if (savedInstanceState == null) {
             // Display the fragment as the main content.
             loadHomeScreenFragments(sNavItemIndex);
-            if (mOptionMenu!=null)
-            mOptionMenu.findItem(R.id.action_home).setIcon(R.drawable.ac_home_active);
+            if (mOptionMenu != null)
+                mOptionMenu.findItem(R.id.action_home).setIcon(R.drawable.ac_home_active);
         }
     }
 
@@ -373,7 +373,7 @@ public class MainActivity extends BaseActivity {
             menu.findItem(R.id.action_friend_request).setIcon(R.drawable.ac_friend_reqst_active);
         } else if (sNavItemIndex == LIST_INDEX) {
             menu.findItem(R.id.action_friend_list).setIcon(R.drawable.ac_prayerlist_active);
-        } else{
+        } else {
 
         }
         return super.onPrepareOptionsMenu(menu);
@@ -469,4 +469,18 @@ public class MainActivity extends BaseActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        if (getFragmentManager().getBackStackEntryCount() == 0) {
+            super.onBackPressed();
+        } else {
+            getFragmentManager().popBackStack();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+
+        super.onDestroy();
+    }
 }
