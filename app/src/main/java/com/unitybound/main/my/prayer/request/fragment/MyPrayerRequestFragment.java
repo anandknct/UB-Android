@@ -33,7 +33,7 @@ public class MyPrayerRequestFragment extends Fragment implements SwipeRefreshLay
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setHasOptionsMenu(true);
     }
 
     @Nullable

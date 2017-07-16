@@ -75,6 +75,7 @@ public class SignInActivity extends BaseActivity {
     @OnClick(R.id.btn_createacc)
     public void setBtnCreateacc() {
         MainActivity.startMainActivity(SignInActivity.this);
+        finish();
     }
 
     @OnClick(R.id.ll_forgotpwd)

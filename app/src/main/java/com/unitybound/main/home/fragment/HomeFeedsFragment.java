@@ -32,6 +32,13 @@ public class HomeFeedsFragment extends Fragment implements SwipeRefreshLayout.On
     @BindView(swipe_refresh)
     SwipeRefreshLayout swipeRefresh;
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
+    }
+
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,

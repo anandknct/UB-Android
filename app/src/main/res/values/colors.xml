@@ -11,7 +11,8 @@
     <color name="color_sidenav_textcolor">#535367</color>
     <color name="color_bgsidenav">#B4B5C8</color>
     <color name="color_forgot_pwd_submit">#F65D38</color>
-    
+
+    <color name="divider_color">#B7C1CD</color>
     <color name="navigation_menu_bg">#C0C2D1</color>
     <color name="btn_bg_color">#724D9D</color>
     <color name="icon_selected_orange">#FF7900</color>

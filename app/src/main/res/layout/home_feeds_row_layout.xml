@@ -18,8 +18,8 @@
 
         <ImageView
             android:id="@+id/iv_user_image"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
             android:src="@drawable/ic_me"
             android:tint="@color/btn_bg_color" />
 
@@ -70,7 +70,7 @@
         <ImageView
             android:id="@+id/iv_image_prev"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="100dp"
             android:scaleType="fitXY" />
 
         <!--android:src="@drawable/placeholder"-->

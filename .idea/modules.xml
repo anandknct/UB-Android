@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/UnityBound.iml" filepath="$PROJECT_DIR$/UnityBound.iml" />
+      <module fileurl="file://$PROJECT_DIR$/UB-Android.iml" filepath="$PROJECT_DIR$/UB-Android.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

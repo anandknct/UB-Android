@@ -1,6 +1,0 @@
-COMMAND=PREDEX_LIBRARY_TO_DEX_ARCHIVE
-FILE_PATH=/Android /workspace_unitybound/UnityBound/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar
-FILE_HASH=3fc5de0d8351fc0428a4d68e177b30a2beaf4dce
-DX_VERSION=1.13
-JUMBO_MODE=true
-OPTIMIZE=true

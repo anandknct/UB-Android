@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="C:\AndroidSetup\Projects\Charchit\UB-Android\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="caff8e51a24901cfc9cd7e1cf83d84f4cb0c103b">
+        <dex dex="C:\AndroidSetup\Projects\Charchit\UB-Android\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_2cc75d8bd434e1c433e6857d3872afa6e751ab8b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\AndroidSetup\sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.2\constraint-layout-solver-1.0.2.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
+        <dex dex="C:\AndroidSetup\Projects\Charchit\UB-Android\app\build\intermediates\transforms\dex\debug\folders\1000\10\constraint-layout-solver-1.0.2_51129f8d21a57039810588fab765c18024c1a518\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Admin\.android\build-cache\13728135c21f0b35782d222c46e351f64956fb1e\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="45f697922e6f072daa12f8a2995dc77ab03c11da">
+        <dex dex="C:\AndroidSetup\Projects\Charchit\UB-Android\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_9918a4d308893e71d826847e77a8cd7278d27be2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Admin\.android\build-cache\a10a2f0145ed34c9b0c0f5270bcbc96e1ba236e5\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="38789e20ace9ab7dbd00554bd2673ab424478d3b">
+        <dex dex="C:\AndroidSetup\Projects\Charchit\UB-Android\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_70b5d8dc341f9d382edbf503d59196b8c86b2bdd\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Admin\.android\build-cache\d029157c9aca0f6f2d16ebb8137c5c52cdb78cfc\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="efb8cb62d47d157c29d1521daac7eefd4cb881ee">
+        <dex dex="C:\AndroidSetup\Projects\Charchit\UB-Android\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_9b4688e17fbf47539a9bcdac41a71980e0b49a40\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Admin\.android\build-cache\0196b50a60de79baae640590aab8d8748efde244\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="da27a32db6af8954ee8061537c7d476fcb1df46f">
+        <dex dex="C:\AndroidSetup\Projects\Charchit\UB-Android\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_13cae0c9be25e4d894470d0bfe90edabcd987676\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Admin\.android\build-cache\0f248013dc277dac2a5a0fa9535ac2e3a4bb253e\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="4a26a1154d053ab11aaf4c3967c42a4d66390991">
+        <dex dex="C:\AndroidSetup\Projects\Charchit\UB-Android\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_7dc4fa166a0b3bd918a8825a9fdc30d014bd13e7\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Admin\.android\build-cache\06e7bfec13ee9e3fb641a416a1739c9e8684d41c\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
+        <dex dex="C:\AndroidSetup\Projects\Charchit\UB-Android\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_8b8b20da6f253da153a6d67e386b62f70bbcfb22\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Admin\.android\build-cache\2916f912be86e281a6d5de6f3c7bcb8d538161c4\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="95519720620b553f63afc789beba9ad582807f7c">
+        <dex dex="C:\AndroidSetup\Projects\Charchit\UB-Android\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_b2c732391b0d51c318a5dda6929be4d550cdb051\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Admin\.android\build-cache\0be1b67196913759f191999bcb8095a4d041fbba\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d4c4b83de2f6412072d2a29b1b7a5b03edaad5ff">
+        <dex dex="C:\AndroidSetup\Projects\Charchit\UB-Android\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_df371639da532c53a0c56e8dd32d84f69bc24d6d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Admin\.gradle\caches\modules-2\files-2.1\com.jakewharton\butterknife-annotations\8.5.1\bb67dad90bab7cd77a8f7f1b8442b47e3a2326bc\butterknife-annotations-8.5.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="bb67dad90bab7cd77a8f7f1b8442b47e3a2326bc">
+        <dex dex="C:\AndroidSetup\Projects\Charchit\UB-Android\app\build\intermediates\transforms\dex\debug\folders\1000\10\butterknife-annotations-8.5.1_9ac5ad57131d0918bfa280da0db9f8888c3fb253\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Admin\.android\build-cache\98fad64fefd6e6e541d098ebb5506de186af31a7\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="19f281a785ca0eb5f6799fc7bf7ca199a9ca1e8b">
+        <dex dex="C:\AndroidSetup\Projects\Charchit\UB-Android\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_150fea7fb1016e41dd5332865896b1b1e6490c83\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Admin\.android\build-cache\69bfb19a77021b2b23d4605828baa48f71b4be37\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="6ef31f1555bb4cc513ec8d52711365a8b89f3600">
+        <dex dex="C:\AndroidSetup\Projects\Charchit\UB-Android\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_a9c807ec4ce5f26d3529f3185ae53beecd03b50e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Admin\.android\build-cache\7e24793542b3ccf809029dece2eb4f2c89122a24\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="47635644d0d5c103c1dd8360549eb9ba3225c7d3">
+        <dex dex="C:\AndroidSetup\Projects\Charchit\UB-Android\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_3689f7029663c751b0c9feb1ef005363b700b9b9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\AndroidSetup\Projects\Charchit\UB-Android\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="61e963246475377a47027d81202907f5be6a257f">
+        <dex dex="C:\AndroidSetup\Projects\Charchit\UB-Android\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_7c06dc8604714f4b590f362d4316438db1410a7f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Admin\.android\build-cache\0b2e6561ef4548e3e470b516f9b245fd0639e128\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="052f5f840f21174a3ecf6544130194e2652cbb73">
+        <dex dex="C:\AndroidSetup\Projects\Charchit\UB-Android\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_c67ff7a95cb534523f424331e5b319da2defdfd2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Admin\.android\build-cache\4d456b7ccecc8149b70d2fd666ad67ea579282dc\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\AndroidSetup\Projects\Charchit\UB-Android\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_9250d4ea20be652913783a037ea7f5459d7a362c\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Admin\.android\build-cache\a1e15d30036cc668da9386e9ca38916dd60b3ecc\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="d4cf6227dd6a2ceff0f7dcf0c324380b7abf2c28">
+        <dex dex="C:\AndroidSetup\Projects\Charchit\UB-Android\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_bb2c6fcfaae39122dd1302a1553dd6f5048b70aa\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\AndroidSetup\sdk\extras\android\m2repository\com\android\support\support-annotations\25.3.1\support-annotations-25.3.1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="bf8841d29fa39e077730e7a91222c2ce269fa7c9">
+        <dex dex="C:\AndroidSetup\Projects\Charchit\UB-Android\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-25.3.1_f6356418448b3a8be974adc2c9de548b6b194e0a\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Admin\.android\build-cache\d75200199980c7f65671dd4be676b2f635ff035b\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="150252b33b00274cc868578ade018fda0d43a3eb">
+        <dex dex="C:\AndroidSetup\Projects\Charchit\UB-Android\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_95421e3299d37dfd5af5b2dd7fba5f65189e2a7b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\Admin\.gradle\caches\modules-2\files-2.1\io.reactivex\rxjava\1.1.0\748f0546d5c3c27f1aef07270ffea0c45f0c42a4\rxjava-1.1.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.2"
+        sha1="748f0546d5c3c27f1aef07270ffea0c45f0c42a4">
+        <dex dex="C:\AndroidSetup\Projects\Charchit\UB-Android\app\build\intermediates\transforms\dex\debug\folders\1000\10\rxjava-1.1.0_22a96e733e9ce5ab215c32c6f46675a4ffec36ea\classes.dex" />
+    </item>
+
+</items>

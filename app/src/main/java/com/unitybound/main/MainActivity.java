@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -218,83 +219,6 @@ public class MainActivity extends BaseActivity {
 //        toolbarTitle.setText(activityTitles[sNavItemIndex]);
     }
 
-    /***
-     * Returns respected fragment that user
-     * selected from navigation menu
-     */
-    private void loadFragment() {
-        // selecting appropriate nav menu item
-        // set mToolbar title
-        setToolbarTitle();
-
-       /* // if user select the current navigation menu again, don't do anything
-        // just close the navigation mDrawer
-        if (getSupportFragmentManager().findFragmentByTag(CURRENT_TAG) != null) {
-            mDrawer.closeDrawers();
-
-            return;
-        }*/
-
-        // Sometimes, when fragment has huge data, screen seems hanging
-        // when switching between navigation menus
-        // So using runnable, the fragment is loaded with cross fade effect
-        // This effect can be seen in GMail app
-        Runnable mPendingRunnable = new Runnable() {
-            @Override
-            public void run() {
-                // update the main content by replacing fragments
-                Fragment fragment = navigateOnFragment();
-                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.setCustomAnimations(android.R.anim.fade_in,
-                        android.R.anim.fade_out);
-                fragmentTransaction.replace(R.id.frame, fragment, CURRENT_TAG);
-                fragmentTransaction.commitAllowingStateLoss();
-            }
-        };
-
-        // If mPendingRunnable is not null, then add to the message queue
-        if (mPendingRunnable != null) {
-            mHandler.post(mPendingRunnable);
-        }
-        if (sNavItemIndex != 4) {
-            //Closing mDrawer on item click
-            drawerLayout.closeDrawers();
-        }
-        // refresh mToolbar menu
-        invalidateOptionsMenu();
-    }
-
-
-    private Fragment navigateOnFragment() {
-        switch (sNavItemIndex) {
-            case 0:
-                // Churches Fragment
-//                return new ChurchesFragment();
-                return new HomeFeedsFragment();
-            case 1:
-                // View Queue fragment
-                return new EventsFragment();
-            case 2:
-                // View Queue fragment
-                return new GroupsFragment();
-            case 4:
-                return new ObtiuariesFragment();
-            case 5:
-                return new WeddingsFragment();
-            case 6:
-                return new MyAccountFragment();
-            case 7:
-                return new NotificationsFragment();
-            case 8:
-                return new PrefrenceFragment();
-            case 9:
-                return new SettingsFragment();
-            // new ForgotPasswordDialog(MainActivity.this, getResources().getString(R.string.logout), getString(R.string.str_logout_sure), MainActivity.this, Util.DIALOG_LOGOUT_ID).show();
-            default:
-                return new ChurchesFragment();
-        }
-    }
-
     private AdapterView.OnItemClickListener navBarListListner = new AdapterView.OnItemClickListener() {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -388,7 +312,7 @@ public class MainActivity extends BaseActivity {
 //                    if (null != mSlotDataListAdapter.getCheckedItem() && mSlotDataListAdapter.getCheckedItem().size() > 0
 //                            && null != mSlotDataListAdapter.getData() && mSlotDataListAdapter.getData().size() > 0) {
 
-                mOptionMenu.findItem(R.id.action_home).setIcon(R.drawable.ac_home_active);
+//                mOptionMenu.findItem(R.id.action_home).setIcon(R.drawable.ac_home_active);
                 loadHomeScreenFragments(HOME_INDEX);
 //                } else {
 //                    Util.showAlertDialog(this, getResources().getString(R.string.alt_checknet));
@@ -396,7 +320,7 @@ public class MainActivity extends BaseActivity {
                 return true;
             case R.id.action_notification:
 //                if (Util.checkNetworkAvailablity(this)) {
-                mOptionMenu.findItem(R.id.action_notification).setIcon(R.drawable.ac_notifications_icon_active);
+//                mOptionMenu.findItem(R.id.action_notification).setIcon(R.drawable.ac_notifications_icon_active);
                 loadHomeScreenFragments(NOTIFICATION_INDEX);
 
 //                } else {
@@ -406,7 +330,7 @@ public class MainActivity extends BaseActivity {
             case R.id.action_friend_request:
 //                if (Util.checkNetworkAvailablity(this)) {
 
-                mOptionMenu.findItem(R.id.action_friend_request).setIcon(R.drawable.ac_friend_reqst_active);
+//                mOptionMenu.findItem(R.id.action_friend_request).setIcon(R.drawable.ac_friend_reqst_active);
                 loadHomeScreenFragments(FRIEND_REQUEST_INDEX);
 //                } else {
 //                    Util.showAlertDialog(this, getResources().getString(R.string.alt_checknet));
@@ -414,7 +338,8 @@ public class MainActivity extends BaseActivity {
                 return true;
             case R.id.action_friend_list:
 
-                mOptionMenu.findItem(R.id.action_friend_list).setIcon(R.drawable.ac_prayerlist_active);
+//                mOptionMenu.findItem(R.id.action_friend_list).setIcon(R.drawable.ac_prayerlist_active);
+                loadHomeScreenFragments(LIST_INDEX);
                 return true;
 
 
@@ -425,6 +350,11 @@ public class MainActivity extends BaseActivity {
         return false;
     }
 
+    /**
+     * Top menu items click events Fragment commited on framelayout
+     *
+     * @param POSITION
+     */
     private void loadHomeScreenFragments(int POSITION) {
         Fragment fragment = null;
 
@@ -452,8 +382,8 @@ public class MainActivity extends BaseActivity {
             Runnable mPendingRunnable = new Runnable() {
                 @Override
                 public void run() {
+                    removeAllFragmentStack();
                     // update the main content by replacing fragments
-
                     FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                     fragmentTransaction.setCustomAnimations(android.R.anim.fade_in,
                             android.R.anim.fade_out);
@@ -469,6 +399,92 @@ public class MainActivity extends BaseActivity {
         }
     }
 
+    private Fragment navigateOnFragment() {
+        switch (sNavItemIndex) {
+            case 0:
+                // Churches Fragment
+//                return new ChurchesFragment();
+                return new ChurchesFragment();
+            case 1:
+                // View Queue fragment
+                return new EventsFragment();
+            case 2:
+                // View Queue fragment
+                return new GroupsFragment();
+            case 4:
+                return new ObtiuariesFragment();
+            case 5:
+                return new WeddingsFragment();
+            case 6:
+                return new MyAccountFragment();
+            case 7:
+                return new NotificationsFragment();
+            case 8:
+                return new PrefrenceFragment();
+            case 9:
+                return new SettingsFragment();
+            // new ForgotPasswordDialog(MainActivity.this, getResources().getString(R.string.logout), getString(R.string.str_logout_sure), MainActivity.this, Util.DIALOG_LOGOUT_ID).show();
+            default:
+                return new ChurchesFragment();
+        }
+    }
+
+
+    /***
+     * Returns respected fragment that user
+     * selected from navigation menu
+     */
+    private void loadFragment() {
+        // selecting appropriate nav menu item
+        // set mToolbar title
+        setToolbarTitle();
+
+       /* // if user select the current navigation menu again, don't do anything
+        // just close the navigation mDrawer
+        if (getSupportFragmentManager().findFragmentByTag(CURRENT_TAG) != null) {
+            mDrawer.closeDrawers();
+
+            return;
+        }*/
+
+        // Sometimes, when fragment has huge data, screen seems hanging
+        // when switching between navigation menus
+        // So using runnable, the fragment is loaded with cross fade effect
+        // This effect can be seen in GMail app
+        Runnable mPendingRunnable = new Runnable() {
+            @Override
+            public void run() {
+                // update the main content by replacing fragments
+                Fragment fragment = navigateOnFragment();
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.setCustomAnimations(android.R.anim.fade_in,
+                        android.R.anim.fade_out);
+                fragmentTransaction.replace(R.id.frame, fragment, CURRENT_TAG);
+                fragmentTransaction.commitAllowingStateLoss();
+            }
+        };
+
+        // If mPendingRunnable is not null, then add to the message queue
+        if (mPendingRunnable != null) {
+            mHandler.post(mPendingRunnable);
+        }
+        if (sNavItemIndex != 4) {
+            //Closing mDrawer on item click
+            drawerLayout.closeDrawers();
+        }
+        // refresh mToolbar menu
+        invalidateOptionsMenu();
+    }
+
+    private void removeAllFragmentStack() {
+        // Remove All fragment from stack
+        FragmentManager fm = getSupportFragmentManager();
+        for (int i = 0; i < fm.getBackStackEntryCount(); ++i) {
+            fm.popBackStack();
+        }
+    }
+
+
     @Override
     public void onBackPressed() {
         if (getFragmentManager().getBackStackEntryCount() == 0) {
@@ -480,7 +496,8 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void onDestroy() {
-
+        sNavItemIndex = 0;
+        removeAllFragmentStack();
         super.onDestroy();
     }
 }
