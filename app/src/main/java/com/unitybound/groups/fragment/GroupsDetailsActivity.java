@@ -1,60 +1,43 @@
 package com.unitybound.groups.fragment;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
+import android.support.v7.widget.Toolbar;
 
 import com.unitybound.R;
-import com.unitybound.events.fragment.adapter.EventsListAdapter;
 import com.unitybound.groups.adapter.GroupsDetailsFeedsAdapter;
 import com.unitybound.main.friendrequest.model.FriendRequestData;
 
 import java.util.ArrayList;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
-public class GroupsDetailsActivity extends Activity implements
+public class GroupsDetailsActivity extends AppCompatActivity implements
         GroupsDetailsFeedsAdapter.IListAdapterCallback, SwipeRefreshLayout.OnRefreshListener {
 
-    @BindView(R.id.iv_event_image)
-    ImageView ivEventImage;
-    @BindView(R.id.btn_photos)
-    TextView btnPhotos;
-    @BindView(R.id.btn_join)
-    TextView btnJoin;
-    @BindView(R.id.rr_top)
-    RelativeLayout rrTop;
-    @BindView(R.id.recycler_view)
-    RecyclerView recyclerView;
-    @BindView(R.id.swipe_refresh)
-    SwipeRefreshLayout swipeRefresh;
-    @BindView(R.id.activity_emergency)
-    RelativeLayout activityEmergency;
 
     ArrayList<FriendRequestData> datalist =
             new ArrayList<FriendRequestData>();
-    EventsListAdapter adapter;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
-        super.onCreate(savedInstanceState, persistentState);
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_groups_detail);
-        ButterKnife.bind(this);
+
         initView();
     }
 
     private void initView() {
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(GroupsDetailsActivity.this);
+        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+        SwipeRefreshLayout swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
+        RecyclerView.LayoutManager mLayoutManager =
+                new LinearLayoutManager(GroupsDetailsActivity.this);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         swipeRefresh.setOnRefreshListener(GroupsDetailsActivity.this);
@@ -64,12 +47,21 @@ public class GroupsDetailsActivity extends Activity implements
         arrayList.add("");
         arrayList.add("");
         arrayList.add("");
-        GroupsDetailsFeedsAdapter adapter = new GroupsDetailsFeedsAdapter(GroupsDetailsActivity.this, arrayList,
+        GroupsDetailsFeedsAdapter adapter = new GroupsDetailsFeedsAdapter(
+                GroupsDetailsActivity.this, arrayList,
                 GroupsDetailsActivity.this);
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
         swipeRefresh.setRefreshing(false);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        getSupportActionBar().setTitle("Details");
+//        TextView tvTittle = (TextView) toolbar.findViewById(R.id.toolbar_title);
+//        tvTittle.setText("Sign Up");
+//        toolbar.setNavigationIcon(R.drawable.ic_back);
     }
 
     @Override
@@ -87,4 +79,7 @@ public class GroupsDetailsActivity extends Activity implements
 
     }
 
+    @OnClick(R.id.btn_join)
+    public void onViewClicked() {
+    }
 }

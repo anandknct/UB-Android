@@ -133,7 +133,7 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="61e963246475377a47027d81202907f5be6a257f">
+        sha1="8e36649274174f69ba6a4fb3b4496049d279e68e">
         <dex dex="C:\AndroidSetup\Projects\Charchit\UB-Android\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_7c06dc8604714f4b590f362d4316438db1410a7f\classes.dex" />
     </item>
     <item
