@@ -8,6 +8,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
 import com.unitybound.R;
 import com.unitybound.groups.adapter.GroupsDetailsFeedsAdapter;
@@ -28,7 +29,7 @@ public class GroupsDetailsActivity extends AppCompatActivity implements
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_groups_detail);
+        setContentView(R.layout.groups_detail_activity);
 
         initView();
     }
@@ -58,10 +59,20 @@ public class GroupsDetailsActivity extends AppCompatActivity implements
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
-        getSupportActionBar().setTitle("Details");
+        getSupportActionBar().setTitle("Events Details");
 //        TextView tvTittle = (TextView) toolbar.findViewById(R.id.toolbar_title);
 //        tvTittle.setText("Sign Up");
 //        toolbar.setNavigationIcon(R.drawable.ic_back);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

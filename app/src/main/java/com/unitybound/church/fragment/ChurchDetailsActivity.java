@@ -2,13 +2,11 @@ package com.unitybound.church.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
+import android.support.v7.widget.Toolbar;
+import android.view.MenuItem;
 
 import com.unitybound.R;
 import com.unitybound.church.adapter.ChurchListAdapter;
@@ -20,30 +18,31 @@ import com.unitybound.utility.GridSpacingItemDecoration;
 import java.util.ArrayList;
 
 
-public class ChurchDetailsFragment extends Fragment implements
+public class ChurchDetailsActivity extends AppCompatActivity implements
         ChurchListAdapter.IListAdapterCallback, EventsListAdapter.IListAdapterCallback {
+
+    ArrayList<FriendRequestData> datalist = new ArrayList<FriendRequestData>();
+    ChurchMembersGridAdapter adapter;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
+        setContentView(R.layout.fragment_church_detail);
+
+        initView();
+        setUpToolbar();
     }
 
-    ArrayList<FriendRequestData> datalist =
-            new ArrayList<FriendRequestData>();
-    ChurchMembersGridAdapter adapter;
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_church_detail, container, false);
-        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-        initView(view);
-        return view;
+    private void setUpToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        getSupportActionBar().setTitle("Church Details");
     }
 
-    private void initView(View view) {
-        RecyclerView rv_grid_layout = (RecyclerView) view.findViewById(R.id.rv_grid_layout);
+    private void initView() {
+        RecyclerView rv_grid_layout = (RecyclerView) findViewById(R.id.rv_grid_layout);
 
         //add some person to list
         FriendRequestData p1 = new FriendRequestData("EmergencyFragment Call Option 1", "7389875222");
@@ -64,14 +63,24 @@ public class ChurchDetailsFragment extends Fragment implements
         datalist.add(p7);
         datalist.add(p8);
         int spacingInPixels = getResources().getDimensionPixelSize(R.dimen.dimen_five);
-        adapter = new ChurchMembersGridAdapter(getActivity(), datalist);
+        adapter = new ChurchMembersGridAdapter(ChurchDetailsActivity.this, datalist);
 
-        GridLayoutManager lLayout = new GridLayoutManager(getActivity(), 4);
+        GridLayoutManager lLayout = new GridLayoutManager(ChurchDetailsActivity.this, 4);
         rv_grid_layout.setLayoutManager(lLayout);
         rv_grid_layout.setHasFixedSize(true);
         rv_grid_layout.setNestedScrollingEnabled(false);
         rv_grid_layout.addItemDecoration(new GridSpacingItemDecoration(4, spacingInPixels, true, 0));
         rv_grid_layout.setAdapter(adapter);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

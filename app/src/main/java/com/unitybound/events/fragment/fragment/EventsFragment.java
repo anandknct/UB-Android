@@ -1,9 +1,9 @@
 package com.unitybound.events.fragment.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -89,13 +89,15 @@ public class EventsFragment extends Fragment implements EventsListAdapter.IListA
 
     @Override
     public void onItemClickListner(String s, int position) {
-        Fragment fragment = new EventsDetailsFragment();
-        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.setCustomAnimations(android.R.anim.fade_in,
-                android.R.anim.fade_out);
-        fragmentTransaction.replace(R.id.frame, fragment, fragment.getClass().getName());
-        fragmentTransaction.addToBackStack(fragment.getClass().getName());
-        fragmentTransaction.commitAllowingStateLoss();
+//        Fragment fragment = new EventsDetailsActivity();
+//        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+//        fragmentTransaction.setCustomAnimations(android.R.anim.fade_in,
+//                android.R.anim.fade_out);
+//        fragmentTransaction.replace(R.id.frame, fragment, fragment.getClass().getName());
+//        fragmentTransaction.addToBackStack(fragment.getClass().getName());
+//        fragmentTransaction.commitAllowingStateLoss();
+        Intent intent = new Intent(getActivity(), EventsDetailsActivity.class);
+        startActivity(intent);
     }
 
 }

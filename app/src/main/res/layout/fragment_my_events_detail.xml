@@ -4,9 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <include
+        android:id="@+id/toolbar_layout"
+        layout="@layout/toolbar_layout" />
+
     <ImageView
         android:id="@+id/iv_event_image"
         android:layout_width="match_parent"
+        android:layout_below="@+id/toolbar_layout"
         android:layout_height="150dp"
         android:scaleType="fitXY"
         android:src="@mipmap/ic_launcher" />

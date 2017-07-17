@@ -455,6 +455,8 @@ public class MainActivity extends BaseActivity {
             @Override
             public void run() {
                 // update the main content by replacing fragments
+                removeAllFragmentStack();
+
                 Fragment fragment = navigateOnFragment();
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.setCustomAnimations(android.R.anim.fade_in,
