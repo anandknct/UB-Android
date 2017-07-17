@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,6 +14,7 @@ import android.view.ViewGroup;
 import com.unitybound.R;
 import com.unitybound.groups.activity.AddGroupActivity;
 import com.unitybound.groups.adapter.GroupsListAdapter;
+import com.unitybound.main.MainActivity;
 import com.unitybound.main.friendrequest.model.FriendRequestData;
 import com.unitybound.utility.SpacesItemDecoration;
 
@@ -103,13 +103,15 @@ public class GroupsFragment extends Fragment implements GroupsListAdapter.IListA
 
     @Override
     public void onItemClickListner(String s, int position) {
-        Fragment fragment = new GroupsDetailsFragment();
-        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.setCustomAnimations(android.R.anim.fade_in,
-                android.R.anim.fade_out);
-        fragmentTransaction.replace(R.id.frame, fragment, fragment.getClass().getName());
-        fragmentTransaction.addToBackStack(fragment.getClass().getName());
-        fragmentTransaction.commitAllowingStateLoss();
+//        Fragment fragment = new GroupsDetailsActivity();
+//        FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+//        fragmentTransaction.setCustomAnimations(android.R.anim.fade_in,
+//                android.R.anim.fade_out);
+//        fragmentTransaction.replace(R.id.frame, fragment, fragment.getClass().getName());
+//        fragmentTransaction.addToBackStack(fragment.getClass().getName());
+//        fragmentTransaction.commitAllowingStateLoss();
+        Intent i = new Intent(getActivity(), GroupsDetailsActivity.class);
+        getActivity().startActivity(i);
     }
 
     @OnClick(R.id.fab_create_group)

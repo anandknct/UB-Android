@@ -1,16 +1,13 @@
 package com.unitybound.groups.fragment;
 
+import android.app.Activity;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -26,7 +23,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 
-public class GroupsDetailsFragment extends Fragment implements GroupsDetailsFeedsAdapter.IListAdapterCallback, SwipeRefreshLayout.OnRefreshListener {
+public class GroupsDetailsActivity extends Activity implements
+        GroupsDetailsFeedsAdapter.IListAdapterCallback, SwipeRefreshLayout.OnRefreshListener {
 
     @BindView(R.id.iv_event_image)
     ImageView ivEventImage;
@@ -43,40 +41,31 @@ public class GroupsDetailsFragment extends Fragment implements GroupsDetailsFeed
     @BindView(R.id.activity_emergency)
     RelativeLayout activityEmergency;
 
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setHasOptionsMenu(true);
-    }
-
     ArrayList<FriendRequestData> datalist =
             new ArrayList<FriendRequestData>();
     EventsListAdapter adapter;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_groups_detail, container, false);
-        getActivity().getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-        ButterKnife.bind(this, view);
+    public void onCreate(@Nullable Bundle savedInstanceState, @Nullable PersistableBundle persistentState) {
+        super.onCreate(savedInstanceState, persistentState);
+        setContentView(R.layout.fragment_groups_detail);
+        ButterKnife.bind(this);
         initView();
-        return view;
     }
 
     private void initView() {
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(GroupsDetailsActivity.this);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
-        swipeRefresh.setOnRefreshListener(GroupsDetailsFragment.this);
+        swipeRefresh.setOnRefreshListener(GroupsDetailsActivity.this);
 
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add("");
         arrayList.add("");
         arrayList.add("");
         arrayList.add("");
-        GroupsDetailsFeedsAdapter adapter = new GroupsDetailsFeedsAdapter(getActivity(), arrayList,
-                GroupsDetailsFragment.this);
+        GroupsDetailsFeedsAdapter adapter = new GroupsDetailsFeedsAdapter(GroupsDetailsActivity.this, arrayList,
+                GroupsDetailsActivity.this);
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
 
