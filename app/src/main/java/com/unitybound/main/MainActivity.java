@@ -411,17 +411,17 @@ public class MainActivity extends BaseActivity {
             case 2:
                 // View Queue fragment
                 return new GroupsFragment();
-            case 4:
+            case 3:
                 return new ObtiuariesFragment();
-            case 5:
+            case 4:
                 return new WeddingsFragment();
-            case 6:
+            case 5:
                 return new MyAccountFragment();
-            case 7:
+            case 6:
                 return new NotificationsFragment();
-            case 8:
+            case 7:
                 return new PrefrenceFragment();
-            case 9:
+            case 8:
                 return new SettingsFragment();
             // new ForgotPasswordDialog(MainActivity.this, getResources().getString(R.string.logout), getString(R.string.str_logout_sure), MainActivity.this, Util.DIALOG_LOGOUT_ID).show();
             default:
