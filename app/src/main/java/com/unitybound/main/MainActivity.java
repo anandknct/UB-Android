@@ -253,7 +253,27 @@ public class MainActivity extends BaseActivity {
                 case 5:
                     sNavItemIndex = 5;
                     CURRENT_TAG = TAG_LOGOUT;
-                    drawerLayout.closeDrawers();
+                    loadFragment();
+                    break;
+                case 6:
+                    sNavItemIndex = 6;
+                    CURRENT_TAG = TAG_LOGOUT;
+                    loadFragment();
+                    break;
+                case 7:
+                    sNavItemIndex = 7;
+                    CURRENT_TAG = TAG_LOGOUT;
+                    loadFragment();
+                    break;
+                case 8:
+                    sNavItemIndex = 8;
+                    CURRENT_TAG = TAG_LOGOUT;
+                    loadFragment();
+                    break;
+                case 9:
+                    sNavItemIndex = 9;
+                    CURRENT_TAG = TAG_LOGOUT;
+                    loadFragment();
                     break;
                 default:
                     sNavItemIndex = 0;

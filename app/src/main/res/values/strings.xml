@@ -27,6 +27,7 @@
     <string name="str_decline">Decline</string>
     <string name="str_see_all_events"><U>See All Events</U></string>
     <string name="str_church_members"><U>Church Members</U></string>
+    <string name="map_debug_key">AIzaSyCJZKhqJ4_DPIgNXtqRLiNr2gn6IyCy9Qw</string>
 
     <string-array name="nav_item_activity_titles">
         <item>Churches</item>

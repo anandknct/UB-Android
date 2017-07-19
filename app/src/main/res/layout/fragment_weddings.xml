@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_emergency"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/rr_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_notification_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_archived"
+            android:drawablePadding="@dimen/dimen_ten"
+            android:gravity="center_vertical"
+            android:padding="@dimen/dimen_ten"
+            android:text="My Weddings"
+            android:textColor="@color/text_color_secondary"
+            android:textStyle="bold" />
+
+        <View
+            android:id="@+id/view_divider"
+            android:layout_width="1dp"
+            android:layout_height="40dp"
+            android:background="@color/colorPrimary" />
+
+        <TextView
+            android:id="@+id/tv_weddings_friends"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_ten"
+            android:text="Weddings of friends" />
+
+        <View
+            android:id="@+id/view_divider2"
+            android:layout_width="1dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="@dimen/dimen_ten"
+            android:background="@drawable/ac_notifications_icon_gray" />
+
+        <TextView
+            android:id="@+id/tv_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_ten"
+            android:layout_toRightOf="@+id/view_divider2"
+            android:text="All" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/rr_top"
+        android:background="@color/colorPrimary" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_list_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/divider"
+        android:layout_marginTop="@dimen/dimen_ten"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+</RelativeLayout>

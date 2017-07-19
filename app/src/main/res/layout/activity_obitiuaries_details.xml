@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
     android:id="@+id/activity_emergency"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -8,110 +9,130 @@
         android:id="@+id/toolbar_layout"
         layout="@layout/toolbar_layout" />
 
-    <ImageView
-        android:id="@+id/iv_event_image"
-        android:layout_width="150dp"
-        android:layout_height="170dp"
-        android:layout_below="@+id/toolbar_layout"
-        android:scaleType="fitXY"
-        android:src="@mipmap/ic_launcher" />
-
-    <RelativeLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/rr_top"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/toolbar_layout"
-        android:layout_toEndOf="@+id/iv_event_image"
-        android:layout_toRightOf="@+id/iv_event_image">
-
-        <TextView
-            android:id="@+id/tv_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginTop="25dp"
-            android:text="Helan Jakes"
-            android:textColor="@color/text_color_primary"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/tv_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_name"
-            android:layout_marginTop="@dimen/dimen_five"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:text="January, 6-1885 - March,25 - 2017"
-            android:textColor="@color/text_color_secondary"
-            android:textSize="14sp" />
-
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:id="@+id/relativeLayout"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/iv_event_image"
-        android:layout_margin="@dimen/activity_horizontal_margin">
+        android:layout_below="@+id/toolbar_layout">
 
-
-        <TextView
-            android:id="@+id/tv_event_decription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_event_time"
-            android:layout_marginTop="@dimen/dimen_ten"
-            android:maxLines="6"
-            android:text="Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum "
-            android:textColor="@color/text_color_secondary"
-            android:textSize="12sp" />
-
-        <TextView
-            android:id="@+id/tv_funeral_services"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_event_decription"
-            android:layout_marginTop="@dimen/dimen_ten"
-            android:gravity="left"
-            android:text="Funeral Services"
-            android:textSize="14sp" />
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/iv_event_image"
+                android:layout_width="150dp"
+                android:layout_height="170dp"
+                android:layout_margin="@dimen/dimen_ten"
+                android:scaleType="fitXY"
+                android:src="@drawable/ubitauries_def_image" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/rr_top"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/toolbar_layout"
+                android:layout_toEndOf="@+id/iv_event_image"
+                android:layout_toRightOf="@+id/iv_event_image">
+
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="25dp"
+                    android:text="Helan Jakes"
+                    android:textColor="@color/text_color_primary"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_name"
+                    android:layout_marginTop="@dimen/dimen_five"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="January, 6-1885 - March,25 - 2017"
+                    android:textColor="@color/text_color_secondary"
+                    android:textSize="14sp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/iv_event_image"
+                android:layout_marginTop="@dimen/dimen_ten"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin">
 
 
-        <TextView
-            android:id="@+id/tv_date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_funeral_services"
-            android:layout_marginTop="@dimen/dimen_five"
-            android:gravity="left"
-            android:text="Date : 21 March 2015"
-            android:textSize="12sp" />
+                <TextView
+                    android:id="@+id/tv_event_decription"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_event_time"
+                    android:maxLines="6"
+                    android:text="Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum "
+                    android:textColor="@color/text_color_secondary"
+                    android:textSize="12sp" />
 
-        <TextView
-            android:id="@+id/tv_time"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_date"
-            android:layout_marginTop="@dimen/dimen_ten"
-            android:gravity="left"
-            android:text="Time : 5:20 PM"
-            android:textSize="12sp" />
+                <TextView
+                    android:id="@+id/tv_funeral_services"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_event_decription"
+                    android:layout_marginTop="@dimen/dimen_ten"
+                    android:gravity="left"
+                    android:text="Funeral Services"
+                    android:textSize="14sp" />
 
-        <TextView
-            android:id="@+id/tv_location"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_time"
-            android:layout_marginTop="@dimen/dimen_ten"
-            android:gravity="left"
-            android:text="Location : Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+
+                <TextView
+                    android:id="@+id/tv_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_funeral_services"
+                    android:layout_marginTop="@dimen/dimen_five"
+                    android:gravity="left"
+                    android:text="Date : 21 March 2015"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_date"
+                    android:layout_marginTop="@dimen/dimen_ten"
+                    android:gravity="left"
+                    android:text="Time : 5:20 PM"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_location"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_time"
+                    android:layout_marginTop="@dimen/dimen_ten"
+                    android:gravity="left"
+                    android:text="Location : Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
 Lorem Ipsum Lorem Ipsum"
-            android:textSize="12sp" />
+                    android:textSize="12sp" />
+
+                <fragment
+                    android:id="@+id/map"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="@dimen/dimen_ten"
+                    android:layout_below="@+id/tv_location"
+                    map:cameraZoom="4" />
 
 
-    </RelativeLayout>
-
+            </RelativeLayout>
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>
