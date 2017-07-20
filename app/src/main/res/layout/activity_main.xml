@@ -20,7 +20,6 @@
         android:visibility="visible">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_marginTop="23dp"
             android:layout_height="match_parent"
             android:background="@color/navigation_menu_bg"
             android:orientation="vertical">

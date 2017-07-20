@@ -98,6 +98,7 @@ public class MainActivity extends BaseActivity {
         // Load Default Fragment
         if (savedInstanceState == null) {
             // Display the fragment as the main content.
+            sNavItemIndex = 100;
             loadHomeScreenFragments(sNavItemIndex);
             if (mOptionMenu != null)
                 mOptionMenu.findItem(R.id.action_home).setIcon(R.drawable.ac_home_active);
@@ -156,20 +157,19 @@ public class MainActivity extends BaseActivity {
 
     }
 
-
     public ArrayList<SideMenu> generateSideMenu() {
         menuArrayList = new ArrayList<>();
-        menuArrayList.add(new SideMenu(getResources().getString(R.string.str_church), R.mipmap.ic_launcher, false));
-        menuArrayList.add(new SideMenu(getResources().getString(R.string.str_event), R.mipmap.ic_launcher, false));
-        menuArrayList.add(new SideMenu(getResources().getString(R.string.str_grp), R.mipmap.ic_launcher, false));
-        menuArrayList.add(new SideMenu(getResources().getString(R.string.str_obituaries), R.mipmap.ic_launcher, false));
-        menuArrayList.add(new SideMenu(getResources().getString(R.string.str_wedd), R.mipmap.ic_launcher, false));
-        menuArrayList.add(new SideMenu(getResources().getString(R.string.str_acc), R.mipmap.ic_launcher, false));
+        menuArrayList.add(new SideMenu(getResources().getString(R.string.str_church), R.drawable.ac_notifications_icon_gray, false));
+        menuArrayList.add(new SideMenu(getResources().getString(R.string.str_event), R.drawable.ic_menu_events_icon, false));
+        menuArrayList.add(new SideMenu(getResources().getString(R.string.str_grp), R.drawable.ic_menu_groupsicon, false));
+        menuArrayList.add(new SideMenu(getResources().getString(R.string.str_obituaries), R.drawable.ic_menu_obituaries_icon, false));
+        menuArrayList.add(new SideMenu(getResources().getString(R.string.str_wedd), R.drawable.ic_menu_weddings, false));
+        menuArrayList.add(new SideMenu(getResources().getString(R.string.str_acc), R.drawable.ic_menu_my_account_icon, false));
 
-        menuArrayList.add(new SideMenu(getResources().getString(R.string.str_notify), R.mipmap.ic_launcher, false));
-        menuArrayList.add(new SideMenu(getResources().getString(R.string.str_pref), R.mipmap.ic_launcher, false));
-        menuArrayList.add(new SideMenu(getResources().getString(R.string.str_settings), R.mipmap.ic_launcher, false));
-        menuArrayList.add(new SideMenu(getResources().getString(R.string.str_logout), R.mipmap.ic_launcher, false));
+        menuArrayList.add(new SideMenu(getResources().getString(R.string.str_notify), R.drawable.ac_notifications_icon_gray, false));
+        menuArrayList.add(new SideMenu(getResources().getString(R.string.str_pref), R.drawable.ic_menu_preferences_icon, false));
+        menuArrayList.add(new SideMenu(getResources().getString(R.string.str_settings), R.drawable.ic_menu_settings_icon, false));
+        menuArrayList.add(new SideMenu(getResources().getString(R.string.str_logout), R.drawable.ic_menu_logout_icon, false));
         return menuArrayList;
     }
 
@@ -490,7 +490,7 @@ public class MainActivity extends BaseActivity {
         if (mPendingRunnable != null) {
             mHandler.post(mPendingRunnable);
         }
-        if (sNavItemIndex != 4) {
+        if (drawerLayout!=null) {
             //Closing mDrawer on item click
             drawerLayout.closeDrawers();
         }

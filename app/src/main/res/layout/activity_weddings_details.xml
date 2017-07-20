@@ -26,16 +26,58 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/ubitauries_def_image" />
 
+            <LinearLayout
+                android:id="@+id/ll_image_view_list"
+                android:layout_below="@+id/iv_event_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="@dimen/dimen_ten"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/wedding_def_2" />
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="@dimen/dimen_ten"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ubitauries_def_image" />
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="@dimen/dimen_ten"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ubitauries_def_image" />
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="@dimen/dimen_ten"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ubitauries_def_image" />
+
+                <ImageView
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="@dimen/dimen_ten"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ubitauries_def_image" />
+
+            </LinearLayout>
 
             <RelativeLayout
                 android:id="@+id/relativeLayout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/iv_event_image"
-                android:layout_marginTop="@dimen/dimen_ten"
+                android:layout_below="@+id/ll_image_view_list"
                 android:layout_marginLeft="@dimen/activity_horizontal_margin"
-                android:layout_marginRight="@dimen/activity_horizontal_margin">
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:layout_marginTop="@dimen/dimen_five">
 
 
                 <TextView
@@ -95,8 +137,8 @@ Lorem Ipsum Lorem Ipsum"
                     android:name="com.google.android.gms.maps.SupportMapFragment"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
-                    android:layout_marginTop="@dimen/dimen_ten"
                     android:layout_below="@+id/tv_location"
+                    android:layout_marginTop="@dimen/dimen_ten"
                     map:cameraZoom="4" />
 
 

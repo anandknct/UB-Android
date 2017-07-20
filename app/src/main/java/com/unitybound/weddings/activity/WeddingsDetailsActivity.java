@@ -34,7 +34,7 @@ public class WeddingsDetailsActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
-        getSupportActionBar().setTitle("Obituaries Details");
+        getSupportActionBar().setTitle("Wedding Details");
     }
 
     @Override
