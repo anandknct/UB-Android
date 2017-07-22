@@ -39,12 +39,10 @@
             android:name=".groups.fragment.GroupsDetailsActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan|stateHidden" />
-
         <activity
             android:name=".events.fragment.fragment.EventsDetailsActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan|stateHidden" />
-
         <activity
             android:name=".church.fragment.ChurchDetailsActivity"
             android:theme="@style/AppTheme.NoActionBar"
@@ -53,14 +51,20 @@
             android:name=".obtiuaries.fragment.activity.ObitiuariesDetailsActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan|stateHidden" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/map_debug_key" />
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
         <activity
             android:name=".weddings.activity.WeddingsDetailsActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".main.home.fragment.activity.FeedsCommentActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan|stateHidden" />
     </application>

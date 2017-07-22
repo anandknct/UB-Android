@@ -1,5 +1,6 @@
 package com.unitybound.main.home.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.unitybound.R;
+import com.unitybound.main.home.fragment.activity.FeedsCommentActivity;
 import com.unitybound.main.home.fragment.adapter.HomeFeedsAdapter;
 
 import java.util.ArrayList;
@@ -86,7 +88,8 @@ public class HomeFeedsFragment extends Fragment implements SwipeRefreshLayout.On
 
     @Override
     public void onCommentClickListner(String s, int position) {
-
+        Intent intent = new Intent(getActivity(), FeedsCommentActivity.class);
+        startActivity(intent);
     }
 
 }

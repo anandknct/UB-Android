@@ -45,7 +45,7 @@ public class HomeFeedsAdapter extends RecyclerView.Adapter<HomeFeedsAdapter.MyVi
 //            iv_image_prev = (ImageView) view.findViewById(R.id.iv_image_prev);
 //            iv_user_image = (ImageView) view.findViewById(R.id.iv_user_image);
 //            tv_share = (TextView) view.findViewById(R.id.tv_share);
-//            tv_comment = (TextView) view.findViewById(R.id.tv_comment);
+            tv_comment = (TextView) view.findViewById(R.id.tv_comment);
 //            tv_time_ago = (TextView) view.findViewById(R.id.tv_time_ago);
         }
     }
@@ -65,7 +65,12 @@ public class HomeFeedsAdapter extends RecyclerView.Adapter<HomeFeedsAdapter.MyVi
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
-
+        holder.tv_comment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                allProductsActivity.onCommentClickListner("", position);
+            }
+        });
        /* holder.tv_tittle_text.setText(albumList.get(position).getUserName());
 //        holder.tv_description.setText(albumList.get(position).getDescription());
         holder.tv_description.setText( Html.fromHtml(albumList.get(position).getDescription()));
@@ -92,13 +97,6 @@ public class HomeFeedsAdapter extends RecyclerView.Adapter<HomeFeedsAdapter.MyVi
             @Override
             public void onClick(View view) {
                 allProductsActivity.onItemClickListner(albumList.get(position).getNewsPid(), position);
-            }
-        });
-
-        holder.tv_comment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                allProductsActivity.onCommentClickListner(albumList.get(position).getNewsPid(), position);
             }
         });
 
