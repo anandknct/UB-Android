@@ -4,12 +4,6 @@
     android:layout_height="match_parent"
     android:layout_alignParentTop="true">
 
-    <ImageView
-        android:id="@+id/ic_cover"
-        android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:layout_alignParentTop="true"
-        android:src="@drawable/accound_header_def" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -25,6 +19,7 @@
             android:src="@drawable/user_profile_def" />
 
         <TextView
+            android:id="@+id/tv_user_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/rr_user_image"
@@ -33,11 +28,94 @@
             android:ellipsize="end"
             android:maxLines="1"
             android:text="John Wick"
+            android:textColor="@color/text_color_primary"
             android:textSize="16sp"
             android:textStyle="bold" />
 
+        <TextView
+            android:id="@+id/tv_user_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_user_name"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/dimen_five"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="Texus, US"
+            android:textColor="@color/text_color_secondary"
+            android:textSize="16sp"
+            android:textStyle="normal" />
+
+        <View
+            android:id="@+id/divider1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/tv_user_address"
+            android:layout_marginTop="@dimen/dimen_five"
+            android:background="@color/divider_color" />
+
+        <LinearLayout
+            android:id="@+id/ll_account_menu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/divider1"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="5">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.1"
+                android:paddingBottom="@dimen/dimen_five"
+                android:paddingTop="@dimen/dimen_five"
+                android:text="Timeline" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.1"
+                android:paddingBottom="@dimen/dimen_five"
+                android:paddingTop="@dimen/dimen_five"
+                android:text="About" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.1"
+                android:paddingBottom="@dimen/dimen_five"
+                android:paddingTop="@dimen/dimen_five"
+                android:text="Friends" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.1"
+                android:paddingBottom="@dimen/dimen_five"
+                android:paddingTop="@dimen/dimen_five"
+                android:text="Photos" />
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".50"
+                android:src="@drawable/ic_action_down" />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/ll_account_menu"
+            android:background="@color/divider_color" />
 
     </RelativeLayout>
 
-
+    <ImageView
+        android:id="@+id/ic_cover"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/accound_header_def" />
 </RelativeLayout>
