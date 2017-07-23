@@ -29,6 +29,13 @@
     <string name="str_church_members"><U>Church Members</U></string>
     <string name="map_debug_key">AIzaSyCJZKhqJ4_DPIgNXtqRLiNr2gn6IyCy9Qw</string>
 
+    <!--My Account About screen-->
+    <string name="str_phone_number">Phone</string>
+    <string name="str_about">About</string>
+    <string name="str_address">Address</string>
+    <string name="str_email">Email</string>
+    <string name="str_my_friends">My Friends</string>
+
     <string-array name="nav_item_activity_titles">
         <item>Churches</item>
         <item>Events</item>

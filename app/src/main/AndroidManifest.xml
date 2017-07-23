@@ -67,6 +67,16 @@
             android:name=".main.home.fragment.activity.FeedsCommentActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".account.activity.MyAccountAboutActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".account.activity.MyAccountFrndsActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+
     </application>
 
 </manifest>

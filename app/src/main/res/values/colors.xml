@@ -28,4 +28,6 @@
 
     <color name="notification_accept_color">#65C5C1</color>
     <color name="notification_reject_color">#C91427</color>
+    <color name="bg_layout">#D2D5D9</color>
+    <color name="black">#000000</color>
 </resources>
