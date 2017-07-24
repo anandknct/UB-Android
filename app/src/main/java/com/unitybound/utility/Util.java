@@ -1,15 +1,11 @@
 package com.unitybound.utility;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.app.Service;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.graphics.Point;
-import android.graphics.drawable.ColorDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
@@ -21,7 +17,6 @@ import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.ByteArrayInputStream;
@@ -261,6 +256,7 @@ public class Util {
         }
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
     }
+
 
 
 }

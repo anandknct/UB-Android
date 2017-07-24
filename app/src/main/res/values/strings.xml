@@ -35,6 +35,10 @@
     <string name="str_address">Address</string>
     <string name="str_email">Email</string>
     <string name="str_my_friends">My Friends</string>
+    <!--My Friends screen-->
+    <string name="str_friend">Friend</string>
+    <!--My Photos screen-->
+    <string name="str_photos">My Photos</string>
 
     <string-array name="nav_item_activity_titles">
         <item>Churches</item>

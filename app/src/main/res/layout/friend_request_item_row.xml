@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="@dimen/dimen_five"
     android:orientation="horizontal">
 
     <ImageView
@@ -9,7 +10,7 @@
         android:layout_width="96dp"
         android:layout_height="96dp"
         android:layout_gravity="center_vertical"
-        android:src="@mipmap/ic_launcher" />
+        android:src="@drawable/user_comment_def" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -18,57 +19,66 @@
         android:layout_marginRight="@dimen/dimen_ten"
         android:layout_marginTop="@dimen/dimen_fifteen">
 
-        <TextView
-            android:id="@+id/tv_header_txt"
-            android:layout_width="match_parent"
+        <RelativeLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:maxLines="3"
-            android:text="Andrian Phillips"
-            android:textColor="@color/text_color_primary"
-            android:textSize="14sp" />
+            android:layout_toLeftOf="@+id/linearLayout"
+            android:layout_toStartOf="@+id/linearLayout">
 
-        <TextView
-            android:id="@+id/tv_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_header_txt"
-            android:layout_marginTop="@dimen/dimen_five"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:text="8 mutual friends"
-            android:textColor="@color/text_color_secondary"
-            android:textSize="12sp" />
+            <TextView
+                android:id="@+id/tv_header_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="3"
+                android:text="Andrian Phillips"
+                android:textColor="@color/text_color_primary"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/tv_address_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_header_txt"
+                android:layout_marginTop="@dimen/dimen_five"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="8 mutual friends"
+                android:textColor="@color/text_color_secondary"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_mutuals"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_address_1"
+                android:layout_marginTop="@dimen/dimen_five"
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="8 mutual friends"
+                android:textColor="@color/text_color_secondary"
+                android:textSize="12sp" />
+        </RelativeLayout>
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/linearLayout"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tv_description"
-            android:layout_marginTop="@dimen/dimen_ten"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/tv_accept"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/notification_accept_color"
-                android:padding="@dimen/dimen_eight"
-                android:paddingLeft="@dimen/dimen_ten"
-                android:paddingRight="@dimen/dimen_ten"
-                android:text="@string/str_accept"
+                android:background="@color/divider_color"
+                android:layout_marginRight="@dimen/dimen_twenty"
+                android:padding="@dimen/dimen_ten"
+                android:text="@string/str_friend"
                 android:textColor="@color/color_white" />
 
-            <TextView
-                android:id="@+id/tv_decline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="@dimen/dimen_ten"
-                android:background="@color/notification_reject_color"
-                android:padding="@dimen/dimen_eight"
-                android:paddingLeft="@dimen/dimen_ten"
-                android:paddingRight="@dimen/dimen_ten"
-                android:text="@string/str_decline"
-                android:textColor="@color/color_white" />
         </LinearLayout>
     </RelativeLayout>
 

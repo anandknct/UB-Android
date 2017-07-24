@@ -75,8 +75,13 @@
             android:name=".account.activity.MyAccountFrndsActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan|stateHidden" />
-
-
+        <activity
+            android:name=".account.activity.MyAccountMyPhotosActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity android:name=".account.activity.FullScreenPhotoActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
     </application>
 
 </manifest>

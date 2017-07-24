@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.unitybound.R;
 import com.unitybound.account.activity.MyAccountAboutActivity;
 import com.unitybound.account.activity.MyAccountFrndsActivity;
+import com.unitybound.account.activity.MyAccountMyPhotosActivity;
 import com.unitybound.main.friendrequest.model.FriendRequestData;
 import com.unitybound.main.home.fragment.adapter.HomeFeedsAdapter;
 import com.unitybound.weddings.activity.WeddingsDetailsActivity;
@@ -140,6 +141,8 @@ public class MyAccountFragment extends Fragment implements HomeFeedsAdapter.ILis
                 startActivity(intentFriends);
                 break;
             case R.id.tv_photos:
+                Intent intentPhotos = new Intent(getActivity(), MyAccountMyPhotosActivity.class);
+                startActivity(intentPhotos);
                 break;
             case R.id.iv_more:
                 break;

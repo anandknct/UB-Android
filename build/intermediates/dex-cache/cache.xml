@@ -7,62 +7,8 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="caff8e51a24901cfc9cd7e1cf83d84f4cb0c103b">
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
         <dex dex="C:\AndroidSetup\Projects\Charchit\UB-Android\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_2cc75d8bd434e1c433e6857d3872afa6e751ab8b\classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Admin\.android\build-cache\80a9b2975749f85421bbc69b78f895345e548e7e\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="756f6297eef79784f5e356dcd4f39865028b2bd0">
-        <dex dex="C:\AndroidSetup\Projects\Charchit\UB-Android\app\build\intermediates\pre-dexed\debug\classes_bfd0a549b1b5f360d8b54f41413e1ca0607d4140.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Admin\.android\build-cache\98fad64fefd6e6e541d098ebb5506de186af31a7\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="19f281a785ca0eb5f6799fc7bf7ca199a9ca1e8b">
-        <dex dex="C:\AndroidSetup\Projects\Charchit\UB-Android\app\build\intermediates\pre-dexed\debug\classes_150fea7fb1016e41dd5332865896b1b1e6490c83.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Admin\.android\build-cache\4574898773d021edfd3cf552cf16d3d136e81678\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="6addaba208e21c6da776d0ca75b6b23a6ccd5499">
-        <dex dex="C:\AndroidSetup\Projects\Charchit\UB-Android\app\build\intermediates\pre-dexed\debug\classes_ba041d02e0c3118338e9be835ccbdcde4d08aa61.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Admin\.android\build-cache\06e7bfec13ee9e3fb641a416a1739c9e8684d41c\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="44ee06abb66da30f5855e6bf54574e64cdcd982a">
-        <dex dex="C:\AndroidSetup\Projects\Charchit\UB-Android\app\build\intermediates\pre-dexed\debug\classes_8b8b20da6f253da153a6d67e386b62f70bbcfb22.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Admin\.android\build-cache\0be1b67196913759f191999bcb8095a4d041fbba\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="d4c4b83de2f6412072d2a29b1b7a5b03edaad5ff">
-        <dex dex="C:\AndroidSetup\Projects\Charchit\UB-Android\app\build\intermediates\pre-dexed\debug\classes_df371639da532c53a0c56e8dd32d84f69bc24d6d.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Admin\.gradle\caches\modules-2\files-2.1\com.jakewharton\butterknife-annotations\8.5.1\bb67dad90bab7cd77a8f7f1b8442b47e3a2326bc\butterknife-annotations-8.5.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="bb67dad90bab7cd77a8f7f1b8442b47e3a2326bc">
-        <dex dex="C:\AndroidSetup\Projects\Charchit\UB-Android\app\build\intermediates\pre-dexed\debug\butterknife-annotations-8.5.1_9ac5ad57131d0918bfa280da0db9f8888c3fb253.jar" />
     </item>
     <item
         is-multidex="true"
@@ -70,53 +16,8 @@
         jumboMode="true"
         optimize="true"
         revision="25.0.2"
-        sha1="f823d7264144d4179182589a3b7d556c0950ba2e">
+        sha1="e8d229cafddb14a66791cf98febb75cc07d2e62c">
         <dex dex="C:\AndroidSetup\Projects\Charchit\UB-Android\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_7c06dc8604714f4b590f362d4316438db1410a7f\classes.dex" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Admin\.android\build-cache\a0627063eb8a63a501da16fe72c3ca430d020ab4\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="25438f55fc6d906a0e72f30b21487541430ede43">
-        <dex dex="C:\AndroidSetup\Projects\Charchit\UB-Android\app\build\intermediates\pre-dexed\debug\classes_e607dac4d1ecd08036398a715fe1d7161a3ccdc6.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Admin\.android\build-cache\c92e2a1fd3f465bcdbf54cf451d39c979274895e\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="44a694d4095be84c2888764b1f7256b385c030ad">
-        <dex dex="C:\AndroidSetup\Projects\Charchit\UB-Android\app\build\intermediates\pre-dexed\debug\classes_2f1f178f85b3a1542935677ce5bdb61871fed2cb.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Admin\.android\build-cache\44d5ef948acdb21626f0ba79dfcc69eff9c904e3\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="27777b3cad3c20b1acab19f6e37fe3e03371bf6e">
-        <dex dex="C:\AndroidSetup\Projects\Charchit\UB-Android\app\build\intermediates\pre-dexed\debug\classes_9dcd411a2a8408365a84a63075c3986dbdc27a55.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\AndroidSetup\sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.2\constraint-layout-solver-1.0.2.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="b9cd8fc6bd15cb915735d34535db30ece0c44603">
-        <dex dex="C:\AndroidSetup\Projects\Charchit\UB-Android\app\build\intermediates\pre-dexed\debug\constraint-layout-solver-1.0.2_51129f8d21a57039810588fab765c18024c1a518.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\Admin\.gradle\caches\modules-2\files-2.1\io.reactivex\rxjava\1.1.0\748f0546d5c3c27f1aef07270ffea0c45f0c42a4\rxjava-1.1.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="748f0546d5c3c27f1aef07270ffea0c45f0c42a4">
-        <dex dex="C:\AndroidSetup\Projects\Charchit\UB-Android\app\build\intermediates\pre-dexed\debug\rxjava-1.1.0_22a96e733e9ce5ab215c32c6f46675a4ffec36ea.jar" />
     </item>
 
 </items>
