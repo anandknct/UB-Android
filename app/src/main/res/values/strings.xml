@@ -39,6 +39,7 @@
     <string name="str_friend">Friend</string>
     <!--My Photos screen-->
     <string name="str_photos">My Photos</string>
+    <string name="str_edit">Edit</string>
 
     <string-array name="nav_item_activity_titles">
         <item>Churches</item>

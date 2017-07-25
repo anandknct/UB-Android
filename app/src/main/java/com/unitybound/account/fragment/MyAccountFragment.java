@@ -150,6 +150,7 @@ public class MyAccountFragment extends Fragment implements HomeFeedsAdapter.ILis
 
     @Override
     public void onOptionClickListner(String s, int position) {
+        mBottomSheetDialog.findViewById(R.id.fragment_history_menu_bottom).setVisibility(View.VISIBLE);
         mBottomSheetDialog.show();
     }
 
