@@ -1,7 +1,9 @@
 package com.unitybound.account.fragment;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -75,6 +77,7 @@ public class MyAccountFragment extends Fragment implements HomeFeedsAdapter.ILis
     private ArrayList<FriendRequestData> datalist =
             new ArrayList<FriendRequestData>();
     private HomeFeedsAdapter adapter;
+    private BottomSheetDialog mBottomSheetDialog = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -102,6 +105,36 @@ public class MyAccountFragment extends Fragment implements HomeFeedsAdapter.ILis
         recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
+
+        setUpBottomSheet();
+    }
+
+    private void setUpBottomSheet() {
+        mBottomSheetDialog = new BottomSheetDialog(getActivity());
+        View sheetView = getActivity().getLayoutInflater().inflate(R.layout.bottom_sheets_main_layout, null);
+        mBottomSheetDialog.setContentView(sheetView);
+
+        LinearLayout edit = (LinearLayout) sheetView.findViewById(R.id.fragment_history_bottom_sheet_edit);
+        LinearLayout delete = (LinearLayout) sheetView.findViewById(R.id.fragment_history_bottom_sheet_delete);
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Edit code here;
+            }
+        });
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Delete code here;
+            }
+        });
+        mBottomSheetDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                // Do something
+            }
+        });
     }
 
     @Override
@@ -113,6 +146,11 @@ public class MyAccountFragment extends Fragment implements HomeFeedsAdapter.ILis
     @Override
     public void onCommentClickListner(String s, int position) {
 
+    }
+
+    @Override
+    public void onOptionClickListner(String s, int position) {
+        mBottomSheetDialog.show();
     }
 
     @Override

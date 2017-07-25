@@ -53,4 +53,19 @@
         <item>Logout</item>
     </string-array>
 
+    <string-array name="spinner_titles">
+        <item>All Types</item>
+        <item>Devotionals</item>
+        <item>Praise</item>
+        <item>Prayers</item>
+        <item>Testimonials</item>
+    </string-array>
+
+    <string-array name="pinner_imgs">
+        <item>@drawable/ic_all_types</item>
+        <item>@drawable/ic_all_types</item>
+        <item>@drawable/ic_all_types</item>
+        <item>@drawable/ic_all_types</item>
+    </string-array>
+
 </resources>

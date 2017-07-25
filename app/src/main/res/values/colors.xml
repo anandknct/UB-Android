@@ -30,4 +30,5 @@
     <color name="notification_reject_color">#C91427</color>
     <color name="bg_layout">#D2D5D9</color>
     <color name="black">#000000</color>
+    <color name="spinner_bg">#66677B</color>
 </resources>

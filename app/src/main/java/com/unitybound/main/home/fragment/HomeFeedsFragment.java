@@ -1,6 +1,7 @@
 package com.unitybound.main.home.fragment;
 
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,28 +12,30 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Spinner;
 
 import com.unitybound.R;
 import com.unitybound.main.home.fragment.activity.FeedsCommentActivity;
 import com.unitybound.main.home.fragment.adapter.HomeFeedsAdapter;
+import com.unitybound.main.home.fragment.adapter.MyFeeddsSpinnerAdapter;
 
 import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.unitybound.R.id.swipe_refresh;
-
 /**
  * Live feed Fragment
  */
 public class HomeFeedsFragment extends Fragment implements SwipeRefreshLayout.OnRefreshListener,
-        HomeFeedsAdapter.IListAdapterCallback{
+        HomeFeedsAdapter.IListAdapterCallback {
 
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
-    @BindView(swipe_refresh)
+    @BindView(R.id.swipe_refresh)
     SwipeRefreshLayout swipeRefresh;
+    @BindView(R.id.spinner_feeds_type)
+    Spinner spFeedsType;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -73,6 +76,23 @@ public class HomeFeedsFragment extends Fragment implements SwipeRefreshLayout.On
         adapter.notifyDataSetChanged();
 
         swipeRefresh.setRefreshing(false);
+
+        /* Spinner Feeds Adapter*/
+        ArrayList<String> arrayList1 = new ArrayList<>();
+        arrayList1.add("ALL Types");
+        arrayList1.add("Devotional");
+        arrayList1.add("Praise");
+        arrayList1.add("Prayers");
+        arrayList1.add("Testimonials");
+        TypedArray imgs = getResources().obtainTypedArray(R.array.pinner_imgs);
+
+        MyFeeddsSpinnerAdapter spAdapter = new MyFeeddsSpinnerAdapter(
+                getContext(),
+                R.layout.spinner_item,
+                arrayList1, imgs);
+
+        spAdapter.setDropDownViewResource(R.layout.spinner_drop_down_bg_layout);
+        spFeedsType.setAdapter(spAdapter);
     }
 
 
@@ -90,6 +110,11 @@ public class HomeFeedsFragment extends Fragment implements SwipeRefreshLayout.On
     public void onCommentClickListner(String s, int position) {
         Intent intent = new Intent(getActivity(), FeedsCommentActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onOptionClickListner(String s, int position) {
+
     }
 
 }

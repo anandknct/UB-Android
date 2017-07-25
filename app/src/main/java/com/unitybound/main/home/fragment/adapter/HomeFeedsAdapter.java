@@ -30,20 +30,22 @@ public class HomeFeedsAdapter extends RecyclerView.Adapter<HomeFeedsAdapter.MyVi
         public void onItemClickListner(String s, int position);
 
         public void onCommentClickListner(String s, int position);
+
+        public void onOptionClickListner(String s, int position);
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private TextView tv_time_ago = null;
         public TextView tv_tittle_text;
         public TextView tv_description,tv_share,tv_comment;
-        public ImageView iv_image_prev = null,iv_user_image= null;
+        public ImageView rr_options = null,iv_user_image= null;
 
         public MyViewHolder(View view) {
             super(view);
 //            tv_tittle_text = (TextView) view.findViewById(R.id.tv_tittle_text);
 //            tv_description = (TextView) view.findViewById(R.id.tv_description);
 //            iv_image_prev = (ImageView) view.findViewById(R.id.iv_image_prev);
-//            iv_user_image = (ImageView) view.findViewById(R.id.iv_user_image);
+            rr_options = (ImageView) view.findViewById(R.id.rr_options);
 //            tv_share = (TextView) view.findViewById(R.id.tv_share);
             tv_comment = (TextView) view.findViewById(R.id.tv_comment);
 //            tv_time_ago = (TextView) view.findViewById(R.id.tv_time_ago);
@@ -93,13 +95,6 @@ public class HomeFeedsAdapter extends RecyclerView.Adapter<HomeFeedsAdapter.MyVi
                 .skipMemoryCache(false)
                 .into(holder.iv_user_image);
 
-        holder.tv_share.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                allProductsActivity.onItemClickListner(albumList.get(position).getNewsPid(), position);
-            }
-        });
-
         holder.iv_image_prev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -115,6 +110,13 @@ public class HomeFeedsAdapter extends RecyclerView.Adapter<HomeFeedsAdapter.MyVi
         long[] eclapsedTime = MapsActivity.calculateEclapsedTime(albumList.get(position).getDateCreated());
         String time = MapsActivity.formatTime(eclapsedTime);
         holder.tv_time_ago.setText(time);*/
+
+        holder.rr_options.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                allProductsActivity.onOptionClickListner(albumList.get(position), position);
+            }
+        });
     }
 
 

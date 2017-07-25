@@ -85,4 +85,9 @@ public class MyPrayerRequestFragment extends Fragment implements SwipeRefreshLay
     public void onCommentClickListner(String s, int position) {
 
     }
+
+    @Override
+    public void onOptionClickListner(String s, int position) {
+
+    }
 }

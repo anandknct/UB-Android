@@ -64,6 +64,11 @@ public class FeedsCommentActivity extends AppCompatActivity
     }
 
     @Override
+    public void onOptionClickListner(String s, int position) {
+
+    }
+
+    @Override
     public void onRefresh() {
 
     }
