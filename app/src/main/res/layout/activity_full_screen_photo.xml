@@ -1,90 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/black"
-    tools:context="com.unitybound.account.activity.FullScreenPhotoActivity">
-
-    <ImageView
-        android:id="@+id/iv_option_dots"
-        android:layout_width="30dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="@dimen/dimen_ten"
-        android:layout_marginTop="@dimen/dimen_ten"
-        android:src="@drawable/iv_option_dots" />
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@+id/rr_bottom_menu"
-        android:layout_below="@+id/iv_option_dots"
-        android:layout_centerInParent="true"
-        android:src="@drawable/full_photo_def" />
+    android:layout_height="match_parent">
 
     <RelativeLayout
-        android:id="@+id/rr_bottom_menu"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true">
+        android:layout_height="match_parent"
+        android:background="@color/black"
+        tools:context="com.unitybound.account.activity.FullScreenPhotoActivity">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_above="@+id/rr_bottom"
-            android:layout_marginBottom="@dimen/dimen_ten"
+        <ImageView
+            android:id="@+id/iv_option_dots"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dimen_ten"
             android:layout_marginTop="@dimen/dimen_ten"
-            android:background="@android:color/darker_gray" />
+            android:src="@drawable/iv_option_dots" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/rr_bottom_menu"
+            android:layout_below="@+id/iv_option_dots"
+            android:layout_centerInParent="true"
+            android:src="@drawable/full_photo_def" />
 
         <RelativeLayout
-            android:id="@+id/rr_bottom"
+            android:id="@+id/rr_bottom_menu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:layout_marginBottom="@dimen/dimen_five"
-            android:orientation="horizontal">
+            android:layout_alignParentBottom="true">
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_above="@+id/rr_bottom"
+                android:layout_marginBottom="@dimen/dimen_ten"
+                android:layout_marginTop="@dimen/dimen_ten"
+                android:background="@android:color/darker_gray" />
 
-            <TextView
-                android:id="@+id/tv_share"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:id="@+id/rr_bottom"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:drawableLeft="@drawable/ic_like"
-                android:drawablePadding="7dp"
-                android:gravity="center_horizontal|center_vertical"
-                android:text="Like"
-                android:textColor="@color/color_white" />
+                android:layout_marginBottom="@dimen/dimen_five"
+                android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/tv_comment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_gravity="center_vertical"
-                android:layout_marginLeft="@dimen/dimen_ten"
-                android:layout_toRightOf="@+id/tv_share"
-                android:drawableLeft="@drawable/ic_comment"
-                android:drawablePadding="7dp"
-                android:gravity="center_horizontal|center_vertical"
-                android:text="Comment"
-                android:textColor="@color/color_white" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
-                android:text="2 Like and  24 Comment"
-                android:textColor="@color/color_white" />
+                <TextView
+                    android:id="@+id/tv_share"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:drawableLeft="@drawable/ic_like"
+                    android:drawablePadding="7dp"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text="Like"
+                    android:textColor="@color/color_white" />
+
+                <TextView
+                    android:id="@+id/tv_comment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="@dimen/dimen_ten"
+                    android:layout_toRightOf="@+id/tv_share"
+                    android:drawableLeft="@drawable/ic_comment"
+                    android:drawablePadding="7dp"
+                    android:gravity="center_horizontal|center_vertical"
+                    android:text="Comment"
+                    android:textColor="@color/color_white" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:text="2 Like and  24 Comment"
+                    android:textColor="@color/color_white" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/rr_bottom"
+                android:background="@android:color/darker_gray" />
         </RelativeLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_below="@+id/rr_bottom"
-            android:background="@android:color/darker_gray" />
+        <!-- Bottom Sheet -->
+        <include layout="@layout/bottom_sheets_main_layout" />
     </RelativeLayout>
-
-</RelativeLayout>
+</android.support.design.widget.CoordinatorLayout>

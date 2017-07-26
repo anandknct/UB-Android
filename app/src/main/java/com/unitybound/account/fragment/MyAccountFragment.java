@@ -7,8 +7,10 @@ import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
@@ -16,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.unitybound.R;
 import com.unitybound.account.activity.MyAccountAboutActivity;
@@ -184,8 +187,25 @@ public class MyAccountFragment extends Fragment implements HomeFeedsAdapter.ILis
                 startActivity(intentPhotos);
                 break;
             case R.id.iv_more:
+                popUpMenu(view);
                 break;
         }
+    }
+
+    private void popUpMenu(View view){
+        PopupMenu popup = new PopupMenu(getActivity(), view);
+        //Inflating the Popup using xml file
+        popup.getMenuInflater().inflate(R.menu.poupup_menu, popup.getMenu());
+
+        //registering popup with OnMenuItemClickListener
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            public boolean onMenuItemClick(MenuItem item) {
+                Toast.makeText(getActivity(),"You Clicked : " + item.getTitle(),Toast.LENGTH_SHORT).show();
+                return true;
+            }
+        });
+
+        popup.show();//showing popup menu
     }
 }
 
