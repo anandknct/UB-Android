@@ -6,6 +6,7 @@
         and confirm that you have read our <u>Privacy Policy</u></string>
     <string name="str_create_new_account">Create an new account, It\'s free</string>
 
+    <string name="str_home">Home</string>
     <string name="str_church">Churches</string>
     <string name="str_event">Events</string>
     <string name="str_grp">Groups</string>
@@ -42,6 +43,7 @@
     <string name="str_edit">Edit</string>
 
     <string-array name="nav_item_activity_titles">
+        <item>Home</item>
         <item>Churches</item>
         <item>Events</item>
         <item>Groups</item>

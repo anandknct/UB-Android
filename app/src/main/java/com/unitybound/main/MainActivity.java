@@ -159,6 +159,7 @@ public class MainActivity extends BaseActivity {
 
     public ArrayList<SideMenu> generateSideMenu() {
         menuArrayList = new ArrayList<>();
+        menuArrayList.add(new SideMenu(getResources().getString(R.string.str_home), R.drawable.ac_home_active, false));
         menuArrayList.add(new SideMenu(getResources().getString(R.string.str_church), R.drawable.ac_notifications_icon_gray, false));
         menuArrayList.add(new SideMenu(getResources().getString(R.string.str_event), R.drawable.ic_menu_events_icon, false));
         menuArrayList.add(new SideMenu(getResources().getString(R.string.str_grp), R.drawable.ic_menu_groupsicon, false));
@@ -226,51 +227,62 @@ public class MainActivity extends BaseActivity {
             switch (position) {
                 //Replacing the main content with ContentFragment Which is our Inbox View;
                 case 0:
+                    sNavItemIndex = HOME_INDEX;
+                    loadHomeScreenFragments(HOME_INDEX);
+
+                    if (drawerLayout!=null) {
+                        //Closing mDrawer on item click
+                        drawerLayout.closeDrawers();
+                    }
+                    // refresh mToolbar menu
+                    invalidateOptionsMenu();
+                    break;
+                case 1:
                     sNavItemIndex = 0;
                     CURRENT_TAG = TAG_SEARCH_QUEUE;
                     loadFragment();
                     break;
-                case 1:
+                case 2:
                     sNavItemIndex = 1;
                     CURRENT_TAG = TAG_VIEW_QUEUE;
                     loadFragment();
                     break;
-                case 2:
+                case 3:
                     sNavItemIndex = 2;
                     CURRENT_TAG = TAG_FAVORITE;
                     loadFragment();
                     break;
-                case 3:
+                case 4:
                     sNavItemIndex = 3;
                     CURRENT_TAG = TAG_NOTIFICATION;
                     loadFragment();
                     break;
-                case 4:
+                case 5:
                     sNavItemIndex = 4;
                     CURRENT_TAG = TAG_SETTINGS;
                     loadFragment();
                     break;
-                case 5:
+                case 6:
                     sNavItemIndex = 5;
                     CURRENT_TAG = TAG_LOGOUT;
                     loadFragment();
                     break;
-                case 6:
+                case 7:
                     sNavItemIndex = 6;
                     CURRENT_TAG = TAG_LOGOUT;
                     loadFragment();
                     break;
-                case 7:
+                case 8:
                     sNavItemIndex = 7;
                     CURRENT_TAG = TAG_LOGOUT;
                     loadFragment();
                     break;
-                case 8:
+                case 9:
                     sNavItemIndex = 8;
                     CURRENT_TAG = TAG_LOGOUT;
                     loadFragment();
                     break;
-                case 9:
+                case 10:
                     sNavItemIndex = 9;
                     CURRENT_TAG = TAG_LOGOUT;
                     loadFragment();

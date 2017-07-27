@@ -31,4 +31,5 @@
     <color name="bg_layout">#D2D5D9</color>
     <color name="black">#000000</color>
     <color name="spinner_bg">#66677B</color>
+    <color name="unselected_text_color">#7F849C</color>
 </resources>
