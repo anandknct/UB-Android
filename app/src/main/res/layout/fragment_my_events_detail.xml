@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v4.widget.NestedScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_emergency"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/activity_emergency"
+    <include
+        android:id="@+id/toolbar_layout"
+        layout="@layout/toolbar_layout" />
+
+    <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_above="@+id/linearLayout2"
+        android:layout_below="@+id/toolbar_layout">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -100,7 +105,7 @@
                     android:layout_marginTop="@dimen/dimen_five">
 
                     <TextView
-                        android:id="@+id/tv_event_decription"
+                        android:id="@+id/tv_event_description"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dimen_ten"
@@ -118,46 +123,6 @@
 
             </RelativeLayout>
 
-            <LinearLayout
-                android:id="@+id/linearLayout2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:background="@color/color_toolbar"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/tv_discussion"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:padding="@dimen/dimen_five"
-                    android:text="Discussion"
-                    android:textColor="@color/color_white" />
-
-                <TextView
-                    android:id="@+id/tv_about_label"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:padding="@dimen/dimen_five"
-                    android:text="About"
-                    android:textColor="@color/unselected_text_color" />
-
-                <TextView
-                    android:id="@+id/tv_member_label"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_horizontal|center_vertical"
-                    android:padding="@dimen/dimen_five"
-                    android:text="Members"
-                    android:textColor="@color/unselected_text_color" />
-            </LinearLayout>
 
             <TextView
                 android:id="@+id/textView"
@@ -176,5 +141,46 @@
 
         </RelativeLayout>
 
-    </RelativeLayout>
-</android.support.v4.widget.NestedScrollView>
+    </android.support.v4.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/color_toolbar"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_discussion"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:gravity="center_horizontal|center_vertical"
+            android:padding="@dimen/dimen_five"
+            android:text="Discussion"
+            android:textColor="@color/color_white" />
+
+        <TextView
+            android:id="@+id/tv_about_label"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:gravity="center_horizontal|center_vertical"
+            android:padding="@dimen/dimen_five"
+            android:text="About"
+            android:textColor="@color/unselected_text_color" />
+
+        <TextView
+            android:id="@+id/tv_member_label"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal|center_vertical"
+            android:padding="@dimen/dimen_five"
+            android:text="Members"
+            android:textColor="@color/unselected_text_color" />
+    </LinearLayout>
+</RelativeLayout>
