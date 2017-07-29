@@ -8,11 +8,11 @@
         android:id="@+id/toolbar_layout"
         layout="@layout/toolbar_layout" />
 
-    <android.support.v4.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/linearLayout2"
-        android:layout_below="@+id/toolbar_layout">
+        android:layout_below="@+id/toolbar_layout"
+        android:fillViewport="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -88,5 +88,5 @@
             </android.support.v4.widget.SwipeRefreshLayout>
 
         </RelativeLayout>
-    </android.support.v4.widget.NestedScrollView>
+    </ScrollView>
 </RelativeLayout>

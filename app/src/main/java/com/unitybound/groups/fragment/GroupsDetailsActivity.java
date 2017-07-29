@@ -30,8 +30,19 @@ public class GroupsDetailsActivity extends AppCompatActivity implements
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.groups_detail_activity);
-
+        setUpToolbar();
         initView();
+    }
+
+    private void setUpToolbar() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowTitleEnabled(true);
+        getSupportActionBar().setTitle("Group Details");
+//        TextView tvTittle = (TextView) toolbar.findViewById(R.id.toolbar_title);
+//        tvTittle.setText("Sign Up");
+//        toolbar.setNavigationIcon(R.drawable.ic_back);
     }
 
     private void initView() {
@@ -52,17 +63,9 @@ public class GroupsDetailsActivity extends AppCompatActivity implements
                 GroupsDetailsActivity.this, arrayList,
                 GroupsDetailsActivity.this);
         recyclerView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
 
         swipeRefresh.setRefreshing(false);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setDisplayShowTitleEnabled(true);
-        getSupportActionBar().setTitle("Events Details");
-//        TextView tvTittle = (TextView) toolbar.findViewById(R.id.toolbar_title);
-//        tvTittle.setText("Sign Up");
-//        toolbar.setNavigationIcon(R.drawable.ic_back);
+
     }
 
     @Override

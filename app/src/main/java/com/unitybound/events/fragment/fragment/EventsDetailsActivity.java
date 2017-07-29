@@ -19,6 +19,8 @@ import java.util.ArrayList;
 
 public class EventsDetailsActivity extends AppCompatActivity {
 
+    private TextView tv_discussion = null;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,12 +44,24 @@ public class EventsDetailsActivity extends AppCompatActivity {
 
         final RecyclerView rv_grid_layout = (RecyclerView) findViewById(R.id.rv_grid_layout);
         final TextView tv_event_description = (TextView) findViewById(R.id.tv_event_description);
-        tv_about_label = (TextView) findViewById(R.id.tv_about_label);
+        tv_discussion = (TextView) findViewById(R.id.tv_discussion);
+        tv_discussion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                tv_member_label.setTextColor(ContextCompat.getColor(EventsDetailsActivity.this,R.color.unselected_text_color));
+                tv_discussion.setTextColor(ContextCompat.getColor(EventsDetailsActivity.this,R.color.color_white));
+                tv_about_label.setTextColor(ContextCompat.getColor(EventsDetailsActivity.this,R.color.unselected_text_color));
+                rv_grid_layout.setVisibility(View.GONE);
+                tv_event_description.setVisibility(View.VISIBLE);
+            }
+        });
+                tv_about_label = (TextView) findViewById(R.id.tv_about_label);
         tv_about_label.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 tv_member_label.setTextColor(ContextCompat.getColor(EventsDetailsActivity.this,R.color.unselected_text_color));
                 tv_about_label.setTextColor(ContextCompat.getColor(EventsDetailsActivity.this,R.color.color_white));
+                tv_discussion.setTextColor(ContextCompat.getColor(EventsDetailsActivity.this,R.color.unselected_text_color));
 
                 rv_grid_layout.setVisibility(View.GONE);
                 tv_event_description.setVisibility(View.VISIBLE);
@@ -59,7 +73,7 @@ public class EventsDetailsActivity extends AppCompatActivity {
             public void onClick(View view) {
                 tv_member_label.setTextColor(ContextCompat.getColor(EventsDetailsActivity.this,R.color.color_white));
                 tv_about_label.setTextColor(ContextCompat.getColor(EventsDetailsActivity.this,R.color.unselected_text_color));
-
+                tv_discussion.setTextColor(ContextCompat.getColor(EventsDetailsActivity.this,R.color.unselected_text_color));
                 rv_grid_layout.setVisibility(View.VISIBLE);
                 tv_event_description.setVisibility(View.GONE);
             }
