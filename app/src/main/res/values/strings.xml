@@ -41,6 +41,7 @@
     <!--My Photos screen-->
     <string name="str_photos">My Photos</string>
     <string name="str_edit">Edit</string>
+    <string name="str_unblock">Unblock</string>
 
     <string-array name="nav_item_activity_titles">
         <item>Home</item>

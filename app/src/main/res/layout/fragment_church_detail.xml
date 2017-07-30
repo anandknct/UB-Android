@@ -20,7 +20,7 @@
             android:layout_height="wrap_content">
 
             <ImageView
-                android:id="@+id/iv_event_image"
+                android:id="@+id/iv_church_image"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:scaleType="fitXY"
@@ -30,7 +30,7 @@
                 android:id="@+id/rr_top"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/iv_event_image"
+                android:layout_below="@+id/iv_church_image"
                 android:background="@color/btn_bg_color">
 
                 <TextView
