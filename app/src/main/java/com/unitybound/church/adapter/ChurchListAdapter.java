@@ -24,7 +24,7 @@ public class ChurchListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     public interface IListAdapterCallback {
 
         public void onItemClickListner(String s, int position);
-
+        public void onUserNameClickListner(String s, int position);
     }
 
 
@@ -66,17 +66,18 @@ public class ChurchListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
      * @param POSITION the adapter position
      */
     private void bindViewListData(final ChurchListAdapter.ViewHolder holder, final int POSITION) {
-        holder.tvHeaderTxt.setText(Html.fromHtml("<I>Andrian Phillips likes he has post that\\nyou shared </I>"));
+        holder.tvHeaderTxt.setText(Html.fromHtml("<B><I>Andrian Phillips</I></B>"));
+        holder.tv_header_nxt.setText(Html.fromHtml("<I> likes he has post that\\nyou shared </I>"));
 //        String mobileNumber = String.valueOf(mViewListRecord.get(POSITION).getMobileNumber());
 //        holder.tv_number.setText(Util.getContactNumberEnc(mobileNumber));
 //        holder.flRoot.setMinimumHeight(cellSizeHeight - 20);
 //        holder.flRoot.setMinimumWidth(cellSizeWidth - 20);
-//        holder.tv_accept.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                iAdaperClickListener.OnNavigationItemSelectedListener("btnAccept", holder.flRoot, POSITION);
-//            }
-//        });
+        holder.tvHeaderTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                iListAdapterCallback.onUserNameClickListner("btnUser", POSITION);
+            }
+        });
 //
         holder.llMain.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,7 +98,7 @@ public class ChurchListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
     static class ViewHolder extends RecyclerView.ViewHolder {
         private final LinearLayout llMain;
         private ImageView ivUserIcons = null;
-        TextView tvHeaderTxt = null;
+        TextView tvHeaderTxt = null,tv_header_nxt = null;
         TextView tvDescription = null;
 
         /**
@@ -106,6 +107,7 @@ public class ChurchListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         public ViewHolder(View view) {
             super(view);
             tvHeaderTxt = (TextView) view.findViewById(R.id.tv_header_txt);
+            tv_header_nxt = (TextView) view.findViewById(R.id.tv_header_nxt);
             tvDescription = (TextView) view.findViewById(R.id.tv_description);
             ivUserIcons = (ImageView) view.findViewById(R.id.iv_user_icons);
             llMain = (LinearLayout) view.findViewById(R.id.ll_main);

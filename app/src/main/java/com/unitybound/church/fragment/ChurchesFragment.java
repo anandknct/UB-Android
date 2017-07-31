@@ -14,6 +14,7 @@ import com.unitybound.R;
 import com.unitybound.church.adapter.ChurchListAdapter;
 import com.unitybound.main.friendrequest.model.FriendRequestData;
 import com.unitybound.utility.SpacesItemDecoration;
+import com.unitybound.utility.Util;
 
 import java.util.ArrayList;
 
@@ -39,7 +40,8 @@ public class ChurchesFragment extends Fragment implements ChurchListAdapter.ILis
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_churches,
                 container, false);
@@ -107,6 +109,11 @@ public class ChurchesFragment extends Fragment implements ChurchListAdapter.ILis
 
         Intent intent = new Intent(getActivity(), ChurchDetailsActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onUserNameClickListner(String s, int position) {
+        Util.navigateTOProfileAcitivity(getActivity());
     }
 
 }

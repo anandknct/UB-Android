@@ -9,24 +9,26 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.unitybound.R;
-import com.unitybound.church.adapter.ChurchListAdapter;
 import com.unitybound.church.adapter.ChurchMembersGridAdapter;
 import com.unitybound.events.fragment.adapter.EventsListAdapter;
 import com.unitybound.main.friendrequest.model.FriendRequestData;
 import com.unitybound.utility.GridSpacingItemDecoration;
+import com.unitybound.utility.Util;
 
 import java.util.ArrayList;
 
 
 public class ChurchDetailsActivity extends AppCompatActivity implements
-        ChurchListAdapter.IListAdapterCallback, EventsListAdapter.IListAdapterCallback {
+        EventsListAdapter.IListAdapterCallback {
 
     ArrayList<FriendRequestData> datalist = new ArrayList<FriendRequestData>();
     ChurchMembersGridAdapter adapter;
-    private TextView tv_about_label = null,tv_member_label = null;
+    private TextView tv_about_label = null, tv_member_label = null;
+    private ImageView iv_church_image = null;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,6 +48,13 @@ public class ChurchDetailsActivity extends AppCompatActivity implements
     }
 
     private void initView() {
+        iv_church_image = (ImageView) findViewById(R.id.iv_church_image);
+        iv_church_image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Util.navigateTOFullScreenAcitivity(getParent());
+            }
+        });
         final RecyclerView rv_grid_layout = (RecyclerView) findViewById(R.id.rv_grid_layout);
         final TextView tv_event_description = (TextView) findViewById(R.id.tv_event_description);
 
@@ -53,8 +62,8 @@ public class ChurchDetailsActivity extends AppCompatActivity implements
         tv_about_label.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tv_member_label.setTextColor(ContextCompat.getColor(ChurchDetailsActivity.this,R.color.unselected_text_color));
-                tv_about_label.setTextColor(ContextCompat.getColor(ChurchDetailsActivity.this,R.color.color_white));
+                tv_member_label.setTextColor(ContextCompat.getColor(ChurchDetailsActivity.this, R.color.unselected_text_color));
+                tv_about_label.setTextColor(ContextCompat.getColor(ChurchDetailsActivity.this, R.color.color_white));
 
                 rv_grid_layout.setVisibility(View.GONE);
                 tv_event_description.setVisibility(View.VISIBLE);
@@ -64,8 +73,8 @@ public class ChurchDetailsActivity extends AppCompatActivity implements
         tv_member_label.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                tv_member_label.setTextColor(ContextCompat.getColor(ChurchDetailsActivity.this,R.color.color_white));
-                tv_about_label.setTextColor(ContextCompat.getColor(ChurchDetailsActivity.this,R.color.unselected_text_color));
+                tv_member_label.setTextColor(ContextCompat.getColor(ChurchDetailsActivity.this, R.color.color_white));
+                tv_about_label.setTextColor(ContextCompat.getColor(ChurchDetailsActivity.this, R.color.unselected_text_color));
 
                 rv_grid_layout.setVisibility(View.VISIBLE);
                 tv_event_description.setVisibility(View.GONE);
