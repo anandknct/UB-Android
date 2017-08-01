@@ -17,7 +17,7 @@ import android.widget.Spinner;
 import com.unitybound.R;
 import com.unitybound.main.home.fragment.activity.FeedsCommentActivity;
 import com.unitybound.main.home.fragment.adapter.HomeFeedsAdapter;
-import com.unitybound.main.home.fragment.adapter.MyFeeddsSpinnerAdapter;
+import com.unitybound.main.home.fragment.adapter.MyFeedsSpinnerAdapter;
 
 import java.util.ArrayList;
 
@@ -86,7 +86,7 @@ public class HomeFeedsFragment extends Fragment implements SwipeRefreshLayout.On
         arrayList1.add("Testimonials");
         TypedArray imgs = getResources().obtainTypedArray(R.array.pinner_imgs);
 
-        MyFeeddsSpinnerAdapter spAdapter = new MyFeeddsSpinnerAdapter(
+        MyFeedsSpinnerAdapter spAdapter = new MyFeedsSpinnerAdapter(
                 getContext(),
                 R.layout.spinner_item,
                 arrayList1, imgs);

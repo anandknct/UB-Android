@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_gravity="center"
-    android:background="#EEEEEE"
+    android:background="#724D9D"
     android:padding="@dimen/dimen_ten">
 
     <ImageView
@@ -21,6 +21,6 @@
         android:gravity="left"
         android:text="All Types"
         android:textAllCaps="true"
-        android:textColor="@color/text_color_primary" />
+        android:textColor="@color/color_white" />
 
 </LinearLayout>

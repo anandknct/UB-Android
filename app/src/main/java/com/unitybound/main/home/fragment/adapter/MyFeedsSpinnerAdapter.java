@@ -16,7 +16,7 @@ import java.util.ArrayList;
 /**
  * Created by Admin on 7/25/2017.
  */
-public class MyFeeddsSpinnerAdapter extends ArrayAdapter<String> {
+public class MyFeedsSpinnerAdapter extends ArrayAdapter<String> {
 
     private Context activity;
     ArrayList<String> arrayList = null;
@@ -24,7 +24,7 @@ public class MyFeeddsSpinnerAdapter extends ArrayAdapter<String> {
     LayoutInflater inflater;
 
     /*************  CustomAdapter Constructor *****************/
-    public MyFeeddsSpinnerAdapter(
+    public MyFeedsSpinnerAdapter(
             Context context,
             int textViewResourceId,
             ArrayList<String> arrayList,

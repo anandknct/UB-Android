@@ -32,7 +32,7 @@ public class GroupsDetailsActivity extends AppCompatActivity implements
     private TextView tv_group_description, tv_member_label, tv_comment_label = null, tv_photos_label, tv_about_label;
     private ImageView tv_blocked_label;
     private RecyclerView recyclerView = null;
-    private SwipeRefreshLayout swipeRefresh = null;
+//    private SwipeRefreshLayout swipeRefresh = null;
     private int mSelectedTab = 0;
 
     @Override
@@ -64,13 +64,9 @@ public class GroupsDetailsActivity extends AppCompatActivity implements
         tv_blocked_label = (ImageView) findViewById(R.id.tv_blocked_label);
         setUpBottomListener();
 
-        swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
-        RecyclerView.LayoutManager mLayoutManager =
-                new LinearLayoutManager(GroupsDetailsActivity.this);
-        recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        swipeRefresh.setOnRefreshListener(GroupsDetailsActivity.this);
-        recyclerView.setNestedScrollingEnabled(false);
+//        swipeRefresh = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
+//        swipeRefresh.setOnRefreshListener(GroupsDetailsActivity.this);
+
         setUpCommentsList();
     }
 
@@ -89,7 +85,7 @@ public class GroupsDetailsActivity extends AppCompatActivity implements
                     recyclerView.setVisibility(View.VISIBLE);
                     tv_group_description.setVisibility(View.GONE);
                     mSelectedTab = 0;
-                    setUpGroupPhotosGrid();
+                    setUpCommentsList();
                 }
             }
         });
@@ -176,12 +172,19 @@ public class GroupsDetailsActivity extends AppCompatActivity implements
         arrayList.add("");
         arrayList.add("");
         arrayList.add("");
+
+        RecyclerView.LayoutManager mLayoutManager =
+                new LinearLayoutManager(GroupsDetailsActivity.this);
+        recyclerView.setLayoutManager(mLayoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setNestedScrollingEnabled(false);
         GroupsDetailsFeedsAdapter adapter = new GroupsDetailsFeedsAdapter(
                 GroupsDetailsActivity.this, arrayList,
                 GroupsDetailsActivity.this);
         recyclerView.setAdapter(adapter);
         recyclerView.setNestedScrollingEnabled(false);
-        swipeRefresh.setRefreshing(false);
+        recyclerView.getLayoutManager().setAutoMeasureEnabled(true);
+//        swipeRefresh.setRefreshing(false);
     }
 
     private void setUpGroupMembersGrid() {

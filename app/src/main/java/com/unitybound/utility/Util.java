@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.app.Service;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.net.ConnectivityManager;
@@ -18,6 +19,9 @@ import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.unitybound.account.activity.FullScreenPhotoActivity;
+import com.unitybound.account.activity.MyAccountAboutActivity;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -258,5 +262,13 @@ public class Util {
     }
 
 
+    public static void navigateTOFullScreenAcitivity(Activity activity) {
+        Intent intent = new Intent(activity, FullScreenPhotoActivity.class);
+        activity.startActivity(intent);
+    }
 
+    public static void navigateTOProfileAcitivity(Activity activity) {
+        Intent intent = new Intent(activity, MyAccountAboutActivity.class);
+        activity.startActivity(intent);
+    }
 }

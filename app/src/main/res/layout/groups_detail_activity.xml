@@ -13,13 +13,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/rr_bottom"
-        android:descendantFocusability="blocksDescendants"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:layout_below="@+id/toolbar_layout">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:descendantFocusability="blocksDescendants">
 
             <ImageView
                 android:id="@+id/iv_event_image"
@@ -102,7 +101,6 @@
                     android:id="@+id/recycler_view"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
                     android:scrollbars="vertical" />
                 <!--</android.support.v4.widget.SwipeRefreshLayout>-->
             </RelativeLayout>
