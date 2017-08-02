@@ -308,7 +308,7 @@ public class GroupsDetailsActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void onCommentClickListner(String s, int position) {
+    public void onCommentClickListener(String s, int position) {
 
     }
 

@@ -29,7 +29,7 @@ public class GroupsDetailsFeedsAdapter extends RecyclerView.Adapter<GroupsDetail
 
         public void onItemClickListner(String s, int position);
 
-        public void onCommentClickListner(String s, int position);
+        public void onCommentClickListener(String s, int position);
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -98,7 +98,7 @@ public class GroupsDetailsFeedsAdapter extends RecyclerView.Adapter<GroupsDetail
         holder.tv_comment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                allProductsActivity.onCommentClickListner(albumList.get(position).getNewsPid(), position);
+                allProductsActivity.onCommentClickListener(albumList.get(position).getNewsPid(), position);
             }
         });
 

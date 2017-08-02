@@ -68,7 +68,7 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.MyView
 //        holder.tv_comment.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {
-//                allProductsActivity.onCommentClickListner("", position);
+//                allProductsActivity.onCommentClickListener("", position);
 //            }
 //        });
        /* holder.tv_tittle_text.setText(albumList.get(position).getUserName());

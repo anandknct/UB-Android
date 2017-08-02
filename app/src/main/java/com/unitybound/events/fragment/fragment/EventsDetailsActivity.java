@@ -41,7 +41,6 @@ public class EventsDetailsActivity extends AppCompatActivity implements GroupsDe
         initView();
     }
 
-
     private void initView() {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -190,7 +189,7 @@ public class EventsDetailsActivity extends AppCompatActivity implements GroupsDe
     }
 
     @Override
-    public void onCommentClickListner(String s, int position) {
+    public void onCommentClickListener(String s, int position) {
 
     }
 }

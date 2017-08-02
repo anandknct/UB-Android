@@ -98,7 +98,7 @@ public class MyPrayerRequestAdapter extends RecyclerView.Adapter<MyPrayerRequest
         holder.tv_comment.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                allProductsActivity.onCommentClickListner(albumList.get(position).getNewsPid(), position);
+                allProductsActivity.onCommentClickListener(albumList.get(position).getNewsPid(), position);
             }
         });
 
