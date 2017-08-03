@@ -41,6 +41,7 @@ public class EventsDetailsActivity extends AppCompatActivity implements GroupsDe
         initView();
     }
 
+
     private void initView() {
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);

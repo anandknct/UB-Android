@@ -10,23 +10,6 @@
         android:layout_alignParentTop="true"
         android:weightSum="5">
 
-        <!--<LinearLayout-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_weight="1"-->
-        <!--android:gravity="center_vertical"-->
-        <!--android:orientation="horizontal"-->
-        <!--android:background="@drawable/home_spinner_background"-->
-        <!--android:paddingLeft="@dimen/dimen_five"-->
-        <!--android:paddingRight="@dimen/dimen_five">-->
-
-        <!--<ImageView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_gravity="center_vertical"-->
-        <!--android:paddingLeft="@dimen/dimen_ten"-->
-        <!--android:visibility="gone"-->
-        <!--android:src="@drawable/ic_all_types" />-->
 
         <Spinner
             android:id="@+id/spinner_feeds_type"
