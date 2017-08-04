@@ -25,6 +25,7 @@ import com.unitybound.account.activity.MyAccountAboutActivity;
 import com.unitybound.account.activity.MyAccountFrndsActivity;
 import com.unitybound.account.activity.MyAccountMyPhotosActivity;
 import com.unitybound.main.friendrequest.model.FriendRequestData;
+import com.unitybound.main.home.fragment.activity.FeedsCommentActivity;
 import com.unitybound.main.home.fragment.adapter.HomeFeedsAdapter;
 import com.unitybound.weddings.activity.WeddingsDetailsActivity;
 
@@ -148,7 +149,8 @@ public class MyAccountFragment extends Fragment implements HomeFeedsAdapter.ILis
 
     @Override
     public void onCommentClickListner(String s, int position) {
-
+        Intent intent = new Intent(getActivity(), FeedsCommentActivity.class);
+        startActivity(intent);
     }
 
     @Override

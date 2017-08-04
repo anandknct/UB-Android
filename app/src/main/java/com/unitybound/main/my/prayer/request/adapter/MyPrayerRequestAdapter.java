@@ -65,7 +65,12 @@ public class MyPrayerRequestAdapter extends RecyclerView.Adapter<MyPrayerRequest
 
     @Override
     public void onBindViewHolder(final MyViewHolder holder, final int position) {
-
+        holder.tv_comment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                allProductsActivity.onCommentClickListner("", position);
+            }
+        });
        /* holder.tv_tittle_text.setText(albumList.get(position).getUserName());
 //        holder.tv_description.setText(albumList.get(position).getDescription());
         holder.tv_description.setText( Html.fromHtml(albumList.get(position).getDescription()));
