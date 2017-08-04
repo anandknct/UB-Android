@@ -23,16 +23,6 @@
             android:gravity="center"
             android:spinnerMode="dropdown" />
 
-        <!--<ImageView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentRight="true"-->
-        <!--android:layout_centerVertical="true"-->
-        <!--android:layout_gravity="center"-->
-        <!--android:src="@drawable/ic_action_down" />-->
-        <!--</LinearLayout>-->
-
-
         <ImageView
             android:id="@+id/iv_everyone"
             android:layout_width="0dp"

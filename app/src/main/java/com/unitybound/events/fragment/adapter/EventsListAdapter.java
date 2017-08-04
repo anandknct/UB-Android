@@ -22,9 +22,7 @@ import java.util.ArrayList;
 public class EventsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     public interface IListAdapterCallback {
-
         public void onItemClickListner(String s, int position);
-
     }
 
 

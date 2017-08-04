@@ -58,6 +58,7 @@ public class FriendRequestListAdapter extends RecyclerView.Adapter<RecyclerView.
      */
     private void bindViewListData(final FriendRequestListAdapter.ViewHolder holder, final int POSITION) {
         holder.tvHeaderTxt.setText(Html.fromHtml("<B>Andrian Phillips</B> likes he has post that\\nyou shared"));
+
 //        String mobileNumber = String.valueOf(mViewListRecord.get(POSITION).getMobileNumber());
 //        holder.tv_number.setText(Util.getContactNumberEnc(mobileNumber));
 //        holder.flRoot.setMinimumHeight(cellSizeHeight - 20);

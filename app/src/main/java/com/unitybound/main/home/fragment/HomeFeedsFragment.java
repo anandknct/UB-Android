@@ -55,8 +55,6 @@ public class HomeFeedsFragment extends Fragment implements SwipeRefreshLayout.On
         return view;
     }
 
-
-
     /**
      * @param view the view
      */
