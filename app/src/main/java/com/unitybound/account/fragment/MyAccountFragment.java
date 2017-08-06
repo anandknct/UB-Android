@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.BottomSheetDialog;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -24,6 +25,7 @@ import com.unitybound.R;
 import com.unitybound.account.activity.MyAccountAboutActivity;
 import com.unitybound.account.activity.MyAccountFrndsActivity;
 import com.unitybound.account.activity.MyAccountMyPhotosActivity;
+import com.unitybound.groups.activity.AddGroupActivity;
 import com.unitybound.main.friendrequest.model.FriendRequestData;
 import com.unitybound.main.home.fragment.activity.FeedsCommentActivity;
 import com.unitybound.main.home.fragment.adapter.HomeFeedsAdapter;
@@ -40,7 +42,7 @@ import butterknife.Unbinder;
  * Created by @author nikhil.jogdand on 10/05/17.
  */
 
-public class MyAccountFragment extends Fragment implements HomeFeedsAdapter.IListAdapterCallback {
+public class MyAccountFragment extends Fragment implements HomeFeedsAdapter.IListAdapterCallback, View.OnClickListener {
 
 
     @BindView(R.id.rr_user_image)
@@ -82,6 +84,7 @@ public class MyAccountFragment extends Fragment implements HomeFeedsAdapter.ILis
             new ArrayList<FriendRequestData>();
     private HomeFeedsAdapter adapter;
     private BottomSheetDialog mBottomSheetDialog = null;
+    private FloatingActionButton addPost = null;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -95,7 +98,8 @@ public class MyAccountFragment extends Fragment implements HomeFeedsAdapter.ILis
 
     private void initView(View view) {
         recyclerView = (RecyclerView) view.findViewById(R.id.rv_list_layout);
-
+        addPost = (FloatingActionButton) view.findViewById(R.id.fab_create_post);
+        addPost.setOnClickListener(this);
         //add some person to list
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add("");
@@ -160,6 +164,12 @@ public class MyAccountFragment extends Fragment implements HomeFeedsAdapter.ILis
     }
 
     @Override
+    public void onUserNameClickListner(String s, int position) {
+        Intent intent = new Intent(getActivity(), MyAccountAboutActivity.class);
+        startActivity(intent);
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
@@ -208,6 +218,16 @@ public class MyAccountFragment extends Fragment implements HomeFeedsAdapter.ILis
         });
 
         popup.show();//showing popup menu
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.fab_create_post:
+                Intent intent = new Intent(getActivity(), AddGroupActivity.class);
+                startActivity(intent);
+                break;
+        }
     }
 }
 

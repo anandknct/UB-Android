@@ -6,6 +6,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.RequiresApi;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -25,6 +26,7 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 
 import com.unitybound.R;
+import com.unitybound.account.activity.AddPostActivity;
 import com.unitybound.account.fragment.MyAccountFragment;
 import com.unitybound.church.fragment.ChurchesFragment;
 import com.unitybound.events.fragment.fragment.EventsFragment;
@@ -67,6 +69,8 @@ public class MainActivity extends BaseActivity {
     ImageView imgCloseMenu;
     @BindView(R.id.view_container)
     RelativeLayout viewContainer;
+    @BindView(R.id.fab_create_post)
+    FloatingActionButton createPost;
     private ArrayList<SideMenu> menuArrayList;
     public static int sNavItemIndex = 100;
     public final int HOME_INDEX = 100;
@@ -310,6 +314,12 @@ public class MainActivity extends BaseActivity {
     @OnClick(R.id.img_close_menu)
     public void onViewClicked() {
         drawerLayout.closeDrawers();
+    }
+
+    @OnClick(R.id.fab_create_post)
+    public void onCreatePost(){
+        Intent intent = new Intent(this, AddPostActivity.class);
+        startActivity(intent);
     }
 
     @Override

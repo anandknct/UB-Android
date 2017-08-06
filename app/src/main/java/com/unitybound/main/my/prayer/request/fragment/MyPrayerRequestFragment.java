@@ -1,8 +1,10 @@
 package com.unitybound.main.my.prayer.request.fragment;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomSheetDialog;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.DefaultItemAnimator;
@@ -11,8 +13,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.unitybound.R;
+import com.unitybound.account.activity.MyAccountAboutActivity;
 import com.unitybound.main.home.fragment.activity.FeedsCommentActivity;
 import com.unitybound.main.home.fragment.adapter.HomeFeedsAdapter;
 import com.unitybound.main.my.prayer.request.adapter.MyPrayerRequestAdapter;
@@ -31,6 +35,7 @@ public class MyPrayerRequestFragment extends Fragment implements SwipeRefreshLay
     RecyclerView recyclerView;
     @BindView(swipe_refresh)
     SwipeRefreshLayout swipeRefresh;
+    private BottomSheetDialog mBottomSheetDialog = null;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -70,6 +75,7 @@ public class MyPrayerRequestFragment extends Fragment implements SwipeRefreshLay
         adapter.notifyDataSetChanged();
 
         swipeRefresh.setRefreshing(false);
+        setUpBottomSheet();
     }
 
 
@@ -90,7 +96,43 @@ public class MyPrayerRequestFragment extends Fragment implements SwipeRefreshLay
     }
 
     @Override
-    public void onOptionClickListner(String s, int position) {
-
+    public void onUserNameClickListner(String s, int position) {
+        Intent intent = new Intent(getActivity(), MyAccountAboutActivity.class);
+        startActivity(intent);
     }
+
+    @Override
+    public void onOptionClickListner(String s, int position) {
+        mBottomSheetDialog.findViewById(R.id.fragment_history_menu_bottom).setVisibility(View.VISIBLE);
+        mBottomSheetDialog.show();
+    }
+
+    private void setUpBottomSheet() {
+        mBottomSheetDialog = new BottomSheetDialog(getActivity());
+        View sheetView = getActivity().getLayoutInflater().inflate(R.layout.bottom_sheets_main_layout, null);
+        mBottomSheetDialog.setContentView(sheetView);
+
+        LinearLayout edit = (LinearLayout) sheetView.findViewById(R.id.fragment_history_bottom_sheet_edit);
+        LinearLayout delete = (LinearLayout) sheetView.findViewById(R.id.fragment_history_bottom_sheet_delete);
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Edit code here;
+            }
+        });
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Delete code here;
+            }
+        });
+        mBottomSheetDialog.setOnDismissListener(new DialogInterface.OnDismissListener() {
+            @Override
+            public void onDismiss(DialogInterface dialog) {
+                // Do something
+            }
+        });
+    }
+
 }

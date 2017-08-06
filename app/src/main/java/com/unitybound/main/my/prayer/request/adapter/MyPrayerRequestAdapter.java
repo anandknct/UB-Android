@@ -30,6 +30,8 @@ public class MyPrayerRequestAdapter extends RecyclerView.Adapter<MyPrayerRequest
         public void onItemClickListner(String s, int position);
 
         public void onCommentClickListner(String s, int position);
+
+        public void onUserNameClickListner(String s, int position);
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -40,12 +42,12 @@ public class MyPrayerRequestAdapter extends RecyclerView.Adapter<MyPrayerRequest
 
         public MyViewHolder(View view) {
             super(view);
-//            tv_tittle_text = (TextView) view.findViewById(R.id.tv_tittle_text);
+            tv_tittle_text = (TextView) view.findViewById(R.id.tv_tittle_text);
 //            tv_description = (TextView) view.findViewById(R.id.tv_description);
 //            iv_image_prev = (ImageView) view.findViewById(R.id.iv_image_prev);
 //            iv_user_image = (ImageView) view.findViewById(R.id.iv_user_image);
 //            tv_share = (TextView) view.findViewById(R.id.tv_share);
-//            tv_comment = (TextView) view.findViewById(R.id.tv_comment);
+            tv_comment = (TextView) view.findViewById(R.id.tv_comment);
 //            tv_time_ago = (TextView) view.findViewById(R.id.tv_time_ago);
         }
     }
@@ -71,9 +73,14 @@ public class MyPrayerRequestAdapter extends RecyclerView.Adapter<MyPrayerRequest
                 allProductsActivity.onCommentClickListner("", position);
             }
         });
-       /* holder.tv_tittle_text.setText(albumList.get(position).getUserName());
+        holder.tv_tittle_text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                allProductsActivity.onUserNameClickListner("", position);
+            }
+        });
 //        holder.tv_description.setText(albumList.get(position).getDescription());
-        holder.tv_description.setText( Html.fromHtml(albumList.get(position).getDescription()));
+    /*    holder.tv_description.setText( Html.fromHtml(albumList.get(position).getDescription()));
         holder.tv_description.setMovementMethod(LinkMovementMethod.getInstance());
 
 //        if (albumList.get(position).getImage() != null && !albumList.get(position).getContentType().equalsIgnoreCase("VIDEO")) {

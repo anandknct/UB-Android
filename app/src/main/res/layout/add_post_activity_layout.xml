@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.unitybound.groups.activity.AddGroupActivity">
+
+    <include
+        android:id="@+id/tb_layout"
+        layout="@layout/toolbar_layout" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tb_layout"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/edt_message"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:gravity="top|start"
+                android:inputType="textPostalAddress"
+                android:maxLines="6"
+                android:padding="@dimen/dimen_ten"
+                android:text="Say something good......"
+                android:textColor="@color/text_color_secondary"
+                android:textSize="14sp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_ten">
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_centerVertical="true"
+                    android:layout_margin="@dimen/dimen_five"
+                    android:src="@android:drawable/ic_menu_gallery" />
+
+                <Spinner
+                    android:id="@+id/sp_drop_down"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_margin="@dimen/dimen_five"
+                    android:layout_toLeftOf="@+id/btn_post"
+                    android:layout_toRightOf="@+id/imageView2"
+                    android:gravity="center"
+                    android:background="@android:color/transparent"
+                    android:spinnerMode="dropdown" />
+
+                <Button
+                    android:id="@+id/btn_post"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="@dimen/dimen_five"
+                    android:background="@color/color_orange"
+                    android:text="Post"
+                    android:textAllCaps="true"
+                    android:textColor="@color/color_white" />
+            </RelativeLayout>
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

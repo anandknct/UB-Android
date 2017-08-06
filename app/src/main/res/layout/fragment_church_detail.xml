@@ -49,6 +49,15 @@
                     android:orientation="horizontal">
 
                     <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/activity_horizontal_margin"
+                        android:padding="@dimen/dimen_ten"
+                        android:text="108 Members"
+                        android:textColor="@color/color_white"
+                        android:textSize="12sp" />
+
+                    <TextView
                         android:id="@+id/btn_decline"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -62,7 +71,7 @@
             </RelativeLayout>
 
             <RelativeLayout
-                android:id="@+id/relativeLayout"
+                android:id="@+id/rr_description_layout"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_below="@+id/rr_top"
@@ -101,40 +110,39 @@
                     android:id="@+id/rr_changer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/dimen_five"
                     android:layout_alignParentBottom="true"
-                    android:layout_below="@+id/tv_event_time">
+                    android:layout_below="@+id/tv_event_time"
+                    android:layout_marginTop="@dimen/dimen_five">
 
                     <TextView
                         android:id="@+id/tv_event_description"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_below="@+id/rv_grid_layout"
                         android:maxLines="6"
                         android:text="Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum "
                         android:textColor="@color/text_color_secondary"
-                        android:textSize="12sp"
-                        android:layout_below="@+id/rv_grid_layout"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true" />
+                        android:textSize="12sp" />
 
-
-                    <android.support.v7.widget.RecyclerView
-                        android:id="@+id/rv_grid_layout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:visibility="gone" />
                 </RelativeLayout>
 
-
             </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_grid_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rr_top"
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_above="@+id/rr_top"
-                android:layout_alignEnd="@+id/relativeLayout"
-                android:layout_alignRight="@+id/relativeLayout"
+                android:layout_alignParentRight="true"
                 android:layout_marginBottom="20dp"
                 android:background="@color/color_white"
                 android:ellipsize="end"

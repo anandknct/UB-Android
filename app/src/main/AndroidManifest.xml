@@ -79,7 +79,13 @@
             android:name=".account.activity.MyAccountMyPhotosActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan|stateHidden" />
-        <activity android:name=".account.activity.FullScreenPhotoActivity"
+        <activity
+            android:name=".account.activity.FullScreenPhotoActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <activity
+            android:name=".account.activity.AddPostActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan|stateHidden" />
     </application>
