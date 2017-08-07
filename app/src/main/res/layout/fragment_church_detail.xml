@@ -58,7 +58,7 @@
                         android:textSize="12sp" />
 
                     <TextView
-                        android:id="@+id/btn_decline"
+                        android:id="@+id/btn_join"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginRight="@dimen/activity_horizontal_margin"

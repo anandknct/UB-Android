@@ -42,6 +42,12 @@
     <string name="str_photos">My Photos</string>
     <string name="str_edit">Edit</string>
     <string name="str_unblock">Unblock</string>
+    <string name="str_for_membership_request">for Membership Request</string>
+    <string name="str_click_here">Click Here</string>
+    <string name="str_join">Join</string>
+    <string name="str_enter_access_code">Please enter access code</string>
+    <string name="str_yes">Yes</string>
+    <string name="str_no">No</string>
 
     <string-array name="nav_item_activity_titles">
         <item>Home</item>

@@ -32,6 +32,8 @@ public class HomeFeedsAdapter extends RecyclerView.Adapter<HomeFeedsAdapter.MyVi
         public void onCommentClickListner(String s, int position);
 
         public void onOptionClickListner(String s, int position);
+
+        public void onUserNameClickListner(String s, int position);
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
@@ -42,7 +44,7 @@ public class HomeFeedsAdapter extends RecyclerView.Adapter<HomeFeedsAdapter.MyVi
 
         public MyViewHolder(View view) {
             super(view);
-//            tv_tittle_text = (TextView) view.findViewById(R.id.tv_tittle_text);
+            tv_tittle_text = (TextView) view.findViewById(R.id.tv_tittle_text);
 //            tv_description = (TextView) view.findViewById(R.id.tv_description);
 //            iv_image_prev = (ImageView) view.findViewById(R.id.iv_image_prev);
             rr_options = (ImageView) view.findViewById(R.id.rr_options);
@@ -73,9 +75,14 @@ public class HomeFeedsAdapter extends RecyclerView.Adapter<HomeFeedsAdapter.MyVi
                 allProductsActivity.onCommentClickListner("", position);
             }
         });
-       /* holder.tv_tittle_text.setText(albumList.get(position).getUserName());
+        holder.tv_tittle_text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                allProductsActivity.onUserNameClickListner("", position);
+            }
+        });
 //        holder.tv_description.setText(albumList.get(position).getDescription());
-        holder.tv_description.setText( Html.fromHtml(albumList.get(position).getDescription()));
+  /*      holder.tv_description.setText( Html.fromHtml(albumList.get(position).getDescription()));
         holder.tv_description.setMovementMethod(LinkMovementMethod.getInstance());
 
 //        if (albumList.get(position).getImage() != null && !albumList.get(position).getContentType().equalsIgnoreCase("VIDEO")) {
