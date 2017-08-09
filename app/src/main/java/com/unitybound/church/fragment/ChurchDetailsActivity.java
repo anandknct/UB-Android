@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.unitybound.R;
@@ -18,17 +19,21 @@ import com.unitybound.events.fragment.adapter.EventsListAdapter;
 import com.unitybound.main.friendrequest.model.FriendRequestData;
 import com.unitybound.utility.GridSpacingItemDecoration;
 import com.unitybound.utility.Util;
+import com.unitybound.utility.customView.CustomDialog;
 
 import java.util.ArrayList;
 
+import static com.unitybound.utility.customView.CustomDialog.NO_PARAM;
+import static com.unitybound.utility.customView.CustomDialog.REQUEST_ACCESS;
 
 public class ChurchDetailsActivity extends AppCompatActivity implements
-        EventsListAdapter.IListAdapterCallback {
+        EventsListAdapter.IListAdapterCallback, CustomDialog.IDialogListener {
 
     ArrayList<FriendRequestData> datalist = new ArrayList<FriendRequestData>();
     ChurchMembersGridAdapter adapter;
     private TextView tv_about_label = null, tv_member_label = null;
     private ImageView iv_church_image = null;
+    private TextView btnJoin = null;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,8 +60,17 @@ public class ChurchDetailsActivity extends AppCompatActivity implements
                 Util.navigateTOFullScreenAcitivity(getParent());
             }
         });
+        btnJoin = (TextView) findViewById(R.id.btn_join);
+        btnJoin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                /*Join Church Custom dialog*/
+                new CustomDialog(ChurchDetailsActivity.this, ChurchDetailsActivity.this).show();
+            }
+        });
         final RecyclerView rv_grid_layout = (RecyclerView) findViewById(R.id.rv_grid_layout);
         final TextView tv_event_description = (TextView) findViewById(R.id.tv_event_description);
+        final RelativeLayout rr_description_layout = (RelativeLayout) findViewById(R.id.rr_description_layout);
 
         tv_about_label = (TextView) findViewById(R.id.tv_about_label);
         tv_about_label.setOnClickListener(new View.OnClickListener() {
@@ -66,7 +80,7 @@ public class ChurchDetailsActivity extends AppCompatActivity implements
                 tv_about_label.setTextColor(ContextCompat.getColor(ChurchDetailsActivity.this, R.color.color_white));
 
                 rv_grid_layout.setVisibility(View.GONE);
-                tv_event_description.setVisibility(View.VISIBLE);
+                rr_description_layout.setVisibility(View.VISIBLE);
             }
         });
         tv_member_label = (TextView) findViewById(R.id.tv_member_label);
@@ -77,7 +91,7 @@ public class ChurchDetailsActivity extends AppCompatActivity implements
                 tv_about_label.setTextColor(ContextCompat.getColor(ChurchDetailsActivity.this, R.color.unselected_text_color));
 
                 rv_grid_layout.setVisibility(View.VISIBLE);
-                tv_event_description.setVisibility(View.GONE);
+                rr_description_layout.setVisibility(View.GONE);
             }
         });
         //add some person to list
@@ -101,7 +115,7 @@ public class ChurchDetailsActivity extends AppCompatActivity implements
         int spacingInPixels = getResources().getDimensionPixelSize(R.dimen.dimen_five);
         adapter = new ChurchMembersGridAdapter(ChurchDetailsActivity.this, datalist);
 
-        GridLayoutManager lLayout = new GridLayoutManager(ChurchDetailsActivity.this, 4);
+        GridLayoutManager lLayout = new GridLayoutManager(ChurchDetailsActivity.this, 2);
         rv_grid_layout.setLayoutManager(lLayout);
         rv_grid_layout.setHasFixedSize(true);
         rv_grid_layout.setNestedScrollingEnabled(false);
@@ -122,5 +136,19 @@ public class ChurchDetailsActivity extends AppCompatActivity implements
     @Override
     public void onItemClickListner(String s, int position) {
 
+    }
+
+    @Override
+    public void onCancelPress(String param) {
+
+    }
+
+    @Override
+    public void onYesPress(String param, String message) {
+        if (param.equalsIgnoreCase(NO_PARAM)) {
+
+        } else if (param.equalsIgnoreCase(REQUEST_ACCESS)) {
+
+        }
     }
 }

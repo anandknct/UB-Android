@@ -88,6 +88,11 @@
             android:name=".account.activity.AddPostActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan|stateHidden" />
+
+        <activity
+            android:name=".church.activity.AddChurchActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
     </application>
 
 </manifest>

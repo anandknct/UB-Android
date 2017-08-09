@@ -3,6 +3,7 @@ package com.unitybound.church.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.unitybound.R;
+import com.unitybound.church.activity.AddChurchActivity;
 import com.unitybound.church.adapter.ChurchListAdapter;
 import com.unitybound.main.friendrequest.model.FriendRequestData;
 import com.unitybound.utility.SpacesItemDecoration;
@@ -18,7 +20,9 @@ import com.unitybound.utility.Util;
 
 import java.util.ArrayList;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * ChurchesFragment Fragment
@@ -37,6 +41,9 @@ public class ChurchesFragment extends Fragment implements ChurchListAdapter.ILis
     ArrayList<FriendRequestData> datalist =
             new ArrayList<FriendRequestData>();
     ChurchListAdapter adapter;
+
+    @BindView(R.id.fab_create_post)
+    FloatingActionButton fabCreatePost;
 
     @Nullable
     @Override
@@ -114,6 +121,12 @@ public class ChurchesFragment extends Fragment implements ChurchListAdapter.ILis
     @Override
     public void onUserNameClickListner(String s, int position) {
         Util.navigateTOProfileAcitivity(getActivity());
+    }
+
+    @OnClick(R.id.fab_create_post)
+    public void onViewClicked() {
+        Intent intent = new Intent(getActivity(), AddChurchActivity.class);
+        startActivity(intent);
     }
 
 }

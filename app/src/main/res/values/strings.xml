@@ -48,6 +48,16 @@
     <string name="str_enter_access_code">Please enter access code</string>
     <string name="str_yes">Yes</string>
     <string name="str_no">No</string>
+    <string name="str_church_phone_number">Church Phone Number</string>
+    <string name="str_country">Country</string>
+    <string name="str_zip">Zip</string>
+    <string name="str_address_2">Address 2</string>
+    <string name="str_mailing_address">Mailing Address</string>
+    <string name="str_city">City</string>
+    <string name="str_pastor_s_name">Pastor\'s Name</string>
+    <string name="str_name_your_church">Name Your Church</string>
+    <string name="str_upload_photo">Upload Photo</string>
+    <string name="str_church_s_denomination">Church\'s Denomination</string>
 
     <string-array name="nav_item_activity_titles">
         <item>Home</item>
