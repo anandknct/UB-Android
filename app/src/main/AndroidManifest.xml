@@ -93,6 +93,11 @@
             android:name=".church.activity.AddChurchActivity"
             android:theme="@style/AppTheme.NoActionBar"
             android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".events.fragment.activity.AddEventActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
+
     </application>
 
 </manifest>

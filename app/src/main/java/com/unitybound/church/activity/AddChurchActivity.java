@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.unitybound.R;
 import com.unitybound.church.adapter.DenominationSpinnerAdapter;
+import com.unitybound.utility.customView.CustomDialog;
 
 import java.util.ArrayList;
 
@@ -21,7 +22,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class AddChurchActivity extends AppCompatActivity {
+public class AddChurchActivity extends AppCompatActivity implements CustomDialog.IDialogListener {
 
 
     @BindView(R.id.toolbar)
@@ -74,6 +75,8 @@ public class AddChurchActivity extends AppCompatActivity {
     LinearLayout ll11;
     @BindView(R.id.btn_create)
     Button btnCreate;
+    @BindView(R.id.btn_cancel)
+    Button btnCancel;
     @BindView(R.id.ll_12)
     LinearLayout ll12;
 
@@ -139,11 +142,33 @@ public class AddChurchActivity extends AppCompatActivity {
             case R.id.edtprofile_photo:
                 break;
             case R.id.btn_create:
+                CustomDialog customDialog = new CustomDialog(AddChurchActivity.this,
+                        "Thank you for creating Church",
+                        "Lorem Ipsum is simply dummy text of the printing and typesetting " +
+                                "industry. " +
+                                "Lorem Ipsum has been the industry's standard dummy text ever" +
+                                " since the 1500s, when an unknown printer took a galley of" +
+                                " type and scrambled it to make a type specimen book.",
+                        AddChurchActivity.this);
+                customDialog.show();
                 break;
         }
     }
 
     @OnClick(R.id.btn_create)
     public void onViewClicked() {
+    }
+    @OnClick(R.id.btn_cancel)
+    public void onViewCancelClicked() {
+    }
+
+    @Override
+    public void onCancelPress(String param) {
+
+    }
+
+    @Override
+    public void onYesPress(String param, String message) {
+        onBackPressed();
     }
 }

@@ -245,6 +245,66 @@ public class CustomDialog extends Dialog {
         });
     }
 
+
+    /*Thanks Add Church POP up dialog*/
+    public CustomDialog(IDialogListener dialog, String tittleMessage,String messageString, Context activity) {
+
+        super(activity, R.style.newDialog);
+        final Context context = activity;
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        setContentView(R.layout.thanks_custom_dailog);
+        this.setCancelable(false);
+        this.dialogListener = dialog;
+        final RelativeLayout rr_main = (RelativeLayout) findViewById(R.id.ll_1);
+        this.setOnShowListener(new OnShowListener() {
+            @Override
+            public void onShow(DialogInterface dialogInterface) {
+                circularRevealEnter(rr_main);
+            }
+        });
+        final EditText edtAccessCode = (EditText) findViewById(R.id.edt_access_code);
+        Button btn_ok = (Button) findViewById(R.id.btn_ok);
+        Button btn_cancel = (Button) findViewById(R.id.btn_cancel);
+        final TextView edtTitle = (TextView) findViewById(R.id.edt_title);
+        TextView edtMessage = (TextView) findViewById(R.id.edt_message);
+        if (tittleMessage != null && !tittleMessage.isEmpty()) {
+            edtTitle.setText(tittleMessage);
+        } else {
+            edtTitle.setVisibility(View.GONE);
+        }
+        if (edtMessage != null && !messageString.isEmpty()) {
+            edtMessage.setText(messageString);
+        } else {
+            edtMessage.setVisibility(View.GONE);
+        }
+
+        ImageView iv_cross = (ImageView) findViewById(R.id.iv_cross);
+
+        iv_cross.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                cancel();
+                if (dialogListener != null) {
+                    dialogListener.onCancelPress(NO_PARAM);
+                }
+            }
+        });
+
+        btn_ok.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                cancel();
+                if (dialogListener != null) {
+                    dialogListener.onYesPress("CLOSE", edtTitle.getText().toString());
+                }
+
+            }
+        });
+    }
+
     private static void circularRevealEnter(RelativeLayout rr_main) {
 
         int cx = rr_main.getWidth() / 2;

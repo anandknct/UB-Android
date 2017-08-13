@@ -58,6 +58,14 @@
     <string name="str_name_your_church">Name Your Church</string>
     <string name="str_upload_photo">Upload Photo</string>
     <string name="str_church_s_denomination">Church\'s Denomination</string>
+    <string name="str_close">Close</string>
+    <string name="str_name_event">Name your Event</string>
+    <string name="str_public_event">Public Event</string>
+    <string name="str_private_event">Private Event</string>
+    <string name="str_event_venue">Event Venue</string>
+    <string name="str_start_date">Start Date</string>
+    <string name="str_start_time">Start Time</string>
+    <string name="str_invite_friends">Invite Friends</string>
 
     <string-array name="nav_item_activity_titles">
         <item>Home</item>

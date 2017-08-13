@@ -13,7 +13,7 @@ import com.unitybound.main.friendrequest.model.FriendRequestData;
 import java.util.ArrayList;
 
 /**
- * Created by Nikhil.jogdand 14-07-2017.
+ * Created by Nikhil.Jogdand 14-07-2017.
  */
 public class ChurchMembersGridAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
@@ -23,7 +23,7 @@ public class ChurchMembersGridAdapter extends RecyclerView.Adapter<RecyclerView.
 
 
     public ChurchMembersGridAdapter(Context context, ArrayList<FriendRequestData> mViewListRecord
-            ) {
+    ) {
         this.context = context;
 //        this.cellSizeWidth = Utils.getScreenWidth(context) / 2;
 //        this.cellSizeHeight = Utils.getScreenHeight(context) / 8;
