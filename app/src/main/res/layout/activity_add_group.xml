@@ -205,16 +205,28 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/ll_7"
                 android:layout_marginBottom="@dimen/dimen_ten"
+                android:gravity="center_horizontal"
                 android:layout_marginTop="@dimen/dimen_ten"
-                android:orientation="vertical">
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/btn_create"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="30dp"
                     android:layout_gravity="center"
+                    android:layout_marginRight="@dimen/dimen_ten"
                     android:background="@color/color_orange"
                     android:text="Create"
+                    android:textColor="@color/color_white" />
+
+                <Button
+                    android:id="@+id/btn_cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/dimen_ten"
+                    android:background="@color/colorPrimary"
+                    android:text="Cancel"
                     android:textColor="@color/color_white" />
             </LinearLayout>
 

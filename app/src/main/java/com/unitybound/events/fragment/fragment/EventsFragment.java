@@ -3,6 +3,7 @@ package com.unitybound.events.fragment.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 
 import com.unitybound.R;
+import com.unitybound.events.fragment.activity.AddEventActivity;
 import com.unitybound.events.fragment.adapter.EventsListAdapter;
 import com.unitybound.main.friendrequest.model.FriendRequestData;
 
@@ -21,7 +23,9 @@ import java.util.ArrayList;
  * Created by nikhiljogdand on 10/06/17.
  */
 
-public class EventsFragment extends Fragment implements EventsListAdapter.IListAdapterCallback {
+public class EventsFragment extends Fragment implements EventsListAdapter.IListAdapterCallback, View.OnClickListener {
+
+    private FloatingActionButton fabCreateChurch = null;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -45,7 +49,8 @@ public class EventsFragment extends Fragment implements EventsListAdapter.IListA
 
     private void initView(View view) {
         recyclerView = (RecyclerView) view.findViewById(R.id.rv_list_layout);
-
+        fabCreateChurch = (FloatingActionButton) view.findViewById(R.id.fab_create_event);
+        fabCreateChurch.setOnClickListener(this);
         //add some person to list
         FriendRequestData p1 = new FriendRequestData("EmergencyFragment Call Option 1", "7389875222");
         FriendRequestData p2 = new FriendRequestData("EmergencyFragment Call Option 1", "7389875222");
@@ -100,4 +105,15 @@ public class EventsFragment extends Fragment implements EventsListAdapter.IListA
         startActivity(intent);
     }
 
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+
+            case R.id.fab_create_event:
+                Intent intent = new Intent(getActivity(), AddEventActivity.class);
+                startActivity(intent);
+                break;
+        }
+
+    }
 }

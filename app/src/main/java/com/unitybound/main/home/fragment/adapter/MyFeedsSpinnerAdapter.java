@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.unitybound.R;
@@ -59,7 +58,7 @@ public class MyFeedsSpinnerAdapter extends ArrayAdapter<String> {
         View row = inflater.inflate(R.layout.spinner_item, parent, false);
 
         TextView tv_item_name = (TextView) row.findViewById(R.id.tv_item_name);
-        ImageView iv_spinner_icon = (ImageView) row.findViewById(R.id.iv_spinner_icon);
+//        ImageView iv_spinner_icon = (ImageView) row.findViewById(R.id.iv_spinner_icon);
 
         tv_item_name.setText(arrayList.get(position));
 //        iv_spinner_icon.setImageResource(arrayIcons.getResourceId(position, -1));
