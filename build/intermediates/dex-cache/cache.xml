@@ -2,22 +2,22 @@
 <items version="2" >
 
     <item
-        is-multidex="true"
-        jar="C:\AndroidSetup\Projects\Charchit\UB-Android\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\Admin\.android\build-cache\1b5df02f43adb9c51d197359fed40565776c28d9\output\jars\classes.jar"
+        jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
-        <dex dex="C:\AndroidSetup\Projects\Charchit\UB-Android\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_2cc75d8bd434e1c433e6857d3872afa6e751ab8b\classes.dex" />
+        sha1="9f910ce4152cf5b205ee2630dc2e12d2803e1e63">
+        <dex dex="C:\AndroidSetup\Projects\Charchit\UB-Android\app\build\intermediates\pre-dexed\debug\classes_ec111be7a416f0d97be8c4dc05152a752cf0b068.jar" />
     </item>
     <item
-        is-multidex="true"
-        jar="C:\AndroidSetup\Projects\Charchit\UB-Android\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
+        is-multidex="false"
+        jar="C:\Users\Admin\.android\build-cache\637c7dc9dcfd7fb945ce1644456bce2515825829\output\jars\classes.jar"
+        jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="961fc4a83c24a63f5d1a83d390b060491c8b949b">
-        <dex dex="C:\AndroidSetup\Projects\Charchit\UB-Android\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_7c06dc8604714f4b590f362d4316438db1410a7f\classes.dex" />
+        sha1="41f6c67ba35cee00eedb662516ac7a30e2fcf6cc">
+        <dex dex="C:\AndroidSetup\Projects\Charchit\UB-Android\app\build\intermediates\pre-dexed\debug\classes_d6ba3c0eabc68fec9d9c25f9c35e53bb760dadaa.jar" />
     </item>
     <item
         is-multidex="false"

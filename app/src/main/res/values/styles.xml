@@ -54,4 +54,10 @@
 
     </style>
 
+    <!--Default Checkbox style-->
+    <style name="MyCheckBox" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/checkbox_uncheck_color</item>
+        <item name="colorControlActivated">@color/checkbox_color</item>
+    </style>
+
 </resources>

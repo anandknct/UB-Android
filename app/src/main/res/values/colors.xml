@@ -32,4 +32,7 @@
     <color name="black">#000000</color>
     <color name="spinner_bg">#66677B</color>
     <color name="unselected_text_color">#7F849C</color>
+
+    <color name="checkbox_color">#404156</color>
+    <color name="checkbox_uncheck_color">#66677B</color>
 </resources>

@@ -76,6 +76,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dimen_three"
                     android:background="@drawable/editext_box_bg"
+                    android:textColor="@color/text_color_primary"
                     android:focusable="false"
                     android:focusableInTouchMode="false"
                     android:padding="@dimen/dimen_eight" />
@@ -98,12 +99,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingLeft="@dimen/dimen_five"
+                        android:textColor="@color/text_color_primary"
                         android:text="Public Group" />
 
                     <RadioButton
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingLeft="@dimen/dimen_five"
+                        android:textColor="@color/text_color_primary"
                         android:text="Closed Group" />
                 </RadioGroup>
             </LinearLayout>
@@ -172,6 +175,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/dimen_three"
                     android:background="@drawable/editext_box_bg"
+                    android:textColor="@color/text_color_primary"
+                    android:textSize="14sp"
                     android:hint="Search people here"
                     android:padding="@dimen/dimen_eight" />
             </LinearLayout>
@@ -190,9 +195,9 @@
                     android:text="Friends" />
 
                 <android.support.v7.widget.RecyclerView
-                    android:id="@+id/rv_pepoles_list"
+                    android:id="@+id/rv_people_list"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="180dp"
                     android:layout_marginTop="@dimen/dimen_three"
                     android:background="@drawable/editext_box_bg"
                     android:padding="@dimen/dimen_eight" />

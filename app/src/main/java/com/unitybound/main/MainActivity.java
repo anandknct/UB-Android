@@ -316,6 +316,7 @@ public class MainActivity extends BaseActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.main_menu, menu);//Menu Resource, Menu
         mOptionMenu = menu;
+
         return true;
     }
 
@@ -329,8 +330,6 @@ public class MainActivity extends BaseActivity {
             menu.findItem(R.id.action_friend_request).setIcon(R.drawable.ac_friend_reqst_active);
         } else if (sNavItemIndex == LIST_INDEX) {
             menu.findItem(R.id.action_friend_list).setIcon(R.drawable.ac_prayerlist_active);
-        } else {
-
         }
         return super.onPrepareOptionsMenu(menu);
     }

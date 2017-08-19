@@ -2,6 +2,7 @@ package com.unitybound.groups.activity;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
@@ -13,13 +14,18 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.unitybound.R;
+import com.unitybound.groups.adapter.GroupsPeopleListAdapter;
+import com.unitybound.main.friendrequest.model.FriendRequestData;
+import com.unitybound.utility.SpacesItemDecoration;
 import com.unitybound.utility.customView.CustomDialog;
+
+import java.util.ArrayList;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class AddGroupActivity extends AppCompatActivity implements CustomDialog.IDialogListener {
+public class AddGroupActivity extends AppCompatActivity implements CustomDialog.IDialogListener, GroupsPeopleListAdapter.IListAdapterCallback {
 
 
     @BindView(R.id.toolbar)
@@ -38,12 +44,13 @@ public class AddGroupActivity extends AppCompatActivity implements CustomDialog.
     EditText edtDescription;
     @BindView(R.id.edt_search_frnds)
     EditText edtSearchFrnds;
-    @BindView(R.id.rv_pepoles_list)
-    RecyclerView rvPepolesList;
+    @BindView(R.id.rv_people_list)
+    RecyclerView rvPeoplesList;
     @BindView(R.id.btn_create)
     Button btnCreate;
     @BindView(R.id.btn_cancel)
     Button btnCancel;
+    ArrayList<FriendRequestData> datalist = new ArrayList<FriendRequestData>();
 
 
     @Override
@@ -52,6 +59,36 @@ public class AddGroupActivity extends AppCompatActivity implements CustomDialog.
         setContentView(R.layout.activity_add_group);
         ButterKnife.bind(this);
         setUpToolbarLayout();
+        setUpPeoplesRV();
+    }
+
+    private void setUpPeoplesRV() {
+        //add some person to list
+        FriendRequestData p1 = new FriendRequestData("EmergencyFragment Call Option 1", "7389875222");
+        FriendRequestData p2 = new FriendRequestData("EmergencyFragment Call Option 1", "7389875222");
+        FriendRequestData p3 = new FriendRequestData("EmergencyFragment Call Option 1", "7389875222");
+        FriendRequestData p4 = new FriendRequestData("EmergencyFragment Call Option 1", "7389875222");
+        FriendRequestData p5 = new FriendRequestData("EmergencyFragment Call Option 1", "7389875222");
+        FriendRequestData p6 = new FriendRequestData("EmergencyFragment Call Option 1", "7389875222");
+        FriendRequestData p7 = new FriendRequestData("EmergencyFragment Call Option 1", "7389875222");
+
+
+        datalist.add(p1);
+        datalist.add(p2);
+        datalist.add(p3);
+        datalist.add(p4);
+        datalist.add(p5);
+        datalist.add(p6);
+        datalist.add(p7);
+
+        GroupsPeopleListAdapter adapter =
+                new GroupsPeopleListAdapter(AddGroupActivity.this, datalist, AddGroupActivity.this);
+        LinearLayoutManager lLayout = new LinearLayoutManager(AddGroupActivity.this);
+//        rvPeoplesList.addItemDecoration(new DividerItemDecoration(AddGroupActivity.this, DividerItemDecoration.VERTICAL));
+        rvPeoplesList.addItemDecoration(new SpacesItemDecoration(30));
+        rvPeoplesList.setLayoutManager(lLayout);
+        rvPeoplesList.setHasFixedSize(true);
+        rvPeoplesList.setAdapter(adapter);
     }
 
     private void setUpToolbarLayout() {
@@ -110,5 +147,10 @@ public class AddGroupActivity extends AppCompatActivity implements CustomDialog.
     @Override
     public void onYesPress(String param, String message) {
         onBackPressed();
+    }
+
+    @Override
+    public void onItemClickListner(String s, int position) {
+
     }
 }
