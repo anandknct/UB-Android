@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="iconics-core-2.8.1">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.android/build-cache/1b5df02f43adb9c51d197359fed40565776c28d9/output/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.android/build-cache/1b5df02f43adb9c51d197359fed40565776c28d9/output/res" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/iconics-core-2.8.1.aar/10c330fe1d8c20f3328f63e773c083aa/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/iconics-core-2.8.1.aar/10c330fe1d8c20f3328f63e773c083aa/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
