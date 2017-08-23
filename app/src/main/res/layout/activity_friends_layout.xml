@@ -24,7 +24,7 @@
         android:layout_marginLeft="@dimen/activity_horizontal_margin"
         android:layout_marginTop="@dimen/dimen_ten"
         android:text="@string/str_my_friends"
-        android:drawableLeft="@drawable/ac_friend_reqst_active"
+        android:drawableLeft="@drawable/ic_my_friends"
         android:drawablePadding="@dimen/dimen_ten"
         android:gravity="center_vertical"
         android:textColor="@color/text_color_primary"

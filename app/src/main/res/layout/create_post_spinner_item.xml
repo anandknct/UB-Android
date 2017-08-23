@@ -16,6 +16,8 @@
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:text="All Types"
+        android:drawableRight="@drawable/ic_action_down"
+        android:gravity="center_vertical"
         android:textAllCaps="true"
         android:textColor="@color/color_white"
         android:textSize="@dimen/dimen_twelve" />

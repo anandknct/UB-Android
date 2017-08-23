@@ -47,7 +47,7 @@ public class GridRecyclerViewAdapter extends RecyclerView.Adapter<GridRecyclerVi
         holder.countryPhoto.getLayoutParams().width = (displayWidth / 3);
         Glide.with(context).load("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRopQ6yW-qzfQpeKPFisdcpisOvnj3FOHVpipmLQ5aKaaTFglyu7w")
                 .thumbnail(0.5f)
-//                .placeholder(R.drawable.ic_eat_drink)
+                .placeholder(R.drawable.ic_photos_placeholder)
                 .into(holder.countryPhoto);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override

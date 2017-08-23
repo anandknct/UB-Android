@@ -159,7 +159,7 @@ public class MainActivity extends BaseActivity {
 
     public ArrayList<SideMenu> generateSideMenu() {
         menuArrayList = new ArrayList<>();
-        menuArrayList.add(new SideMenu(getResources().getString(R.string.str_home), R.drawable.ac_home_active, false));
+        menuArrayList.add(new SideMenu(getResources().getString(R.string.str_home), R.drawable.ic_menu_home_icon_gray, false));
         menuArrayList.add(new SideMenu(getResources().getString(R.string.str_church), R.drawable.ac_notifications_icon_gray, false));
         menuArrayList.add(new SideMenu(getResources().getString(R.string.str_event), R.drawable.ic_menu_events_icon, false));
         menuArrayList.add(new SideMenu(getResources().getString(R.string.str_grp), R.drawable.ic_menu_groupsicon, false));

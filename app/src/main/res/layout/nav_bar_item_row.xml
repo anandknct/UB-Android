@@ -28,6 +28,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="10dp"
             android:src="@mipmap/ic_launcher"
+            android:tint="@color/colorPrimary"
             android:visibility="visible" />
 
         <TextView

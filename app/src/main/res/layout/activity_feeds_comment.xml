@@ -33,7 +33,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/dimen_five"
-            android:drawableLeft="@android:drawable/ic_menu_add"
+            android:drawableLeft="@drawable/ic_select_image"
             android:drawablePadding="@dimen/dimen_fifteen"
             android:hint="Write your comment here"
             android:tint="@color/colorPrimary" />
@@ -45,8 +45,7 @@
             android:layout_centerVertical="true"
             android:layout_marginRight="@dimen/dimen_five"
             android:padding="@dimen/dimen_five"
-            android:src="@android:drawable/ic_menu_send"
-            android:tint="@color/colorPrimary" />
+            android:src="@drawable/ic_send_chat" />
     </RelativeLayout>
 
 
