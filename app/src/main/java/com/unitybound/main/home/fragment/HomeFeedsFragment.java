@@ -109,7 +109,7 @@ public class HomeFeedsFragment extends Fragment implements SwipeRefreshLayout.On
                 R.layout.spinner_item,
                 arrayList1, imgs);
 
-        spAdapter.setDropDownViewResource(R.layout.spinner_drop_down_bg_layout);
+//        spAdapter.setDropDownViewResource(R.layout.spinner_drop_down_bg_layout);
         spFeedsType.setAdapter(spAdapter);
 
         setUpBottomSheet();

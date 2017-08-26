@@ -91,9 +91,10 @@
 
     <string-array name="pinner_imgs">
         <item>@drawable/ic_all_types</item>
-        <item>@drawable/ic_all_types</item>
-        <item>@drawable/ic_all_types</item>
-        <item>@drawable/ic_all_types</item>
+        <item>@drawable/ic_devotional</item>
+        <item>@drawable/ic_praise</item>
+        <item>@drawable/ic_prayer</item>
+        <item>@drawable/ic_testimonial</item>
     </string-array>
 
 </resources>
