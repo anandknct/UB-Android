@@ -23,6 +23,8 @@ public class EventsListAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     public interface IListAdapterCallback {
         public void onItemClickListner(String s, int position);
+        public void onUserNameClickListner(String s, int position);
+
     }
 
 

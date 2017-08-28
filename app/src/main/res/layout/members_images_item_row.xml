@@ -29,14 +29,14 @@
             android:layout_alignRight="@+id/iv_icon"
             android:layout_below="@+id/iv_icon"
             android:background="#E1E8F0"
-            android:paddingLeft="@dimen/dimen_three"
-            android:paddingRight="@dimen/dimen_three">
+            android:paddingLeft="@dimen/dimen_five"
+            android:paddingRight="@dimen/dimen_five">
 
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@mipmap/ic_disable"
-                android:tint="#FF0000" />
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/ic_disable_user" />
 
             <ImageView
                 android:layout_width="20dp"
@@ -44,6 +44,7 @@
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
+                android:layout_centerVertical="true"
                 android:src="@drawable/ic_delete"
                 android:tint="@color/colorPrimary" />
         </RelativeLayout>

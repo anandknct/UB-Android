@@ -21,10 +21,10 @@ import android.widget.Spinner;
 
 import com.unitybound.R;
 import com.unitybound.account.activity.AddPostActivity;
-import com.unitybound.account.activity.MyAccountAboutActivity;
 import com.unitybound.main.home.fragment.activity.FeedsCommentActivity;
 import com.unitybound.main.home.fragment.adapter.HomeFeedsAdapter;
 import com.unitybound.main.home.fragment.adapter.MyFeedsSpinnerAdapter;
+import com.unitybound.main.interPhase.IUserClickFromFragmentListener;
 
 import java.util.ArrayList;
 
@@ -55,6 +55,7 @@ public class HomeFeedsFragment extends Fragment implements SwipeRefreshLayout.On
     @BindView(R.id.fab_create_post)
     FloatingActionButton fabCreatePost;
     private BottomSheetDialog mBottomSheetDialog = null;
+    private IUserClickFromFragmentListener userClickListener = null;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -111,7 +112,7 @@ public class HomeFeedsFragment extends Fragment implements SwipeRefreshLayout.On
 
 //        spAdapter.setDropDownViewResource(R.layout.spinner_drop_down_bg_layout);
         spFeedsType.setAdapter(spAdapter);
-
+        userClickListener = (IUserClickFromFragmentListener) getActivity();
         setUpBottomSheet();
     }
 
@@ -140,8 +141,11 @@ public class HomeFeedsFragment extends Fragment implements SwipeRefreshLayout.On
 
     @Override
     public void onUserNameClickListner(String s, int position) {
-        Intent intent = new Intent(getActivity(), MyAccountAboutActivity.class);
-        startActivity(intent);
+//        Intent intent = new Intent(getActivity(), MyAccountAboutActivity.class);
+//        startActivity(intent);
+        if (userClickListener != null) {
+            userClickListener.onUserClickListener(s, position);
+        }
     }
 
     private void setUpBottomSheet() {

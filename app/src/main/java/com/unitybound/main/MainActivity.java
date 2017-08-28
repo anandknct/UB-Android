@@ -32,6 +32,7 @@ import com.unitybound.groups.fragment.GroupsFragment;
 import com.unitybound.main.adapter.SliderCustomAdapter;
 import com.unitybound.main.friendrequest.fragment.FriendRequestFragment;
 import com.unitybound.main.home.fragment.HomeFeedsFragment;
+import com.unitybound.main.interPhase.IUserClickFromFragmentListener;
 import com.unitybound.main.model.SideMenu;
 import com.unitybound.main.my.prayer.request.fragment.MyPrayerRequestFragment;
 import com.unitybound.notification.fragment.NotificationsFragment;
@@ -48,8 +49,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class MainActivity extends BaseActivity {
-    //SocialIntegrations mSocialIntegrations = null;
+public class MainActivity extends BaseActivity implements IUserClickFromFragmentListener {
+
+    //Social Integrations mSocialIntegrations = null;
     AppSession mAppSession;
     Handler mHandler;
     SliderCustomAdapter sliderCustomAdapter;
@@ -84,6 +86,7 @@ public class MainActivity extends BaseActivity {
     // mToolbar titles respected to selected nav menu item
     private String[] activityTitles;
     private Menu mOptionMenu = null;
+
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -176,7 +179,8 @@ public class MainActivity extends BaseActivity {
 
     private void setUpNavigationView() {
 
-        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.openDrawer, R.string.closeDrawer) {
+        ActionBarDrawerToggle actionBarDrawerToggle = new ActionBarDrawerToggle(this,
+                drawerLayout, toolbar, R.string.openDrawer, R.string.closeDrawer) {
             @Override
             public void onDrawerClosed(View drawerView) {
                 // Code here will be triggered once the mDrawer closes as we dont want anything to happen so we leave this blank
@@ -230,7 +234,7 @@ public class MainActivity extends BaseActivity {
                     sNavItemIndex = HOME_INDEX;
                     loadHomeScreenFragments(HOME_INDEX);
 
-                    if (drawerLayout!=null) {
+                    if (drawerLayout != null) {
                         //Closing mDrawer on item click
                         drawerLayout.closeDrawers();
                     }
@@ -501,7 +505,7 @@ public class MainActivity extends BaseActivity {
         if (mPendingRunnable != null) {
             mHandler.post(mPendingRunnable);
         }
-        if (drawerLayout!=null) {
+        if (drawerLayout != null) {
             //Closing mDrawer on item click
             drawerLayout.closeDrawers();
         }
@@ -532,5 +536,12 @@ public class MainActivity extends BaseActivity {
         sNavItemIndex = 0;
         removeAllFragmentStack();
         super.onDestroy();
+    }
+
+    @Override
+    public void onUserClickListener(String userId, int position) {
+        sNavItemIndex = 5;
+        CURRENT_TAG = TAG_LOGOUT;
+        loadFragment();
     }
 }

@@ -1,4 +1,4 @@
-package com.unitybound.obtiuaries.fragment.activity;
+package com.unitybound.obtiuaries.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

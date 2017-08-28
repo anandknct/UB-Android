@@ -66,6 +66,7 @@
     <string name="str_start_date">Start Date</string>
     <string name="str_start_time">Start Time</string>
     <string name="str_invite_friends">Invite Friends</string>
+    <string name="str_create">Create</string>
 
     <string-array name="nav_item_activity_titles">
         <item>Home</item>

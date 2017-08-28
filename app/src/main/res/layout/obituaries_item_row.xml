@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/ll_main"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/dimen_ten"
-    android:orientation="horizontal">
+    android:layout_margin="@dimen/dimen_ten">
 
     <ImageView
         android:id="@+id/iv_user_icons"
@@ -17,6 +16,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:layout_toRightOf="@+id/iv_user_icons"
+        android:layout_alignBaseline="@+id/iv_user_icons"
+        android:layout_marginTop="@dimen/dimen_five"
         android:layout_marginLeft="@dimen/dimen_ten"
         android:layout_marginRight="@dimen/dimen_ten">
 
@@ -25,7 +27,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
-            android:maxLines="3"
+            android:maxLines="2"
             android:text="Helen jakes"
             android:textColor="@color/text_color_primary"
             android:textSize="16sp" />
@@ -35,17 +37,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/tv_header_txt"
-            android:layout_marginTop="@dimen/dimen_five"
+            android:layout_marginTop="@dimen/dimen_three"
             android:ellipsize="end"
             android:maxLines="2"
             android:text="January, 6-1885 - March,25 - 2017"
             android:textColor="@color/text_color_secondary"
             android:textSize="14sp" />
 
-
+        <ImageView
+            android:layout_width="70dp"
+            android:layout_height="60dp"
+            android:layout_below="@+id/tv_description"
+            android:background="@drawable/ic_obituary_flower" />
 
 
     </RelativeLayout>
 
 
-</LinearLayout>
+</RelativeLayout>

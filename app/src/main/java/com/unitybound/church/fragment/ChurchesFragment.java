@@ -14,9 +14,10 @@ import android.view.ViewGroup;
 import com.unitybound.R;
 import com.unitybound.church.activity.AddChurchActivity;
 import com.unitybound.church.adapter.ChurchListAdapter;
+import com.unitybound.main.MainActivity;
 import com.unitybound.main.friendrequest.model.FriendRequestData;
+import com.unitybound.main.interPhase.IUserClickFromFragmentListener;
 import com.unitybound.utility.SpacesItemDecoration;
-import com.unitybound.utility.Util;
 
 import java.util.ArrayList;
 
@@ -44,6 +45,7 @@ public class ChurchesFragment extends Fragment implements ChurchListAdapter.ILis
 
     @BindView(R.id.fab_create_post)
     FloatingActionButton fabCreatePost;
+    private IUserClickFromFragmentListener userClickListener = null;
 
     @Nullable
     @Override
@@ -102,6 +104,7 @@ public class ChurchesFragment extends Fragment implements ChurchListAdapter.ILis
         recyclerView.setLayoutManager(lLayout);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
+        userClickListener = (IUserClickFromFragmentListener) (MainActivity) getActivity();
     }
 
     @Override
@@ -120,7 +123,10 @@ public class ChurchesFragment extends Fragment implements ChurchListAdapter.ILis
 
     @Override
     public void onUserNameClickListner(String s, int position) {
-        Util.navigateTOProfileAcitivity(getActivity());
+//        Util.navigateTOProfileAcitivity(getActivity());
+        if (userClickListener != null) {
+            userClickListener.onUserClickListener(s, position);
+        }
     }
 
     @OnClick(R.id.fab_create_post)

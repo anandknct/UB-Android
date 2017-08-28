@@ -178,7 +178,7 @@
             android:layout_height="15dp"
             android:layout_gravity="center"
             android:layout_weight=".5"
-            android:background="@mipmap/ic_disable"
+            android:background="@drawable/ic_blocked_user"
             android:gravity="center_horizontal|center_vertical"
             android:padding="@dimen/dimen_five"
             android:text=""

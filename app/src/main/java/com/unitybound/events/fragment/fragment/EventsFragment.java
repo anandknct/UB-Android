@@ -15,7 +15,9 @@ import android.view.WindowManager;
 import com.unitybound.R;
 import com.unitybound.events.fragment.activity.AddEventActivity;
 import com.unitybound.events.fragment.adapter.EventsListAdapter;
+import com.unitybound.main.MainActivity;
 import com.unitybound.main.friendrequest.model.FriendRequestData;
+import com.unitybound.main.interPhase.IUserClickFromFragmentListener;
 
 import java.util.ArrayList;
 
@@ -26,6 +28,7 @@ import java.util.ArrayList;
 public class EventsFragment extends Fragment implements EventsListAdapter.IListAdapterCallback, View.OnClickListener {
 
     private FloatingActionButton fabCreateChurch = null;
+    private IUserClickFromFragmentListener userClickListener;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -90,6 +93,8 @@ public class EventsFragment extends Fragment implements EventsListAdapter.IListA
         recyclerView.setLayoutManager(lLayout);
         recyclerView.setHasFixedSize(true);
         recyclerView.setAdapter(adapter);
+
+        userClickListener = (IUserClickFromFragmentListener) (MainActivity) getActivity();
     }
 
     @Override
@@ -103,6 +108,14 @@ public class EventsFragment extends Fragment implements EventsListAdapter.IListA
 //        fragmentTransaction.commitAllowingStateLoss();
         Intent intent = new Intent(getActivity(), EventsDetailsActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onUserNameClickListner(String s, int position) {
+//        Util.navigateTOProfileAcitivity(getActivity());
+        if (userClickListener != null) {
+            userClickListener.onUserClickListener(s, position);
+        }
     }
 
     @Override

@@ -14,8 +14,8 @@ import android.view.WindowManager;
 import com.unitybound.R;
 import com.unitybound.events.fragment.adapter.EventsListAdapter;
 import com.unitybound.main.friendrequest.model.FriendRequestData;
-import com.unitybound.obtiuaries.fragment.activity.ObitiuariesDetailsActivity;
-import com.unitybound.obtiuaries.fragment.adapter.ObituariesListAdapter;
+import com.unitybound.obtiuaries.activity.ObitiuariesDetailsActivity;
+import com.unitybound.obtiuaries.adapter.ObituariesListAdapter;
 
 import java.util.ArrayList;
 
@@ -23,7 +23,8 @@ import java.util.ArrayList;
  * Created by charchitkasliwal on 10/05/17.
  */
 
-public class ObtiuariesFragment  extends Fragment implements EventsListAdapter.IListAdapterCallback, ObituariesListAdapter.IListAdapterCallback {
+public class ObtiuariesFragment  extends Fragment implements
+        EventsListAdapter.IListAdapterCallback, ObituariesListAdapter.IListAdapterCallback {
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -100,6 +101,11 @@ public class ObtiuariesFragment  extends Fragment implements EventsListAdapter.I
 //        fragmentTransaction.commitAllowingStateLoss();
         Intent intent = new Intent(getActivity(), ObitiuariesDetailsActivity.class);
         startActivity(intent);
+    }
+
+    @Override
+    public void onUserNameClickListner(String s, int position) {
+
     }
 
 }

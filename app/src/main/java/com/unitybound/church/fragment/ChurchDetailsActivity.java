@@ -139,6 +139,12 @@ public class ChurchDetailsActivity extends AppCompatActivity implements
     }
 
     @Override
+    public void onUserNameClickListner(String s, int position) {
+//        Util.navigateTOProfileAcitivity(getActivity());
+
+    }
+
+    @Override
     public void onCancelPress(String param) {
 
     }

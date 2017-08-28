@@ -14,7 +14,7 @@
             android:id="@+id/tv_notification_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_archived"
+            android:drawableLeft="@drawable/ic_mychurch"
             android:drawablePadding="@dimen/dimen_ten"
             android:gravity="center_vertical"
             android:padding="@dimen/dimen_ten"
@@ -35,18 +35,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:padding="@dimen/dimen_ten"
             android:layout_marginLeft="@dimen/dimen_ten"
             android:layout_toRightOf="@+id/view_divider"
+            android:padding="@dimen/dimen_ten"
             android:text="Followed" />
 
         <View
             android:id="@+id/view_divider2"
             android:layout_width="1dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/dimen_ten"
             android:layout_alignBottom="@+id/view_divider"
             android:layout_alignRight="@+id/tv_followed"
+            android:layout_marginLeft="@dimen/dimen_ten"
             android:background="@color/divider_color" />
 
         <TextView
@@ -81,6 +81,6 @@
         android:layout_alignParentRight="true"
         android:layout_margin="@dimen/activity_horizontal_margin"
         app:backgroundTint="@color/color_orange"
-        app:srcCompat="@drawable/ic_create_post" />
+        app:srcCompat="@drawable/ic_add_church" />
 
 </RelativeLayout>

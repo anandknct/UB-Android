@@ -18,7 +18,7 @@
             android:id="@+id/tv_notification_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_archived"
+            android:drawableLeft="@drawable/ic_my_obituaries"
             android:drawablePadding="@dimen/dimen_ten"
             android:gravity="center_vertical"
             android:padding="@dimen/dimen_ten"

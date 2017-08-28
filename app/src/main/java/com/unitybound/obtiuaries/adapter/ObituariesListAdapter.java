@@ -1,4 +1,4 @@
-package com.unitybound.obtiuaries.fragment.adapter;
+package com.unitybound.obtiuaries.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.unitybound.R;
@@ -95,7 +95,7 @@ public class ObituariesListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
-        private final LinearLayout llMain;
+        private final RelativeLayout llMain;
         private ImageView ivUserIcons = null;
         TextView tvHeaderTxt = null;
         TextView tvDescription = null;
@@ -108,7 +108,7 @@ public class ObituariesListAdapter extends RecyclerView.Adapter<RecyclerView.Vie
             tvHeaderTxt = (TextView) view.findViewById(R.id.tv_header_txt);
             tvDescription = (TextView) view.findViewById(R.id.tv_description);
             ivUserIcons = (ImageView) view.findViewById(R.id.iv_user_icons);
-            llMain = (LinearLayout) view.findViewById(R.id.ll_main);
+            llMain = (RelativeLayout) view.findViewById(R.id.ll_main);
         }
     }
 

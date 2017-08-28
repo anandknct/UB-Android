@@ -315,7 +315,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/dimen_three"
                         android:background="@drawable/editext_box_bg"
-                        android:drawableRight="@drawable/ic_menu_events"
+                        android:drawableRight="@drawable/ic_date"
                         android:drawablePadding="@dimen/dimen_five"
                         android:imeOptions="actionNext"
                         android:padding="@dimen/dimen_eight" />
@@ -339,7 +339,7 @@
                         android:layout_marginLeft="@dimen/dimen_five"
                         android:layout_marginTop="@dimen/dimen_three"
                         android:background="@drawable/editext_box_bg"
-                        android:drawableRight="@drawable/ic_menu_events"
+                        android:drawableRight="@drawable/ic_clcok"
                         android:drawablePadding="@dimen/dimen_five"
                         android:imeOptions="actionNext"
                         android:padding="@dimen/dimen_eight" />
@@ -367,7 +367,8 @@
                     android:layout_marginLeft="@dimen/dimen_five"
                     android:layout_marginTop="@dimen/dimen_three"
                     android:background="@drawable/editext_box_bg"
-                    android:drawableRight="@drawable/ic_menu_events"
+                    android:drawableRight="@drawable/ic_search"
+                    android:drawableTint="@color/colorPrimary"
                     android:drawablePadding="@dimen/dimen_five"
                     android:imeOptions="actionNext"
                     android:padding="@dimen/dimen_eight" />
@@ -390,7 +391,8 @@
                     android:layout_gravity="center"
                     android:layout_marginRight="@dimen/dimen_ten"
                     android:background="@color/color_orange"
-                    android:text="Create"
+                    android:text="@string/str_create"
+                    android:textAllCaps="false"
                     android:textColor="@color/color_white" />
 
                 <Button
@@ -400,7 +402,8 @@
                     android:layout_gravity="center"
                     android:layout_marginLeft="@dimen/dimen_ten"
                     android:background="@color/colorPrimary"
-                    android:text="Cancel"
+                    android:text="@string/str_cancel"
+                    android:textAllCaps="false"
                     android:textColor="@color/color_white" />
             </LinearLayout>
 
