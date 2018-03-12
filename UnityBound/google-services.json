@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "113128091002",
+    "firebase_url": "https://unity-bound-live.firebaseio.com",
+    "project_id": "unity-bound-live",
+    "storage_bucket": "unity-bound-live.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:113128091002:android:3dcb971023368ee9",
+        "android_client_info": {
+          "package_name": "com.unitybound"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "113128091002-i6c8bpn10mgbvfb2im1t7p5m461691ab.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.unitybound",
+            "certificate_hash": "cfb2ab7224a9c8dddcba8b4e2b7216592ebaf28f"
+          }
+        },
+        {
+          "client_id": "113128091002-72a2lk55hdttphiqhe04lpgc60s5bopl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAa7tGPmYPvmtRlid2M3FCzd4zD2-RZGGE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "113128091002-72a2lk55hdttphiqhe04lpgc60s5bopl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
