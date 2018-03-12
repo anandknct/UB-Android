@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:id="@+id/ll_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/light_milky"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical"
+        android:weightSum="2">
+
+        <ImageView
+            android:id="@+id/iv_cross"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_alignParentRight="true"
+            android:layout_margin="@dimen/dimen_five"
+            android:gravity="center"
+            android:padding="10dp"
+            android:visibility="gone"
+            android:src="@drawable/ic_cross_icon_grey"
+            android:textAllCaps="true"
+            android:textColor="@color/color_white"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/ll"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/ok"
+            android:layout_alignStart="@+id/ok"
+            android:layout_below="@+id/iv_cross"
+            android:layout_marginLeft="20dp"
+            android:layout_toLeftOf="@+id/iv_cross"
+            android:layout_toStartOf="@+id/iv_cross"
+            android:orientation="vertical"
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/edt_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_ten"
+                android:gravity="center_horizontal"
+                android:text="Access Code"
+                android:textColor="@color/text_color_primary"
+                android:textSize="20sp"
+                android:visibility="visible"
+                android:weightSum="1" />
+
+            <TextView
+                android:id="@+id/edt_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dimen_ten"
+                android:gravity="center_horizontal"
+                android:text="Access Code"
+                android:textColor="@color/text_color_secondary"
+                android:textSize="14sp"
+                android:visibility="visible"
+                android:weightSum="1" />
+
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/dimen_twenty"
+                android:layout_marginTop="@dimen/dimen_fifteen"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btn_ok"
+                    android:layout_width="wrap_content"
+                    android:layout_height="35dp"
+                    android:layout_marginRight="@dimen/dimen_ten"
+                    android:background="@color/color_orange"
+                    android:text="@string/str_close"
+                    android:textColor="@color/color_white" />
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

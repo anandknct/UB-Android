@@ -1,0 +1,616 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.unitybound.groups.activity.AddGroupActivity">
+
+    <include
+        android:id="@+id/tb_layout"
+        layout="@layout/toolbar_layout" />
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/ll_button_layout"
+        android:layout_below="@+id/tb_layout"
+        android:fillViewport="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/activity_horizontal_margin">
+
+            <ImageView
+                android:id="@+id/iv_group_photo"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:scaleType="center"
+                android:src="@drawable/create_group_place_holder" />
+
+            <TextView
+                android:id="@+id/tv_upload_photo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_below="@+id/iv_group_photo"
+                android:text="@string/str_upload_photo" />
+
+
+            <LinearLayout
+                android:id="@+id/ll_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_upload_photo"
+                android:layout_marginTop="@dimen/dimen_ten"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bride Name" />
+
+                <EditText
+                    android:id="@+id/edt_bride_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_three"
+                    android:background="@drawable/editext_box_bg"
+                    android:imeOptions="actionNext"
+                    android:padding="@dimen/dimen_eight"
+                    android:singleLine="true" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_22"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_1"
+                android:layout_marginTop="@dimen/dimen_ten"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bride Mother Name" />
+
+                <EditText
+                    android:id="@+id/edt_bride_mother_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_three"
+                    android:background="@drawable/editext_box_bg"
+                    android:imeOptions="actionNext"
+                    android:padding="@dimen/dimen_eight"
+                    android:singleLine="true" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_23"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_22"
+                android:layout_marginTop="@dimen/dimen_ten"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Bride Father Name" />
+
+                <EditText
+                    android:id="@+id/edt_bride_father_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_three"
+                    android:background="@drawable/editext_box_bg"
+                    android:imeOptions="actionNext"
+                    android:padding="@dimen/dimen_eight"
+                    android:singleLine="true" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_24"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_23"
+                android:layout_marginTop="@dimen/dimen_ten"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Groom Name" />
+
+                <EditText
+                    android:id="@+id/edt_groom_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_three"
+                    android:background="@drawable/editext_box_bg"
+                    android:imeOptions="actionNext"
+                    android:padding="@dimen/dimen_eight"
+                    android:singleLine="true" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_25"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_24"
+                android:layout_marginTop="@dimen/dimen_ten"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Groom Mother Name" />
+
+                <EditText
+                    android:id="@+id/edt_groom_mother_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_three"
+                    android:background="@drawable/editext_box_bg"
+                    android:imeOptions="actionNext"
+                    android:padding="@dimen/dimen_eight"
+                    android:singleLine="true" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_26"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_25"
+                android:layout_marginTop="@dimen/dimen_ten"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Groom Father Name" />
+
+                <EditText
+                    android:id="@+id/edt_groom_father_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_three"
+                    android:background="@drawable/editext_box_bg"
+                    android:imeOptions="actionNext"
+                    android:padding="@dimen/dimen_eight"
+                    android:singleLine="true" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_26"
+                android:layout_marginTop="@dimen/dimen_ten"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="@dimen/dimen_five"
+                    android:layout_marginTop="@dimen/dimen_ten"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Wedding Date" />
+
+                    <EditText
+                        android:id="@+id/edt_start_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dimen_three"
+                        android:background="@drawable/editext_box_bg"
+                        android:drawablePadding="@dimen/dimen_five"
+                        android:drawableRight="@drawable/ic_date"
+                        android:focusable="false"
+                        android:imeOptions="actionNext"
+                        android:padding="@dimen/dimen_eight" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_ten"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Wedding Time" />
+
+                    <EditText
+                        android:id="@+id/edt_end_date"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/dimen_five"
+                        android:layout_marginTop="@dimen/dimen_three"
+                        android:background="@drawable/editext_box_bg"
+                        android:drawablePadding="@dimen/dimen_five"
+                        android:drawableRight="@drawable/ic_clcok"
+                        android:focusable="false"
+                        android:imeOptions="actionNext"
+                        android:padding="@dimen/dimen_eight" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_9"
+                android:layout_marginTop="@dimen/dimen_ten"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Wedding Location" />
+
+                <EditText
+                    android:id="@+id/edt_address1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_three"
+                    android:background="@drawable/editext_box_bg"
+                    android:imeOptions="actionDone"
+                    android:padding="@dimen/dimen_eight"
+                    android:singleLine="true" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_51"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_5"
+                android:layout_marginTop="@dimen/dimen_ten"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Wedding Zip Code" />
+
+                <EditText
+                    android:id="@+id/edt_wedding_zip_code"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_three"
+                    android:background="@drawable/editext_box_bg"
+                    android:imeOptions="actionDone"
+                    android:padding="@dimen/dimen_eight"
+                    android:singleLine="true" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_51"
+                android:layout_marginTop="@dimen/dimen_ten"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Description" />
+
+                <EditText
+                    android:id="@+id/edt_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_three"
+                    android:background="@drawable/editext_box_bg"
+                    android:gravity="top|left"
+                    android:inputType="textImeMultiLine"
+                    android:minHeight="100dp"
+                    android:padding="@dimen/dimen_eight" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_41"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ll_4"
+                android:layout_marginTop="@dimen/dimen_ten"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_uploadpics"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Upload Photos" />
+
+                <LinearLayout
+                    android:id="@+id/ll_upload_photos"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_three"
+                    android:background="@drawable/editext_box_bg"
+                    android:minHeight="100dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/ll_upload_photos1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="top|left"
+                        android:inputType="textImeMultiLine"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/dimen_eight">
+
+                        <ImageView
+                            android:id="@+id/iv_wedding_image1"
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_margin="@dimen/_10sdp"
+                            android:visibility="gone"
+                            android:src="@drawable/weddings_def" />
+
+                        <ImageView
+                            android:id="@+id/iv_wedding_image2"
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_margin="@dimen/_10sdp"
+                            android:visibility="gone"
+                            android:src="@drawable/weddings_def" />
+
+                        <ImageView
+                            android:id="@+id/iv_wedding_image3"
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_margin="@dimen/_10sdp"
+                            android:visibility="gone"
+                            android:src="@drawable/weddings_def" />
+
+                        <ImageView
+                            android:id="@+id/iv_wedding_image4"
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_margin="@dimen/_10sdp"
+                            android:visibility="gone"
+                            android:src="@drawable/weddings_def" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_upload_photos2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/dimen_eight">
+
+                        <ImageView
+                            android:id="@+id/iv_wedding_image5"
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_margin="@dimen/_10sdp"
+                            android:visibility="gone"
+                            android:src="@drawable/weddings_def" />
+
+                        <ImageView
+                            android:id="@+id/iv_wedding_image6"
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_margin="@dimen/_10sdp"
+                            android:visibility="gone"
+                            android:src="@drawable/weddings_def" />
+
+                        <ImageView
+                            android:id="@+id/iv_wedding_image7"
+                            android:layout_width="@dimen/_40sdp"
+                            android:layout_height="@dimen/_40sdp"
+                            android:layout_margin="@dimen/_10sdp"
+                            android:visibility="gone"
+                            android:src="@drawable/weddings_def" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_gift_registry"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ll_upload_photos"
+                    android:layout_marginTop="@dimen/dimen_ten"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Gift Registry" />
+
+                    <EditText
+                        android:id="@+id/edt_gift_tittle1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:background="@drawable/editext_box_bg"
+                        android:hint="Gift Tittle"
+                        android:imeOptions="actionDone"
+                        android:padding="@dimen/dimen_eight"
+                        android:singleLine="true" />
+
+                    <EditText
+                        android:id="@+id/edt_gift_url1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:background="@drawable/editext_box_bg"
+                        android:hint="URL"
+                        android:imeOptions="actionDone"
+                        android:padding="@dimen/dimen_eight"
+                        android:singleLine="true" />
+                    <!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+                    <EditText
+                        android:id="@+id/edt_gift_tittle2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dimen_ten"
+                        android:background="@drawable/editext_box_bg"
+                        android:hint="Gift Tittle"
+                        android:imeOptions="actionDone"
+                        android:padding="@dimen/dimen_eight"
+                        android:singleLine="true" />
+
+                    <EditText
+                        android:id="@+id/edt_gift_url2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:background="@drawable/editext_box_bg"
+                        android:hint="URL"
+                        android:imeOptions="actionDone"
+                        android:padding="@dimen/dimen_eight"
+                        android:singleLine="true" />
+                    <!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+                    <EditText
+                        android:id="@+id/edt_gift_tittle3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dimen_ten"
+                        android:background="@drawable/editext_box_bg"
+                        android:hint="Gift Tittle"
+                        android:imeOptions="actionDone"
+                        android:padding="@dimen/dimen_eight"
+                        android:singleLine="true" />
+
+                    <EditText
+                        android:id="@+id/edt_gift_url3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:background="@drawable/editext_box_bg"
+                        android:hint="URL"
+                        android:imeOptions="actionDone"
+                        android:padding="@dimen/dimen_eight"
+                        android:singleLine="true" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_wedding_album"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ll_gift_registry"
+                    android:layout_marginTop="@dimen/dimen_ten"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Wedding Album" />
+
+                    <EditText
+                        android:id="@+id/edt_wedding_album1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:background="@drawable/editext_box_bg"
+                        android:hint="Album Tittle"
+                        android:imeOptions="actionDone"
+                        android:padding="@dimen/dimen_eight"
+                        android:singleLine="true" />
+
+                    <EditText
+                        android:id="@+id/edt_album_url1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:background="@drawable/editext_box_bg"
+                        android:hint="URL"
+                        android:imeOptions="actionDone"
+                        android:padding="@dimen/dimen_eight"
+                        android:singleLine="true" />
+                    <!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+                    <EditText
+                        android:id="@+id/edt_album_tittle2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dimen_ten"
+                        android:background="@drawable/editext_box_bg"
+                        android:hint="Album Tittle"
+                        android:imeOptions="actionDone"
+                        android:padding="@dimen/dimen_eight"
+                        android:singleLine="true" />
+
+                    <EditText
+                        android:id="@+id/edt_album_url2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:background="@drawable/editext_box_bg"
+                        android:hint="URL"
+                        android:imeOptions="actionDone"
+                        android:padding="@dimen/dimen_eight"
+                        android:singleLine="true" />
+                    <!--&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;-->
+                    <EditText
+                        android:id="@+id/edt_album_tittle3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dimen_ten"
+                        android:background="@drawable/editext_box_bg"
+                        android:hint="Album Tittle"
+                        android:imeOptions="actionDone"
+                        android:padding="@dimen/dimen_eight"
+                        android:singleLine="true" />
+
+                    <EditText
+                        android:id="@+id/edt_album_url3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:background="@drawable/editext_box_bg"
+                        android:hint="URL"
+                        android:imeOptions="actionDone"
+                        android:padding="@dimen/dimen_eight"
+                        android:singleLine="true" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/ll_button_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/dimen_twenty"
+        android:layout_marginTop="@dimen/dimen_fifteen"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_create"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="@dimen/dimen_ten"
+            android:background="@color/color_orange"
+            android:text="@string/str_create"
+            android:textAllCaps="false"
+            android:textColor="@color/color_white" />
+
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="@dimen/dimen_ten"
+            android:background="@color/colorPrimary"
+            android:text="@string/str_cancel"
+            android:textAllCaps="false"
+            android:textColor="@color/color_white" />
+    </LinearLayout>
+</RelativeLayout>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/rl_mainlayout"
+    tools:context="com.unitybound.main.home.fragment.activity.FeedsCommentActivity">
+
+    <include
+        android:id="@+id/tb_layout"
+        layout="@layout/toolbar_layout" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_list_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/ll_bottom"
+        android:layout_below="@+id/tb_layout"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <RelativeLayout
+        android:id="@+id/ll_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal"
+        android:padding="@dimen/dimen_five">
+
+        <ImageView
+            android:id="@+id/btn_image_attachment"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dimen_five"
+            android:padding="@dimen/dimen_five"
+            android:src="@drawable/ic_select_image" />
+
+        <EditText
+            android:id="@+id/edt_comments"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:drawablePadding="@dimen/dimen_fifteen"
+            android:hint="Write a comment..."
+            android:paddingLeft="@dimen/dimen_five"
+            android:tint="@color/colorPrimary"
+            android:layout_toLeftOf="@+id/btn_send_comment"
+            android:layout_toStartOf="@+id/btn_send_comment"
+            android:layout_toRightOf="@+id/btn_image_attachment"
+            android:layout_toEndOf="@+id/btn_image_attachment" />
+
+        <ImageView
+            android:id="@+id/btn_send_comment"
+            android:layout_width="30dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dimen_five"
+            android:padding="@dimen/dimen_five"
+            android:src="@drawable/ic_send_chat" />
+    </RelativeLayout>
+
+
+</RelativeLayout>

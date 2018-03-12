@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal">
+
+    <TextView
+        android:id="@+id/tv_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Access Code:"
+        android:gravity="center_vertical"
+        android:layout_above="@+id/tv_refresh_code"
+        android:layout_alignParentTop="true" />
+
+    <EditText
+        android:id="@+id/edt_code"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/dimen_five"
+        android:layout_toRightOf="@+id/tv_label"
+        android:gravity="center_vertical"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:layout_marginLeft="@dimen/dimen_ten"
+        android:background="@drawable/edit_text_orange_border"
+        android:hint="" />
+
+    <Button
+        android:id="@+id/btn_copy_code"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/edt_code"
+        android:background="@color/color_orange"
+        android:gravity="center_vertical"
+        android:paddingLeft="@dimen/dimen_ten"
+        android:paddingRight="@dimen/dimen_ten"
+        android:text="Copy Code"
+        android:layout_alignBottom="@+id/edt_code" />
+
+
+    <TextView
+        android:id="@+id/tv_refresh_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:layout_marginLeft="@dimen/dimen_ten"
+        android:textColor="@color/color_orange"
+        android:layout_marginTop="20dp"
+        android:text="Refresh Code"
+        android:layout_below="@+id/edt_code"
+        android:layout_toRightOf="@+id/tv_label"
+        android:layout_toEndOf="@+id/tv_label" />
+    </RelativeLayout>
+
+</RelativeLayout>

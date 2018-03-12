@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/_5sdp">
+
+    <RelativeLayout
+        android:id="@+id/rr_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin">
+
+        <EditText
+            android:id="@+id/edt_doc_tittle1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/edit_text_black_border"
+            android:gravity="center_vertical"
+            android:hint="Document tittle"
+            android:focusable="false"
+            android:padding="@dimen/dimen_five"
+            android:textSize="14sp" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/edt_doc_tittle1"
+            android:layout_alignParentRight="true">
+
+            <RelativeLayout
+                android:id="@+id/btn_pdf_code"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:background="@color/colorPrimary"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/dimen_ten"
+                android:paddingRight="@dimen/dimen_fifteen">
+
+                <ImageView
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_pdf" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/btn_edt"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/btn_pdf_code"
+                android:background="@color/btn_bg_color"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/dimen_ten"
+                android:paddingRight="@dimen/dimen_fifteen">
+
+                <ImageView
+                    android:id="@+id/iv_edit_doc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_edit" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/btn_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/btn_edt"
+                android:background="@color/color_gray_delete_bg"
+                android:gravity="center_vertical"
+                android:paddingLeft="@dimen/dimen_ten"
+                android:paddingRight="@dimen/dimen_ten">
+
+                <ImageView
+                    android:id="@+id/iv_edit_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_delete2" />
+            </RelativeLayout>
+
+        </RelativeLayout>
+    </RelativeLayout>
+</LinearLayout>

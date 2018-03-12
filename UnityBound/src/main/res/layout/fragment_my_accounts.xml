@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/coordinator_main">
+
+
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/layout_header"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:descendantFocusability="blocksDescendants">
+
+            <FrameLayout
+                android:id="@+id/rr_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/ic_cover"
+                            android:layout_width="match_parent"
+                            android:layout_height="180dp"
+                            android:layout_alignParentTop="true"
+                            android:scaleType="fitCenter"
+                            android:clickable="true"
+                            android:src="@drawable/profile_def_user_image" />
+
+                        <ImageView
+                            android:id="@+id/iv_edit_cover"
+                            android:layout_alignParentTop="true"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_edit"
+                            android:padding="@dimen/_5sdp"
+                            android:clickable="true"
+                            android:tint="@color/color_orange"/>
+
+                        <FrameLayout
+                            android:id="@+id/frame_user_icon"
+                            android:layout_width="@dimen/_96sdp"
+                            android:layout_height="@dimen/_96sdp"
+                            android:layout_centerHorizontal="true"
+                            android:elevation="10dp"
+                            android:layout_marginTop="132dp">
+
+
+                            <ImageView
+                                android:id="@+id/rr_user_image"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:src="@drawable/profile_def_user_image" />
+
+                            <ImageView
+                                android:id="@+id/iv_edit_user_image"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="right|bottom"
+                                android:src="@drawable/ic_edit"
+                                android:padding="@dimen/_3sdp"
+                                android:tint="@color/color_orange"/>
+                        </FrameLayout>
+
+
+                        <TextView
+                            android:id="@+id/tv_user_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/frame_user_icon"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="@dimen/_10sdp"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text=""
+                            android:textColor="@color/text_color_primary"
+                            android:textSize="@dimen/_16sdp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tv_user_address"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/tv_user_name"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="@dimen/dimen_five"
+                            android:ellipsize="end"
+                            android:maxLines="1"
+                            android:text=""
+                            android:textColor="@color/text_color_secondary"
+                            android:textSize="@dimen/_14sdp"
+                            android:textStyle="normal" />
+
+                        <View
+                            android:id="@+id/divider1"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_below="@+id/tv_user_address"
+                            android:layout_marginTop="@dimen/dimen_five"
+                            android:background="@color/divider_color" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_account_menu"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/divider1"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:weightSum="5">
+
+                            <TextView
+                                android:id="@+id/tv_timeline"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1.1"
+                                android:layout_marginLeft="@dimen/_5sdp"
+                                android:paddingBottom="@dimen/dimen_five"
+                                android:paddingTop="@dimen/dimen_five"
+                                android:textSize="@dimen/_10sdp"
+                                android:text="Timeline" />
+
+                            <TextView
+                                android:id="@+id/tv_about"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1.1"
+                                android:paddingBottom="@dimen/dimen_five"
+                                android:paddingTop="@dimen/dimen_five"
+                                android:textSize="@dimen/_10sdp"
+                                android:text="About" />
+
+                            <TextView
+                                android:id="@+id/tv_friends"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1.1"
+                                android:paddingBottom="@dimen/dimen_five"
+                                android:textSize="@dimen/_10sdp"
+                                android:paddingTop="@dimen/dimen_five"
+                                android:text="Friends" />
+
+                            <TextView
+                                android:id="@+id/tv_photos"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1.1"
+                                android:paddingBottom="@dimen/dimen_five"
+                                android:paddingTop="@dimen/dimen_five"
+                                android:textSize="@dimen/_10sdp"
+                                android:text="Photos" />
+
+                            <ImageView
+                                android:id="@+id/iv_more"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight=".50"
+                                android:src="@drawable/ic_action_down"
+                                android:tint="@color/cardview_dark_background" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:id="@+id/divider2"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_below="@+id/ll_account_menu"
+                            android:background="@color/divider_color" />
+
+                    </RelativeLayout>
+
+                    <!--<include layout="@layout/contant_my_account_header_layout" />-->
+                </RelativeLayout>
+            </FrameLayout>
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_list_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/rr_top"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+
+        </RelativeLayout>
+    </android.support.v4.widget.NestedScrollView>
+
+    <!-- Bottom Sheet -->
+    <include layout="@layout/bottom_sheets_main_layout" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_create_post"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_gravity="bottom|right"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        app:backgroundTint="@color/fab_bg"
+        android:background="@color/fab_bg"
+        android:src="@drawable/ic_create_post" />
+
+
+</android.support.design.widget.CoordinatorLayout>

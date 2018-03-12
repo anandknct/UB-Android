@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="@dimen/dimen_ten">
+
+    <ImageView
+        android:id="@+id/iv_user_icons"
+        android:layout_width="@dimen/_96sdp"
+        android:layout_height="@dimen/_96sdp"
+        android:src="@mipmap/ic_launcher" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="@dimen/dimen_ten"
+        android:layout_marginRight="@dimen/dimen_ten"
+        android:layout_toRightOf="@+id/iv_user_icons">
+
+        <TextView
+            android:id="@+id/tv_header_txt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:text="Andrian Phillips likes he has post that\nyou shared"
+            android:textColor="@color/text_color_primary"
+            android:textSize="@dimen/_12sdp" />
+
+        <TextView
+            android:id="@+id/tv_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_header_txt"
+            android:layout_marginTop="@dimen/dimen_five"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="Recieved : 20-03-2017"
+            android:textColor="@color/text_color_secondary"
+            android:textSize="@dimen/_10sdp" />
+    </RelativeLayout>
+</RelativeLayout>

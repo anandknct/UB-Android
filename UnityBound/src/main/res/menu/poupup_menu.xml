@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/item_church"
+        android:icon="@drawable/ic_menu_churches"
+        android:title="CHURCHES"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/item_events"
+        android:icon="@drawable/ic_menu_events"
+        android:title="EVENTS" />
+    <item android:title="GROUPS"
+        android:id="@+id/item_groups"
+        android:icon="@drawable/ic_menu_groups"/>
+    <item
+        android:id="@+id/item_obituaries"
+        android:icon="@drawable/ic_menu_obituary"
+        android:title="OBITUARIES" />
+    <item
+        android:id="@+id/item_weddings"
+        android:icon="@drawable/ic_menu_wedding"
+        android:title="WEDDINGS" />
+</menu>

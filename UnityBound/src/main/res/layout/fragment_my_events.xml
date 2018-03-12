@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_emergency"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/rr_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/tv_my_events"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_my_events"
+            android:drawablePadding="@dimen/dimen_ten"
+            android:gravity="center_vertical"
+            android:padding="@dimen/_5sdp"
+            android:textSize="@dimen/_12sdp"
+            android:text="My Events"
+            android:textColor="@color/text_color_primary" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/tv_my_events"
+            android:layout_centerVertical="true">
+        <TextView
+            android:id="@+id/tv_events_accepted"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dimen_ten"
+            android:textSize="@dimen/_12sdp"
+            android:layout_alignParentLeft="true"
+            android:text="Accepted" />
+
+        <TextView
+            android:id="@+id/tv_events_private"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/dimen_ten"
+            android:textSize="@dimen/_12sdp"
+            android:layout_centerInParent="true"
+            android:text="Private" />
+
+        <TextView
+            android:id="@+id/tv_events_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/dimen_ten"
+            android:textSize="@dimen/_12sdp"
+            android:gravity="left"
+            android:paddingLeft="@dimen/_15sdp"
+            android:layout_marginLeft="@dimen/dimen_fifteen"
+            android:layout_alignParentRight="true"
+            android:text="All"
+            android:layout_toRightOf="@+id/tv_events_private"
+            android:layout_toEndOf="@+id/tv_events_private" />
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/rr_top"
+        android:background="@color/color_bgsidenav" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_list_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/divider"
+        android:layout_marginTop="@dimen/dimen_ten"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_create_event"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        app:backgroundTint="@color/color_orange"
+        app:srcCompat="@drawable/ic_add_church" />
+</RelativeLayout>

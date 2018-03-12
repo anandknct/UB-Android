@@ -1,0 +1,344 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/activity_emergency"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/toolbar_layout"
+        layout="@layout/toolbar_layout" />
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_linear_not_join"
+        android:layout_below="@+id/toolbar_layout"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:descendantFocusability="beforeDescendants"
+            android:orientation="vertical">
+
+            <FrameLayout
+                android:id="@+id/frame"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/iv_church_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/profile_def_user_image" />
+
+                <ImageView
+                    android:id="@+id/iv_edit_cover"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="true"
+                    android:padding="@dimen/_5sdp"
+                    android:src="@drawable/ic_edit"
+                    android:tint="@color/color_orange" />
+            </FrameLayout>
+
+            <RelativeLayout
+                android:id="@+id/rr_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/btn_bg_color">
+
+                <TextView
+                    android:id="@+id/tv_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                    android:text="PhaladiLphia, USA"
+                    android:textColor="@color/color_white"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_member_count"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="@dimen/dimen_ten"
+                        android:paddingRight="@dimen/activity_horizontal_margin"
+                        android:text="108 Members"
+                        android:textColor="@color/color_white"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/btn_join"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:background="@android:color/transparent"
+                        android:paddingBottom="@dimen/dimen_ten"
+                        android:paddingLeft="@dimen/activity_horizontal_margin"
+                        android:paddingRight="@dimen/activity_horizontal_margin"
+                        android:paddingTop="@dimen/dimen_ten"
+                        android:text="Join"
+                        android:textColor="@color/color_white"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <!--Joined Header-->
+            <LinearLayout
+                android:id="@+id/top_linear_joined"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_below="@+id/rr_top"
+                android:background="@color/color_toolbar"
+                android:orientation="horizontal"
+                android:visibility="visible">
+
+                <TextView
+                    android:id="@+id/tv_membership_req_joined"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1.5"
+                    android:gravity="left|center_vertical"
+                    android:padding="@dimen/dimen_five"
+                    android:paddingLeft="@dimen/dimen_five"
+                    android:text="Membership Request"
+                    android:textAllCaps="true"
+                    android:textColor="@color/unselected_text_color"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/tv_blocked_joined"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.8"
+                    android:gravity="right|center_vertical"
+                    android:padding="@dimen/dimen_five"
+                    android:text="Blocked User"
+                    android:textAllCaps="true"
+                    android:textColor="@color/unselected_text_color"
+                    android:textSize="12dp" />
+
+                <TextView
+                    android:id="@+id/tv_setting_joined"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.7"
+                    android:gravity="right|center_vertical"
+                    android:padding="@dimen/dimen_five"
+                    android:text="Setting"
+                    android:textAllCaps="true"
+                    android:textColor="@color/unselected_text_color"
+                    android:textSize="12dp" />
+
+            </LinearLayout>
+            <!-- -&##45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;#45;&#45;&#45;&#;&#45;&#45;&#45;&#45;-->
+            <RelativeLayout
+                android:id="@+id/rr_description_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/top_linear_joined"
+                android:layout_marginLeft="@dimen/activity_horizontal_margin"
+                android:layout_marginRight="@dimen/activity_horizontal_margin"
+                android:visibility="gone">
+
+                <TextView
+                    android:id="@+id/tv_church_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_fifteen"
+                    android:text="Bibble Conversation"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tv_poster_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_church_name"
+                    android:layout_marginTop="@dimen/dimen_ten"
+                    android:text=""
+                    android:textColor="@color/text_color_secondary"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_church_address"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_poster_name"
+                    android:layout_marginTop="@dimen/dimen_ten"
+                    android:text="107, main station ,orbit road , Texan,USA"
+                    android:textColor="@color/text_color_secondary"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_church_phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tv_church_address"
+                    android:layout_marginTop="@dimen/dimen_five"
+                    android:text="6 PM - 10:30 PM"
+                    android:textColor="@color/text_color_secondary"
+                    android:textSize="12sp" />
+
+                <RelativeLayout
+                    android:id="@+id/rr_changer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_below="@+id/tv_church_phone"
+                    android:layout_marginTop="@dimen/dimen_five">
+
+                    <TextView
+                        android:id="@+id/tv_church_description"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:maxLines="6"
+                        android:text="Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum "
+                        android:textColor="@color/text_color_secondary"
+                        android:textSize="12sp" />
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rv_grid_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rr_top"
+                android:layout_marginBottom="35dp"
+                android:descendantFocusability="afterDescendants"
+                android:visibility="gone" />
+            <!---&##45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&45;&#45;&#45&#45;&#45;&#45;&#45;-->
+
+            <include
+                android:id="@+id/settings_layout"
+                layout="@layout/church_detail_setting_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/top_linear_joined"
+                android:layout_marginTop="20dp"
+                android:visibility="gone" />
+
+            <include
+                android:id="@+id/library_layout"
+                layout="@layout/church_detail_library_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_35sdp"
+                android:layout_below="@+id/top_linear_joined"
+                android:visibility="gone" />
+
+        </LinearLayout>
+
+    </android.support.v4.widget.NestedScrollView>
+
+    <!--Not joined  footer-->
+    <LinearLayout
+        android:id="@+id/bottom_linear_not_join"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:background="@color/color_toolbar"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tv_about_label"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:gravity="center_horizontal|center_vertical"
+            android:padding="@dimen/dimen_five"
+            android:text="About"
+            android:textColor="@color/color_white" />
+
+        <TextView
+            android:id="@+id/tv_member_label"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal|center_vertical"
+            android:padding="@dimen/dimen_five"
+            android:text="Members"
+            android:textColor="@color/unselected_text_color" />
+    </LinearLayout>
+
+    <!--joined footer-->
+    <LinearLayout
+        android:id="@+id/bottom_linear_joined"
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_alignParentBottom="true"
+        android:background="@color/color_toolbar"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/tv_post_label_joined"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="1"
+            android:gravity="center_horizontal|center_vertical"
+            android:padding="@dimen/dimen_five"
+            android:text="Post"
+            android:textColor="@color/color_white" />
+
+        <TextView
+            android:id="@+id/tv_about_label_joined"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal|center_vertical"
+            android:padding="@dimen/dimen_five"
+            android:text="About"
+            android:textColor="@color/unselected_text_color" />
+
+        <TextView
+            android:id="@+id/tv_library_joined"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal|center_vertical"
+            android:padding="@dimen/dimen_five"
+            android:text="Library"
+            android:textColor="@color/unselected_text_color" />
+
+        <TextView
+            android:id="@+id/tv_member_joined"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center_horizontal|center_vertical"
+            android:padding="@dimen/dimen_five"
+            android:text="Members"
+            android:textColor="@color/unselected_text_color" />
+    </LinearLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_create_post"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:layout_marginBottom="@dimen/_35sdp"
+        app:backgroundTint="@color/fab_bg"
+        android:background="@color/fab_bg"
+        android:src="@drawable/ic_create_post" />
+
+</RelativeLayout>
