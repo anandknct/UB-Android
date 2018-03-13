@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/UB Resync.iml" filepath="$PROJECT_DIR$/UB Resync.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://E:\android\UB-Android\UB Resync.iml" filepath="E:\android\UB-Android\UB Resync.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/UB-Android.iml" filepath="$PROJECT_DIR$/.idea/modules/UB-Android.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/UnityBound/UnityBound.iml" filepath="$PROJECT_DIR$/.idea/modules/UnityBound/UnityBound.iml" />
+      <module fileurl="file://E:\android\UB-Android\app\app.iml" filepath="E:\android\UB-Android\app\app.iml" />
     </modules>
   </component>
 </project>

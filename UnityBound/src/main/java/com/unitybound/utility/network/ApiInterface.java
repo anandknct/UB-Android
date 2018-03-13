@@ -237,6 +237,12 @@ public interface ApiInterface {
                                            @Field("user_id") String username);
 
     @FormUrlEncoded
+    @POST("near-me")
+    Call<ChurchListResponse> getNearByChurchList(@Field("api_key") String api_key,
+                                                @Field("user_id") String username,
+                                                 @Field("radius") String radius);
+
+    @FormUrlEncoded
     @POST("my-church")
     Call<ChurchListResponse> getMyChurchList(@Field("api_key") String api_key,
                                              @Field("user_id") String username);

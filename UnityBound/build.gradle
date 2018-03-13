@@ -6,7 +6,7 @@ android {
         ReleaseConfig {
             keyAlias 'unitybound'
             keyPassword 'unitybound'
-            storeFile file('C:/Android/Projects/Charchit/UB Resync/UnityBound/keystore.jks')
+            //storeFile file('C:/Android/Projects/Charchit/UB Resync/UnityBound/keystore.jks')
             storePassword 'unitybound'
         }
     }
@@ -40,7 +40,7 @@ android {
         }
         debug {
             buildConfigField "String", "API_KEY", API_KEY
-            signingConfig signingConfigs.ReleaseConfig
+            //signingConfig signingConfigs.ReleaseConfig
         }
     }
     productFlavors {

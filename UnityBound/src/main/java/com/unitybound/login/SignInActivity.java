@@ -1,14 +1,11 @@
 package com.unitybound.login;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.Signature;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatEditText;
@@ -31,7 +28,6 @@ import com.unitybound.login.beans.User;
 import com.unitybound.login.beans.socialLogin.SocialLoginResponse;
 import com.unitybound.login.socialActivity.SocialIntegrations;
 import com.unitybound.login.socialActivity.SocialInterface;
-import com.unitybound.login.socialActivity.TwitterWebViewActivity;
 import com.unitybound.main.BaseActivity;
 import com.unitybound.main.MainActivity;
 import com.unitybound.signup.SignUpActivity;
@@ -48,29 +44,13 @@ import butterknife.OnClick;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import twitter4j.Twitter;
-import twitter4j.TwitterException;
-import twitter4j.TwitterFactory;
-import twitter4j.auth.AccessToken;
-import twitter4j.auth.RequestToken;
-import twitter4j.conf.Configuration;
-import twitter4j.conf.ConfigurationBuilder;
-
-import static com.unitybound.utility.Util.TWITTER_CALLBACK_URL;
-import static com.unitybound.utility.Util.TWITTER_CONSUMER_KEY;
-import static com.unitybound.utility.Util.TWITTER_CONSUMER_SECREAT_KEY;
-import static com.unitybound.utility.Util.URL_TWITTER_OAUTH_VERIFIER;
 
 /**
  * Created by 1nikhiljogdand@gmail.com on 03/09/17.
  */
 
-public class SignInActivity extends BaseActivity implements CustomDialog.IDialogListener,
-        SocialInterface {
+public class SignInActivity extends BaseActivity implements CustomDialog.IDialogListener, SocialInterface {
 
-    private static boolean FACEBOOK_LOGIN = false;
-    private GoogleApiClient mGoogleApiClient = null;
-    private static final int RC_SIGN_IN = 9001;
     @BindView(R.id.tv_dontaccount)
     TextView tvDontaccount;
     @BindView(R.id.rl_mainlayout)
@@ -97,8 +77,6 @@ public class SignInActivity extends BaseActivity implements CustomDialog.IDialog
     @BindView(R.id.iv_twitter)
     ImageView ivTwitter;
     private final int WEB_REQUEST_CODE = 101;
-    private Twitter twitter;
-    private RequestToken requestToken;
     @BindView(R.id.fb_login_button)
     LoginButton login;
     private CallbackManager callbackManager = null;
@@ -179,7 +157,7 @@ public class SignInActivity extends BaseActivity implements CustomDialog.IDialog
     public void openGoogleLogin() {
         if (Util.checkNetworkAvailablity(this)) {
             showProgressDialog();
-            FACEBOOK_LOGIN = true;
+            //FACEBOOK_LOGIN = true;
             mSocialIntegrations.signIn(SocialInterface.SOCIAL_MEDIUMS.GOOGLEPLUS);
         } else {
             CustomDialog customDialog1 = new CustomDialog(this, null,
@@ -196,7 +174,7 @@ public class SignInActivity extends BaseActivity implements CustomDialog.IDialog
     public void openFacebookLogin() {
         if (Util.checkNetworkAvailablity(this)) {
             showProgressDialog();
-            FACEBOOK_LOGIN = true;
+            //FACEBOOK_LOGIN = true;
             mSocialIntegrations.signIn(SocialInterface.SOCIAL_MEDIUMS.FACEBOOK);
         } else {
             CustomDialog customDialog1 = new CustomDialog(this, null,
@@ -345,56 +323,6 @@ public class SignInActivity extends BaseActivity implements CustomDialog.IDialog
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (resultCode == Activity.RESULT_OK) {
-            if (FACEBOOK_LOGIN) {
-                mSocialIntegrations.onActivityResult(requestCode, resultCode, data);
-            } else if (requestCode == WEB_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
-
-                String verifier = data.getExtras().getString("oauth_verifier");
-                try {
-                    twitter4j.auth.AccessToken accessToken = twitter.getOAuthAccessToken(requestToken, verifier);
-                    long userID = accessToken.getUserId();
-                    Log.i("userID", "" + userID);
-                    final twitter4j.User user = twitter.showUser(userID);
-
-                    SocialInterface.SocialInfo socialMediaProfilePojo = new SocialInterface.SocialInfo();
-                    socialMediaProfilePojo.setSocialMediaType(String.valueOf(SOCIAL_MEDIUMS.TWITTER));
-
-                    String id = String.valueOf(userID);
-                    socialMediaProfilePojo.setSocialId(id);
-
-                    String userName = user.getName();
-                    socialMediaProfilePojo.setFirstName(userName);
-
-                    String email = "";
-                    socialMediaProfilePojo.setEmailId(email);
-
-                    String profileImage = user.getProfileImageURL();
-                    socialMediaProfilePojo.setProfilePicture(profileImage);
-
-                    Log.d("Socail", "Name :" + socialMediaProfilePojo.getFirstName()
-                            + " " + socialMediaProfilePojo.getLastName());
-                    Log.d("Socail", "EmailId :" + socialMediaProfilePojo.getEmailId());
-                    Log.d("Socail", "ProfilePicture :" + socialMediaProfilePojo.getProfilePicture());
-                    Log.d("Socail", "Type :" + socialMediaProfilePojo.getSocialMediaType());
-                    Log.d("Socail", "ID :" + socialMediaProfilePojo.getSocialId());
-
-                } catch (Exception e) {
-                    Log.e("Twitter Login Failed", e.getMessage());
-                    setResult(RESULT_CANCELED);
-                    finish();
-                }
-                hideProgressDialog();
-            }
-        } else if (resultCode == Activity.RESULT_CANCELED) {
-            FACEBOOK_LOGIN = false;
-            hideProgressDialog();
-        }
-    }
-
-    @Override
     public void OnReceiveSocialInfo(SocialInterface.SocialInfo socialInfo) {
 
         Log.d("Socail", "Name :" + socialInfo.getFirstName() + " " + socialInfo.getLastName());
@@ -436,34 +364,6 @@ public class SignInActivity extends BaseActivity implements CustomDialog.IDialog
         }
     }
 
-    private void loginToTwitter() {
-        /* Enabling strict mode */
-//        showProgressDialog();
-        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
-        StrictMode.setThreadPolicy(policy);
-        final ConfigurationBuilder builder = new ConfigurationBuilder();
-        builder.setOAuthConsumerKey(TWITTER_CONSUMER_KEY);
-        builder.setOAuthConsumerSecret(TWITTER_CONSUMER_SECREAT_KEY);
-
-        final Configuration configuration = builder.build();
-        final TwitterFactory factory = new TwitterFactory(configuration);
-        twitter = factory.getInstance();
-
-        try {
-            requestToken = twitter.getOAuthRequestToken(TWITTER_CALLBACK_URL);
-            /**
-             *  Loading twitter login page on webview for authorization
-             *  Once authorized, results are received at onActivityResult
-             *  */
-            final Intent intent = new Intent(this, TwitterWebViewActivity.class);
-            intent.putExtra(TwitterWebViewActivity.EXTRA_URL, requestToken.getAuthenticationURL());
-            startActivityForResult(intent, WEB_REQUEST_CODE);
-        } catch (TwitterException e) {
-            setResult(RESULT_CANCELED);
-            finish();
-            e.printStackTrace();
-        }
-    }
 
     /**
      * [api_key],[email],[provider],[first_name],[last_name],[profileImage],[accountid]
@@ -567,83 +467,4 @@ public class SignInActivity extends BaseActivity implements CustomDialog.IDialog
         overridePendingTransition(R.anim.push_left_in, R.anim.push_left_out);
         finish();
     }
-
-    /**
-     * Function to login twitter
-     * */
-    private void loginToTwitter2() {
-        // Check if already logged in
-        if (!isTwitterLoggedInAlready()) {
-            ConfigurationBuilder builder = new ConfigurationBuilder();
-            builder.setOAuthConsumerKey(getString(R.string.twitter_consumer_key));
-            builder.setOAuthConsumerSecret(getString(R.string.twitter_consumer_secret));
-            Configuration configuration = builder.build();
-
-            TwitterFactory factory = new TwitterFactory(configuration);
-            twitter = factory.getInstance();
-
-            try {
-                requestToken = twitter
-                        .getOAuthRequestToken(TWITTER_CALLBACK_URL);
-                this.startActivity(new Intent(Intent.ACTION_VIEW, Uri
-                        .parse(requestToken.getAuthenticationURL())));
-            } catch (TwitterException e) {
-                e.printStackTrace();
-            }
-        } else {
-            // user already logged into twitter
-//            Toast.makeText(getApplicationContext(),
-//                    "Already Logged into twitter", Toast.LENGTH_LONG).show();
-            /** This if conditions is tested once is
-             * redirected from twitter page. Parse the uri to get oAuth
-             * Verifier
-             * */
-            if (isTwitterLoggedInAlready()) {
-                Uri uri = getIntent().getData();
-                if (uri != null && uri.toString().startsWith(TWITTER_CALLBACK_URL)) {
-                    // oAuth verifier
-                    String verifier = uri
-                            .getQueryParameter(URL_TWITTER_OAUTH_VERIFIER);
-
-                    try {
-                        // Get the access token
-                        AccessToken accessToken = twitter.getOAuthAccessToken(
-                                requestToken, verifier);
-                        Util.savePreferences(Util.PREF_KEY_OAUTH_TOKEN,accessToken.getToken(),this);
-                        Util.savePreferences(Util.PREF_KEY_OAUTH_SECRET, accessToken.getTokenSecret(),this);
-                        Util.saveBooleanPreferences(Util.PREF_KEY_TWITTER_LOGIN,true,this);
-
-                        Log.e("Twitter OAuth Token", "> " + accessToken.getToken());
-
-                        // Getting user details from twitter
-                        // For now i am getting his name only
-                        long userID = accessToken.getUserId();
-                        twitter4j.User user = twitter.showUser(userID);
-                        String username = user.getName();
-
-                        Log.d("Socail", "Name :" +username);
-                        Log.d("Socail", "EmailId :" + "none");
-                        Log.d("Socail", "ProfilePicture :" + "none");
-                        Log.d("Socail", "Type :" + "Twitter");
-                        Log.d("Socail", "ID :" +userID);
-                    } catch (Exception e) {
-                        // Check log for login errors
-                        Log.e("Twitter Login Error", "> " + e.getMessage());
-                    }
-                }
-            }
-        }
-    }
-
-    /**
-     * Check user already logged in your application using twitter Login flag is
-     * fetched from Shared Preferences
-     * */
-    private boolean isTwitterLoggedInAlready() {
-        // return twitter login status from Shared Preferences
-        return Util.loadBooleanPrefrence(Util.PREF_KEY_TWITTER_LOGIN,this);
-    }
-
-
-
 }

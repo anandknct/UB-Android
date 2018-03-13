@@ -8,29 +8,16 @@
     <RelativeLayout
         android:id="@+id/rr_top"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="@dimen/_30sdp">
 
-        <TextView
+        <ImageView
             android:id="@+id/tv_church_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_mychurch"
-            android:layout_marginRight="@dimen/_10sdp"
-            android:drawablePadding="@dimen/dimen_ten"
+            android:src="@drawable/ic_mychurch"
             android:textSize="@dimen/_12sdp"
             android:gravity="center_vertical|center_horizontal"
-            android:padding="@dimen/_5sdp"
-            android:text="My Church"
-            android:textColor="@color/text_color_secondary" />
-
-        <View
-            android:id="@+id/view_divider"
-            android:layout_width="1dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_alignBottom="@+id/tv_church_label"
-            android:layout_alignRight="@+id/tv_church_label"
-            android:background="@color/divider_color" />
+            android:padding="@dimen/_5sdp" />
 
         <TextView
             android:id="@+id/tv_followed"
@@ -39,19 +26,42 @@
             android:layout_centerVertical="true"
             android:gravity="center_horizontal"
             android:textSize="@dimen/_12sdp"
-            android:layout_marginLeft="@dimen/_10sdp"
-            android:layout_toRightOf="@+id/view_divider"
+            android:layout_toRightOf="@+id/tv_church_label"
             android:padding="@dimen/_5sdp"
-            android:text="Followed" />
+            android:text="Followed"
+            android:layout_toEndOf="@+id/tv_church_label" />
 
         <View
             android:id="@+id/view_divider2"
             android:layout_width="1dp"
             android:layout_height="wrap_content"
-            android:layout_alignBottom="@+id/view_divider"
             android:layout_alignRight="@+id/tv_followed"
             android:layout_marginLeft="@dimen/_10sdp"
-            android:background="@color/divider_color" />
+            android:background="@color/divider_color"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_alignEnd="@+id/tv_followed" />
+
+        <TextView
+            android:id="@+id/tv_nearByMe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:gravity="center_horizontal"
+            android:textSize="@dimen/_12sdp"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:layout_toRightOf="@+id/view_divider2"
+            android:padding="@dimen/_5sdp"
+            android:text="Near Me" />
+
+        <View
+            android:id="@+id/view_divider4"
+            android:layout_width="1dp"
+            android:layout_height="wrap_content"
+            android:layout_alignRight="@+id/tv_nearByMe"
+            android:layout_marginLeft="@dimen/_10sdp"
+            android:background="@color/divider_color"
+            android:layout_alignEnd="@+id/tv_nearByMe"
+            android:layout_marginStart="@dimen/_10sdp" />
 
         <TextView
             android:id="@+id/tv_all"
@@ -60,9 +70,10 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/_10sdp"
             android:textSize="@dimen/_12sdp"
-            android:gravity="center_horizontal"
-            android:layout_toRightOf="@+id/view_divider2"
-            android:text="All" />
+            android:layout_toRightOf="@+id/view_divider4"
+            android:text="All"
+            android:layout_toEndOf="@+id/view_divider4"
+            android:layout_marginStart="@dimen/_10sdp" />
     </RelativeLayout>
 
     <View
@@ -72,11 +83,22 @@
         android:layout_below="@+id/rr_top"
         android:background="@color/color_bgsidenav" />
 
+    <android.support.v7.widget.AppCompatSpinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/divider"
+        android:id="@+id/SpnNearby"
+        android:visibility="gone"
+        android:background="@android:color/transparent"
+        android:gravity="center"
+        android:theme="@style/ThemeOverlay.AppCompat.Light"
+        app:backgroundTint="#552A83"/>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_list_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/divider"
+        android:layout_below="@+id/SpnNearby"
         android:layout_marginTop="@dimen/dimen_ten"
         app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
