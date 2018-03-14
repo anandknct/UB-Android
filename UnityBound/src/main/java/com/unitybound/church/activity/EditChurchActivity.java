@@ -2,7 +2,6 @@ package com.unitybound.church.activity;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -16,7 +15,6 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,6 +24,9 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.thebrownarrow.permissionhelper.ActivityManagePermission;
 import com.thebrownarrow.permissionhelper.PermissionResult;
 import com.thebrownarrow.permissionhelper.PermissionUtils;
@@ -33,6 +34,7 @@ import com.unitybound.BuildConfig;
 import com.unitybound.R;
 import com.unitybound.church.adapter.DenominationSpinnerAdapter;
 import com.unitybound.church.beans.JoinByAccessCodeResponse;
+import com.unitybound.church.beans.churchDetail.Data;
 import com.unitybound.utility.Util;
 import com.unitybound.utility.customView.CustomDialog;
 import com.unitybound.utility.network.ApiClient;
@@ -59,8 +61,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class AddChurchActivity extends ActivityManagePermission implements CustomDialog.IDialogListener {
+public class EditChurchActivity extends ActivityManagePermission implements CustomDialog.IDialogListener {
 
+    String mCHURCH_ID, TITTLE;
+    private Data churchDetailResponse = null;
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -134,30 +138,48 @@ public class AddChurchActivity extends ActivityManagePermission implements Custo
     LinearLayout ll12;
     @BindView(R.id.root)
     RelativeLayout rootView;
+    @BindView(R.id.edt_church_desription)
+    EditText EdtChurchDesription;
+
     private ProgressDialog mProgressDialog = null;
-    private Call<JoinByAccessCodeResponse> callAddChurch = null;
     private ArrayList<String> arrayListDenomination = null;
-    private int SELECT_IMAGE = 0;
     private int REQUEST_CAMERA = 1;
     final CharSequence[] items = {"Take Photo", "Gallery","Cancel"};
-    private String userChoosenTask = null;
     private String mPath = null;
-    private Bitmap bm = null;
-
-    @Override
-    protected void onDestroy() {
-        if (callAddChurch != null && callAddChurch.isExecuted()) {
-            callAddChurch.cancel();
-        }
-        super.onDestroy();
-    }
+    private String userChoosenTask = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_church);
+        setContentView(R.layout.activity_edit_church);
+
         ButterKnife.bind(this);
 
+        Bundle ExtraData = getIntent().getExtras();
+        mCHURCH_ID = ExtraData.getString("mCHURCH_ID");
+        TITTLE = ExtraData.getString("TITTLE");
+        String StrchurchDetailResponse = ExtraData.getString("ChurchAboutData");
+
+        Gson gson = new Gson();
+        churchDetailResponse = gson.fromJson(StrchurchDetailResponse, new TypeToken<Data>(){}.getType());
+
+        edtChurchName.setText(churchDetailResponse.getChurch().getChurchName());
+        edtPosterName.setText(churchDetailResponse.getChurch().getChurchPastorName());
+        edtAddress1.setText(churchDetailResponse.getChurch().getChurchAddress1());
+        edtAddress2.setText(churchDetailResponse.getChurch().getChurchAddress2().toString());
+        edtCityName.setText(churchDetailResponse.getChurch().getChurchCity());
+        edtStateName.setText(churchDetailResponse.getChurch().getChurchState());
+        edtZipCode.setText(churchDetailResponse.getChurch().getChurchZip());
+        edtCountry.setText(churchDetailResponse.getChurch().getChurchCountry());
+        edtMailingAddress1.setText(churchDetailResponse.getChurch().getChurchMailAddress1());
+        edtMailingAddress2.setText(churchDetailResponse.getChurch().getChurchMailAddress2().toString());
+        edtCity2.setText(churchDetailResponse.getChurch().getChurchMailCity());
+        edtState2.setText(churchDetailResponse.getChurch().getChurchMailState());
+        edtZip2.setText(churchDetailResponse.getChurch().getChurchMailZip());
+        edtCountry2.setText(churchDetailResponse.getChurch().getChurchMailCountry());
+        edtChurchPhone.setText(churchDetailResponse.getChurch().getChurchPhoneNumber());
+        EdtChurchDesription.setText(churchDetailResponse.getChurch().getChurchDescription());
+        Glide.with(this).load(churchDetailResponse.getChurch().getChurchImage()).placeholder(R.drawable.profile_def_user_image).into(ivGroupPhoto);
 
         setUpToolbarLayout();
         setUpChurchDenomination();
@@ -180,9 +202,11 @@ public class AddChurchActivity extends ActivityManagePermission implements Custo
         arrayListDenomination.add("Other");
 //        TypedArray imgs = getResources().obtainTypedArray(R.array.pinner_imgs);
 
-        DenominationSpinnerAdapter spAdapter = new DenominationSpinnerAdapter(AddChurchActivity.this, R.layout.spinner_item_white, arrayListDenomination, null);
+        DenominationSpinnerAdapter spAdapter = new DenominationSpinnerAdapter(EditChurchActivity.this, R.layout.spinner_item_white, arrayListDenomination, null);
         spAdapter.setDropDownViewResource(R.layout.spinner_drop_down_white);
         spinnerDenomination.setAdapter(spAdapter);
+
+        spinnerDenomination.setSelection(arrayListDenomination.indexOf(churchDetailResponse.getChurch().getChurchDenominations()));
     }
 
     private void setUpToolbarLayout() {
@@ -194,48 +218,23 @@ public class AddChurchActivity extends ActivityManagePermission implements Custo
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case android.R.id.home:
-                onBackPressed();
-                break;
-        }
-        return super.onOptionsItemSelected(item);
+    public void onCancelPress(String param) {
+
     }
 
+    @Override
+    public void onYesPress(String param, String message) {
 
-    @OnClick({R.id.iv_group_photo, R.id.tv_upload_photo, R.id.btn_create})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.iv_group_photo:
-                selectImage(permissionAsk);
-                break;
-            case R.id.tv_upload_photo:
-                break;
-            case R.id.btn_create:
-                if (validation())
-                if (Util.checkNetworkAvailablity(AddChurchActivity.this)) {
-                    if (mPath!=null && mPath.length()>0) {
-                        addChurchRequest(new File(mPath));
-                    }else{
-                        addChurchRequest(null);
-                    }
-                } else {
-                    CustomDialog customDialog1 = new CustomDialog(AddChurchActivity.this, null,
-                            "", getResources().getString(R.string.alt_checknet),
-                            "ONFAILED");
-                    if (customDialog1.isShowing()) {
-                        customDialog1.dismiss();
-                    }
-                    customDialog1.show();
-                }
-                break;
-        }
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
     }
 
     private boolean validation() {
         if (Util.isNull(edtChurchName.getText().toString()).length()==0){
-            CustomDialog customDialog1 = new CustomDialog(AddChurchActivity.this, null,
+            CustomDialog customDialog1 = new CustomDialog(EditChurchActivity.this, null,
                     "", "Please enter church name",
                     "ONFAILED");
             if (customDialog1.isShowing()) {
@@ -243,7 +242,7 @@ public class AddChurchActivity extends ActivityManagePermission implements Custo
             }
             customDialog1.show();
         } else if (Util.isNull(edtPosterName.getText().toString()).length()==0){
-            CustomDialog customDialog1 = new CustomDialog(AddChurchActivity.this, null,
+            CustomDialog customDialog1 = new CustomDialog(EditChurchActivity.this, null,
                     "", "Please enter poster name",
                     "ONFAILED");
             if (customDialog1.isShowing()) {
@@ -251,7 +250,7 @@ public class AddChurchActivity extends ActivityManagePermission implements Custo
             }
             customDialog1.show();
         } else if (Util.isNull(edtAddress1.getText().toString()).length()==0){
-            CustomDialog customDialog1 = new CustomDialog(AddChurchActivity.this, null,
+            CustomDialog customDialog1 = new CustomDialog(EditChurchActivity.this, null,
                     "", "Please enter church address",
                     "ONFAILED");
             if (customDialog1.isShowing()) {
@@ -259,7 +258,7 @@ public class AddChurchActivity extends ActivityManagePermission implements Custo
             }
             customDialog1.show();
         }else if (Util.isNull(edtCityName.getText().toString()).length()==0){
-            CustomDialog customDialog1 = new CustomDialog(AddChurchActivity.this, null,
+            CustomDialog customDialog1 = new CustomDialog(EditChurchActivity.this, null,
                     "", "Please enter church city",
                     "ONFAILED");
             if (customDialog1.isShowing()) {
@@ -267,7 +266,7 @@ public class AddChurchActivity extends ActivityManagePermission implements Custo
             }
             customDialog1.show();
         } else if (Util.isNull(edtStateName.getText().toString()).length()==0){
-            CustomDialog customDialog1 = new CustomDialog(AddChurchActivity.this, null,
+            CustomDialog customDialog1 = new CustomDialog(EditChurchActivity.this, null,
                     "", "Please enter church state",
                     "ONFAILED");
             if (customDialog1.isShowing()) {
@@ -275,7 +274,7 @@ public class AddChurchActivity extends ActivityManagePermission implements Custo
             }
             customDialog1.show();
         } else if (Util.isNull(edtZipCode.getText().toString()).length()==0){
-            CustomDialog customDialog1 = new CustomDialog(AddChurchActivity.this, null,
+            CustomDialog customDialog1 = new CustomDialog(EditChurchActivity.this, null,
                     "", "Please enter church zip",
                     "ONFAILED");
             if (customDialog1.isShowing()) {
@@ -283,7 +282,7 @@ public class AddChurchActivity extends ActivityManagePermission implements Custo
             }
             customDialog1.show();
         } else if (Util.isNull(edtMailingAddress1.getText().toString()).length()==0){
-            CustomDialog customDialog1 = new CustomDialog(AddChurchActivity.this, null,
+            CustomDialog customDialog1 = new CustomDialog(EditChurchActivity.this, null,
                     "", "Please enter church mailing address",
                     "ONFAILED");
             if (customDialog1.isShowing()) {
@@ -291,7 +290,7 @@ public class AddChurchActivity extends ActivityManagePermission implements Custo
             }
             customDialog1.show();
         } else if (Util.isNull(edtMailingAddress2.getText().toString()).length()==0){
-            CustomDialog customDialog1 = new CustomDialog(AddChurchActivity.this, null,
+            CustomDialog customDialog1 = new CustomDialog(EditChurchActivity.this, null,
                     "", "Please enter church mailing address 2",
                     "ONFAILED");
             if (customDialog1.isShowing()) {
@@ -299,7 +298,7 @@ public class AddChurchActivity extends ActivityManagePermission implements Custo
             }
             customDialog1.show();
         } else if (Util.isNull(edtAddress2.getText().toString()).length()==0){
-            CustomDialog customDialog1 = new CustomDialog(AddChurchActivity.this, null,
+            CustomDialog customDialog1 = new CustomDialog(EditChurchActivity.this, null,
                     "", "Please enter church address 2",
                     "ONFAILED");
             if (customDialog1.isShowing()) {
@@ -307,8 +306,16 @@ public class AddChurchActivity extends ActivityManagePermission implements Custo
             }
             customDialog1.show();
         } else if (Util.isNull(edtChurchPhone.getText().toString()).length()==0){
-            CustomDialog customDialog1 = new CustomDialog(AddChurchActivity.this, null,
+            CustomDialog customDialog1 = new CustomDialog(EditChurchActivity.this, null,
                     "", "Please enter church phone number",
+                    "ONFAILED");
+            if (customDialog1.isShowing()) {
+                customDialog1.dismiss();
+            }
+            customDialog1.show();
+        }else if (Util.isNull(EdtChurchDesription.getText().toString()).length()==0){
+            CustomDialog customDialog1 = new CustomDialog(EditChurchActivity.this, null,
+                    "", "Please enter church description",
                     "ONFAILED");
             if (customDialog1.isShowing()) {
                 customDialog1.dismiss();
@@ -320,194 +327,33 @@ public class AddChurchActivity extends ActivityManagePermission implements Custo
         return false;
     }
 
-    @Override
-    public void onCancelPress(String param) {
-
-    }
-
-    @Override
-    public void onYesPress(String param, String message) {
-        if (param.equalsIgnoreCase("CLOSE")) {
-            onBackPressed();
-        }
-    }
-
-    private void addChurchRequest(File file) {
-        showProgressDialog();
-
-        ApiInterface apiService =
-                ApiClient.getClient().create(ApiInterface.class);
-        MultipartBody.Part body = null;
-        RequestBody requestFile = null;
-        if (file != null) {
-            requestFile =
-                    RequestBody.create(
-                            MediaType.parse("image"),
-                            file
-                    );
-            // MultipartBody.Part is used to send also the actual file name
-            body = MultipartBody.Part.createFormData("myfile", file.getName(), requestFile);
-        }
-
-        // create a map of data to pass along
-        RequestBody api_key = Util.createPartFromString(BuildConfig.API_KEY);
-        RequestBody user_id = Util.createPartFromString(""
-                + Util.loadPrefrence(Util.PREF_USER_ID, "",
-                AddChurchActivity.this));
-        ///
-
-        RequestBody ChurchName = Util.createPartFromString(Util.isNull(edtChurchName.getText().toString()));
-        RequestBody churchPastorName = Util.createPartFromString(Util.isNull(edtPosterName.getText().toString()));
-        RequestBody churchDenominations = Util.createPartFromString(arrayListDenomination.get(spinnerDenomination.getSelectedItemPosition()));
-        RequestBody churchDescription = Util.createPartFromString(Util.isNull(""));
-        RequestBody churchAddress1 = Util.createPartFromString(Util.isNull(edtAddress1.getText().toString()));
-        RequestBody churchAddress2 = Util.createPartFromString(Util.isNull(edtAddress2.getText().toString()));
-        RequestBody churchAddress3 = Util.createPartFromString(Util.isNull(edtAddress3.getText().toString()));
-        RequestBody churchCity = Util.createPartFromString(Util.isNull(edtChurchName.getText().toString()));
-        RequestBody churchState = Util.createPartFromString(Util.isNull(edtStateName.getText().toString()));
-        RequestBody churchCountry = Util.createPartFromString(Util.isNull(edtCountry.getText().toString()));
-        RequestBody churchZip = Util.createPartFromString(Util.isNull(edtZipCode.getText().toString()));
-        RequestBody churchPhoneNumber = Util.createPartFromString(Util.isNull(edtChurchPhone.getText().toString()));
-        RequestBody churchMailAddress1 = Util.createPartFromString(Util.isNull(edtMailingAddress1.getText().toString()));
-        RequestBody churchMailAddress2 = Util.createPartFromString(Util.isNull(edtMailingAddress2.getText().toString()));
-        RequestBody churchMailCity = Util.createPartFromString(Util.isNull(edtCity2.getText().toString()));
-        RequestBody churchMailState = Util.createPartFromString(Util.isNull(edtState2.getText().toString()));
-        RequestBody churchMailCountry = Util.createPartFromString(Util.isNull(edtCountry2.getText().toString()));
-        RequestBody churchMailZip = Util.createPartFromString(Util.isNull(edtZip2.getText().toString()));
-
-
-        HashMap<String, RequestBody> map = new HashMap<>();
-        map.put("api_key", api_key);
-        map.put("user_id", user_id);
-        map.put("churchName", ChurchName);
-        map.put("churchPastorName", churchPastorName);
-        map.put("churchDenominations", churchDenominations);
-        map.put("churchDescription", churchDescription);
-        map.put("churchAddress1", churchAddress1);
-        map.put("churchAddress2", churchAddress2);
-        map.put("churchAddress3", churchAddress3);
-        map.put("churchCity", churchCity);
-        map.put("churchState", churchState);
-        map.put("churchCountry", churchCountry);
-        map.put("churchZip", churchZip);
-        map.put("churchPhoneNumber", churchPhoneNumber);
-        map.put("churchMailAddress1", churchMailAddress1);
-        map.put("churchMailAddress2", churchMailAddress2);
-        map.put("churchMailCity", churchMailCity);
-        map.put("churchMailState", churchMailState);
-        map.put("churchMailCountry", churchMailCountry);
-        map.put("churchMailZip", churchMailZip);
-
-//        callAddChurch = apiService.addChurch(
-//                BuildConfig.API_KEY,
-//                Util.loadPrefrence(Util.PREF_USER_ID, "", AddChurchActivity.this),
-//                edtChurchName.getText().toString(),
-//                edtPosterName.getText().toString(),
-//                arrayListDenomination.get(spinnerDenomination.getSelectedItemPosition()),
-//                "",
-//                edtAddress1.getText().toString(),
-//                edtAddress2.getText().toString(),
-//                edtCityName.getText().toString(),
-//                edtStateName.getText().toString(),
-//                edtZipCode.getText().toString(),
-//                edtCountry.getText().toString(),
-//                edtChurchPhone.getText().toString()
-//        );
-        callAddChurch = apiService.
-                addChurch(
-                        map,
-                        body);
-        callAddChurch.enqueue(new Callback<JoinByAccessCodeResponse>()
-
-        {
-
-            @Override
-            public void onResponse
-                    (Call<JoinByAccessCodeResponse> call, Response<JoinByAccessCodeResponse> response) {
-                hideProgressDialog();
-                if (response.body() != null) {
-                    Log.d("nik", response.body().toString());
-                }
-                String sCode = response.code() + "";
-                String c = String.valueOf(sCode.charAt(0));
-
-                if (c.equalsIgnoreCase("2")) {
-                    JoinByAccessCodeResponse loginResponse = response.body();
-                    if (loginResponse.getStatus().equalsIgnoreCase("success")) {
-//                            Toast.makeText(AddChurchActivity.this, loginResponse.getMsg(), Toast.LENGTH_SHORT).show();
-                        CustomDialog customDialog = new CustomDialog(AddChurchActivity.this,
-                                "Thank you for creating Church",
-                                loginResponse.getMsg(),
-                                AddChurchActivity.this);
-                        customDialog.show();
+    @OnClick({R.id.iv_group_photo, R.id.tv_upload_photo, R.id.btn_create})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.iv_group_photo:
+                selectImage(permissionAsk);
+                break;
+            case R.id.tv_upload_photo:
+                break;
+            case R.id.btn_create:
+                if (validation())
+                    if (Util.checkNetworkAvailablity(EditChurchActivity.this)) {
+                        if (mPath!=null && mPath.length()>0) {
+                            addChurchRequest(new File(mPath));
+                        }else{
+                            addChurchRequest(null);
+                        }
                     } else {
-                        CustomDialog customDialog1 = new CustomDialog(AddChurchActivity.this, null,
-                                "", loginResponse.getMsg(),
+                        CustomDialog customDialog1 = new CustomDialog(EditChurchActivity.this, null,
+                                "", getResources().getString(R.string.alt_checknet),
                                 "ONFAILED");
                         if (customDialog1.isShowing()) {
                             customDialog1.dismiss();
                         }
                         customDialog1.show();
                     }
-                }else{
-                    CustomDialog customDialog1 = new CustomDialog(AddChurchActivity.this, null,
-                            "", response.body().getMsg()!=null
-                            ? response.body().getMsg(): response.body().getMsg(),
-                            "ONFAILED");
-                    if (customDialog1.isShowing()) {
-                        customDialog1.dismiss();
-                    }
-                    customDialog1.show();
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<JoinByAccessCodeResponse> call, Throwable t) {
-                // Log error here since request failed
-                Log.e("nik", t.toString());
-                hideProgressDialog();
-                CustomDialog customDialog1 = new CustomDialog(AddChurchActivity.this, null,
-                        "", t.getMessage(),
-                        "ONFAILED");
-                if (customDialog1.isShowing()) {
-                    customDialog1.dismiss();
-                }
-                customDialog1.show();
-            }
-        });
-    }
-
-    public void showProgressDialog() {
-        mProgressDialog.show();
-        if (mProgressDialog != null) {
-            //  mProgressDialog = Utils.createProgressDialog(BaseActivity.this, getString(R.string.str_logging_in));
-            mProgressDialog.setCancelable(false);
-            mProgressDialog.setMessage("Loading...");
+                break;
         }
-        mProgressDialog.setContentView(R.layout.custom_progressdialog);
-    }
-
-    public void hideProgressDialog() {
-        if (mProgressDialog != null && mProgressDialog.isShowing()) {
-            mProgressDialog.dismiss();
-        }
-    }
-
-    private void cameraIntent() {
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(intent, REQUEST_CAMERA);
-    }
-
-    private void galleryIntent() {
-//        Intent intent = new Intent();
-//        intent.setType("image/*");
-//        intent.setAction(Intent.ACTION_GET_CONTENT);//
-//        startActivityForResult(Intent.createChooser(intent, "Select File"), SELECT_IMAGE);
-
-        Intent intent = new Intent(this, AlbumSelectActivity.class);
-        intent.putExtra(ConstantsCustomGallery.INTENT_EXTRA_LIMIT, 1); // set limit for image selection
-        startActivityForResult(intent, ConstantsCustomGallery.REQUEST_CODE);
     }
 
     String permissionAsk[] = {PermissionUtils.Manifest_CAMERA,
@@ -518,12 +364,12 @@ public class AddChurchActivity extends ActivityManagePermission implements Custo
         askCompactPermissions(permissionAsk, new PermissionResult() {
             @Override
             public void permissionGranted() {
-                AlertDialog.Builder builder = new AlertDialog.Builder(AddChurchActivity.this);
+                AlertDialog.Builder builder = new AlertDialog.Builder(EditChurchActivity.this);
                 builder.setTitle("Select image");
                 builder.setItems(items, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int item) {
-                        boolean result = Util.checkPermission(AddChurchActivity.this);
+                        boolean result = Util.checkPermission(EditChurchActivity.this);
                         if (items[item].equals("Take Photo")) {
                             userChoosenTask = "Take Photo";
                             if (result)
@@ -566,6 +412,22 @@ public class AddChurchActivity extends ActivityManagePermission implements Custo
         });
     }
 
+    private void cameraIntent() {
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent, REQUEST_CAMERA);
+    }
+
+    private void galleryIntent() {
+//        Intent intent = new Intent();
+//        intent.setType("image/*");
+//        intent.setAction(Intent.ACTION_GET_CONTENT);//
+//        startActivityForResult(Intent.createChooser(intent, "Select File"), SELECT_IMAGE);
+
+        Intent intent = new Intent(this, AlbumSelectActivity.class);
+        intent.putExtra(ConstantsCustomGallery.INTENT_EXTRA_LIMIT, 1); // set limit for image selection
+        startActivityForResult(intent, ConstantsCustomGallery.REQUEST_CODE);
+    }
+
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -601,20 +463,12 @@ public class AddChurchActivity extends ActivityManagePermission implements Custo
         }
     }
 
-    public Uri writeToTempImageAndGetPathUri(Context inContext, Bitmap inImage) {
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
-        return Uri.parse(path);
-    }
-
     private void onCaptureImageResult(Intent data) {
         Bitmap thumbnail = (Bitmap) data.getExtras().get("data");
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         thumbnail.compress(Bitmap.CompressFormat.JPEG, 90, bytes);
 
-        File destination = new File(Environment.getExternalStorageDirectory(),
-                System.currentTimeMillis() + ".jpg");
+        File destination = new File(Environment.getExternalStorageDirectory(), System.currentTimeMillis() + ".jpg");
 
         FileOutputStream fo;
         try {
@@ -631,4 +485,145 @@ public class AddChurchActivity extends ActivityManagePermission implements Custo
         ivGroupPhoto.setImageBitmap(thumbnail);
     }
 
+    private void addChurchRequest(File file) {
+        showProgressDialog();
+
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+        MultipartBody.Part body = null;
+        RequestBody requestFile = null;
+        if (file != null) {
+            requestFile = RequestBody.create(MediaType.parse("image"), file);
+            // MultipartBody.Part is used to send also the actual file name
+            body = MultipartBody.Part.createFormData("myfile", file.getName(), requestFile);
+        }
+
+        // create a map of data to pass along
+        RequestBody api_key = Util.createPartFromString(BuildConfig.API_KEY);
+        RequestBody ChurchID = Util.createPartFromString(mCHURCH_ID);
+        RequestBody user_id = Util.createPartFromString("" + Util.loadPrefrence(Util.PREF_USER_ID, "", EditChurchActivity.this));
+        ///
+
+        RequestBody ChurchName = Util.createPartFromString(Util.isNull(edtChurchName.getText().toString()));
+        RequestBody churchPastorName = Util.createPartFromString(Util.isNull(edtPosterName.getText().toString()));
+        RequestBody churchDenominations = Util.createPartFromString(arrayListDenomination.get(spinnerDenomination.getSelectedItemPosition()));
+        RequestBody churchDescription = Util.createPartFromString(Util.isNull(EdtChurchDesription.getText().toString()));
+        RequestBody churchAddress1 = Util.createPartFromString(Util.isNull(edtAddress1.getText().toString()));
+        RequestBody churchAddress2 = Util.createPartFromString(Util.isNull(edtAddress2.getText().toString()));
+        RequestBody churchAddress3 = Util.createPartFromString(Util.isNull(edtAddress3.getText().toString()));
+        RequestBody churchCity = Util.createPartFromString(Util.isNull(edtChurchName.getText().toString()));
+        RequestBody churchState = Util.createPartFromString(Util.isNull(edtStateName.getText().toString()));
+        RequestBody churchCountry = Util.createPartFromString(Util.isNull(edtCountry.getText().toString()));
+        RequestBody churchZip = Util.createPartFromString(Util.isNull(edtZipCode.getText().toString()));
+        RequestBody churchPhoneNumber = Util.createPartFromString(Util.isNull(edtChurchPhone.getText().toString()));
+        RequestBody churchMailAddress1 = Util.createPartFromString(Util.isNull(edtMailingAddress1.getText().toString()));
+        RequestBody churchMailAddress2 = Util.createPartFromString(Util.isNull(edtMailingAddress2.getText().toString()));
+        RequestBody churchMailCity = Util.createPartFromString(Util.isNull(edtCity2.getText().toString()));
+        RequestBody churchMailState = Util.createPartFromString(Util.isNull(edtState2.getText().toString()));
+        RequestBody churchMailCountry = Util.createPartFromString(Util.isNull(edtCountry2.getText().toString()));
+        RequestBody churchMailZip = Util.createPartFromString(Util.isNull(edtZip2.getText().toString()));
+
+
+        HashMap<String, RequestBody> map = new HashMap<>();
+        map.put("api_key", api_key);
+        map.put("ChurchID", ChurchID);
+        map.put("user_id", user_id);
+        map.put("churchName", ChurchName);
+        map.put("churchPastorName", churchPastorName);
+        map.put("churchDenominations", churchDenominations);
+        map.put("churchDescription", churchDescription);
+        map.put("churchAddress1", churchAddress1);
+        map.put("churchAddress2", churchAddress2);
+        map.put("churchAddress3", churchAddress3);
+        map.put("churchCity", churchCity);
+        map.put("churchState", churchState);
+        map.put("churchCountry", churchCountry);
+        map.put("churchZip", churchZip);
+        map.put("churchPhoneNumber", churchPhoneNumber);
+        map.put("churchMailAddress1", churchMailAddress1);
+        map.put("churchMailAddress2", churchMailAddress2);
+        map.put("churchMailCity", churchMailCity);
+        map.put("churchMailState", churchMailState);
+        map.put("churchMailCountry", churchMailCountry);
+        map.put("churchMailZip", churchMailZip);
+
+//        callAddChurch = apiService.addChurch(
+//                BuildConfig.API_KEY,
+//                Util.loadPrefrence(Util.PREF_USER_ID, "", AddChurchActivity.this),
+//                edtChurchName.getText().toString(),
+//                edtPosterName.getText().toString(),
+//                arrayListDenomination.get(spinnerDenomination.getSelectedItemPosition()),
+//                "",
+//                edtAddress1.getText().toString(),
+//                edtAddress2.getText().toString(),
+//                edtCityName.getText().toString(),
+//                edtStateName.getText().toString(),
+//                edtZipCode.getText().toString(),
+//                edtCountry.getText().toString(),
+//                edtChurchPhone.getText().toString()
+//        );
+        Call<JoinByAccessCodeResponse> callAddChurch = apiService.editChurchData(map, body);
+        callAddChurch.enqueue(new Callback<JoinByAccessCodeResponse>()
+
+        {
+
+            @Override
+            public void onResponse(Call<JoinByAccessCodeResponse> call, Response<JoinByAccessCodeResponse> response) {
+                hideProgressDialog();
+                if (response.body() != null) {
+                    Log.d("nik", response.body().toString());
+                }
+                String sCode = response.code() + "";
+                String c = String.valueOf(sCode.charAt(0));
+
+                if (c.equalsIgnoreCase("2")) {
+                    JoinByAccessCodeResponse loginResponse = response.body();
+                    if (loginResponse.getStatus().equalsIgnoreCase("success")) {
+                        CustomDialog customDialog = new CustomDialog(EditChurchActivity.this, "Church Edited Successfully", loginResponse.getMsg(), EditChurchActivity.this);
+                        customDialog.show();
+                    } else {
+                        CustomDialog customDialog1 = new CustomDialog(EditChurchActivity.this, null, "", loginResponse.getMsg(), "ONFAILED");
+                        if (customDialog1.isShowing()) {
+                            customDialog1.dismiss();
+                        }
+                        customDialog1.show();
+                    }
+                }else{
+                    CustomDialog customDialog1 = new CustomDialog(EditChurchActivity.this, null, "", response.body().getMsg()!=null ? response.body().getMsg(): response.body().getMsg(), "ONFAILED");
+                    if (customDialog1.isShowing()) {
+                        customDialog1.dismiss();
+                    }
+                    customDialog1.show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<JoinByAccessCodeResponse> call, Throwable t) {
+                // Log error here since request failed
+                Log.e("nik", t.toString());
+                hideProgressDialog();
+                CustomDialog customDialog1 = new CustomDialog(EditChurchActivity.this, null, "", t.getMessage(), "ONFAILED");
+                if (customDialog1.isShowing()) {
+                    customDialog1.dismiss();
+                }
+                customDialog1.show();
+            }
+        });
+    }
+
+    public void showProgressDialog() {
+        mProgressDialog.show();
+        if (mProgressDialog != null) {
+            //  mProgressDialog = Utils.createProgressDialog(BaseActivity.this, getString(R.string.str_logging_in));
+            mProgressDialog.setCancelable(false);
+            mProgressDialog.setMessage("Loading...");
+        }
+        mProgressDialog.setContentView(R.layout.custom_progressdialog);
+    }
+
+    public void hideProgressDialog() {
+        if (mProgressDialog != null && mProgressDialog.isShowing()) {
+            mProgressDialog.dismiss();
+        }
+    }
 }

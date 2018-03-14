@@ -52,6 +52,7 @@ import com.unitybound.BuildConfig;
 import com.unitybound.R;
 import com.unitybound.account.activity.AddPostActivity;
 import com.unitybound.account.beans.hidePost.HidePostResponse;
+import com.unitybound.church.activity.EditChurchActivity;
 import com.unitybound.church.adapter.ChurchBlockedUsersListAdapter;
 import com.unitybound.church.adapter.ChurchLibraryAdapter;
 import com.unitybound.church.adapter.ChurchMembersGridAdapter;
@@ -138,7 +139,8 @@ public class ChurchDetailsActivity extends ActivityManagePermission implements
     private ChurchDetailResponse churchDetailResponse = null;
     private Call<JoinChurchResponse> callJoin = null;
     private Call<JoinByAccessCodeResponse> callJoinByCode;
-    private LinearLayout bottomLinearNotJoin = null, bottomLinearJoined = null, top_linear_joined = null;
+    private LinearLayout bottomLinearNotJoin = null, bottomLinearJoined = null;
+    private RelativeLayout top_linear_joined = null;
     private TextView tv_post_label_joined = null, tv_about_label_joined = null,
             tv_library_joined = null, tv_member_joined = null;
     private TextView tv_membership_req_joined = null, tv_blocked_joined = null, tv_setting_joined = null;
@@ -178,6 +180,7 @@ public class ChurchDetailsActivity extends ActivityManagePermission implements
     private Call<LibraryListResponse> callLibrary = null;
     private List<ChurchDocumentItem> allChurchDocuments = null;
     private EditText edt_upload_tittle = null, edt_tittle = null;
+    private Button BtnEditAbout = null;
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -226,8 +229,7 @@ public class ChurchDetailsActivity extends ActivityManagePermission implements
             getChurchDetailRequest(mCHURCH_ID);
         } else {
             CustomDialog customDialog1 = new CustomDialog(ChurchDetailsActivity.this, null,
-                    "", getResources().getString(R.string.alt_checknet),
-                    "ONFAILED");
+                    "", getResources().getString(R.string.alt_checknet), "ONFAILED");
             if (customDialog1.isShowing()) {
                 customDialog1.dismiss();
             }
@@ -259,58 +261,57 @@ public class ChurchDetailsActivity extends ActivityManagePermission implements
 
     private void initView() {
         int spacingInPixels = getResources().getDimensionPixelSize(R.dimen.dimen_ten);
-        gridSpacingItemDecoration = new GridSpacingItemDecoration(4, spacingInPixels,
-                true, 0);
+        gridSpacingItemDecoration = new GridSpacingItemDecoration(4, spacingInPixels, true, 0);
         simpleItemDecoration = new SimpleDividerItemDecoration(this);
-        fabCreatePost = (FloatingActionButton) findViewById(R.id.fab_create_post);
-        ;
-        main_root = (RelativeLayout) findViewById(R.id.activity_emergency);
-        iv_church_image = (ImageView) findViewById(R.id.iv_church_image);
+        fabCreatePost = findViewById(R.id.fab_create_post);
+        BtnEditAbout = findViewById(R.id.BtnEditAbout);
+        main_root = findViewById(R.id.activity_emergency);
+        iv_church_image = findViewById(R.id.iv_church_image);
         iv_church_image.setOnClickListener(this);
-        iv_edit_cover = (ImageView) findViewById(R.id.iv_edit_cover);
+        iv_edit_cover = findViewById(R.id.iv_edit_cover);
         iv_edit_cover.setOnClickListener(this);
         mProgressDialog = new ProgressDialog(this, R.style.newDialog);
 
-        Button btn_attach = (Button) findViewById(R.id.btn_attach);
+        Button btn_attach = findViewById(R.id.btn_attach);
         btn_attach.setOnClickListener(this);
-        edt_tittle = (EditText) findViewById(R.id.edt_tittle);
-        edt_upload_tittle = (EditText) findViewById(R.id.edt_upload_tittle);
-        tvAddress = (TextView) findViewById(R.id.tv_address);
-        tvMemberCount = (TextView) findViewById(R.id.tv_member_count);
-        tvChurchName = (TextView) findViewById(R.id.tv_church_name);
-        tvPosterName = (TextView) findViewById(R.id.tv_poster_name);
-        tvChurchAddress = (TextView) findViewById(R.id.tv_church_address);
-        tvChurchPhone = (TextView) findViewById(R.id.tv_church_phone);
-        tvChurchDescription = (TextView) findViewById(R.id.tv_church_description);
-        tvJoin = (TextView) findViewById(R.id.btn_join);
-        rv_grid_layout = (RecyclerView) findViewById(R.id.rv_grid_layout);
-        rvLibraryList = (RecyclerView) findViewById(R.id.ll_libraryList);
-        tv_event_description = (TextView) findViewById(R.id.tv_event_description);
-        rr_description_layout = (RelativeLayout) findViewById(R.id.rr_description_layout);
-        settings_layout = (RelativeLayout) findViewById(R.id.settings_layout);
-        library_layout = (RelativeLayout) findViewById(R.id.library_layout);
+        edt_tittle = findViewById(R.id.edt_tittle);
+        edt_upload_tittle = findViewById(R.id.edt_upload_tittle);
+        tvAddress = findViewById(R.id.tv_address);
+        tvMemberCount = findViewById(R.id.tv_member_count);
+        tvChurchName = findViewById(R.id.tv_church_name);
+        tvPosterName = findViewById(R.id.tv_poster_name);
+        tvChurchAddress = findViewById(R.id.tv_church_address);
+        tvChurchPhone = findViewById(R.id.tv_church_phone);
+        tvChurchDescription = findViewById(R.id.tv_church_description);
+        tvJoin = findViewById(R.id.btn_join);
+        rv_grid_layout = findViewById(R.id.rv_grid_layout);
+        rvLibraryList = findViewById(R.id.ll_libraryList);
+        tv_event_description = findViewById(R.id.tv_event_description);
+        rr_description_layout = findViewById(R.id.rr_description_layout);
+        settings_layout = findViewById(R.id.settings_layout);
+        library_layout = findViewById(R.id.library_layout);
         // Not Joined bottom layout below
-        tv_about_label = (TextView) findViewById(R.id.tv_about_label);
-        tv_member_label = (TextView) findViewById(R.id.tv_member_label);
+        tv_about_label = findViewById(R.id.tv_about_label);
+        tv_member_label = findViewById(R.id.tv_member_label);
 
 
         rv_grid_layout.addItemDecoration(gridSpacingItemDecoration);
         // Joined bottom layout below
-        bottomLinearNotJoin = (LinearLayout) findViewById(R.id.bottom_linear_not_join);
-        bottomLinearJoined = (LinearLayout) findViewById(R.id.bottom_linear_joined);
-        top_linear_joined = (LinearLayout) findViewById(R.id.top_linear_joined);
-        tv_post_label_joined = (TextView) findViewById(R.id.tv_post_label_joined);
-        tv_about_label_joined = (TextView) findViewById(R.id.tv_about_label_joined);
-        tv_library_joined = (TextView) findViewById(R.id.tv_library_joined);
-        tv_member_joined = (TextView) findViewById(R.id.tv_member_joined);
-        tv_membership_req_joined = (TextView) findViewById(R.id.tv_membership_req_joined);
-        tv_blocked_joined = (TextView) findViewById(R.id.tv_blocked_joined);
-        tv_setting_joined = (TextView) findViewById(R.id.tv_setting_joined);
+        bottomLinearNotJoin = findViewById(R.id.bottom_linear_not_join);
+        bottomLinearJoined = findViewById(R.id.bottom_linear_joined);
+        top_linear_joined = findViewById(R.id.top_linear_joined);
+        tv_post_label_joined = findViewById(R.id.tv_post_label_joined);
+        tv_about_label_joined = findViewById(R.id.tv_about_label_joined);
+        tv_library_joined = findViewById(R.id.tv_library_joined);
+        tv_member_joined = findViewById(R.id.tv_member_joined);
+        tv_membership_req_joined = findViewById(R.id.tv_membership_req_joined);
+        tv_blocked_joined = findViewById(R.id.tv_blocked_joined);
+        tv_setting_joined = findViewById(R.id.tv_setting_joined);
 
         // Settings layout
-        edt_code = (EditText) findViewById(R.id.edt_code);
-        btn_copy_code = (Button) findViewById(R.id.btn_copy_code);
-        tv_refresh_code = (TextView) findViewById(R.id.tv_refresh_code);
+        edt_code = findViewById(R.id.edt_code);
+        btn_copy_code = findViewById(R.id.btn_copy_code);
+        tv_refresh_code = findViewById(R.id.tv_refresh_code);
 
         setUponClickDetailButtons();
         setUpBottomSheet();
@@ -334,11 +335,9 @@ public class ChurchDetailsActivity extends ActivityManagePermission implements
                         churchDetailResponse.getData().getChurch().getChurchImage().length() > 0) {
                     Util.navigateTOFullScreenActivity(ChurchDetailsActivity.this,
                             churchDetailResponse.getData().getChurch().getChurchImage(),
-                            churchDetailResponse.getData().getChurch().getId(),
-                            null, null);
+                            churchDetailResponse.getData().getChurch().getId(), null, null);
                 } else {
-                    Toast.makeText(ChurchDetailsActivity.this,
-                            "Image not available", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ChurchDetailsActivity.this, "Image not available", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -353,8 +352,7 @@ public class ChurchDetailsActivity extends ActivityManagePermission implements
                         leaveChurchRequest(mCHURCH_ID);
                     } else {
                         CustomDialog customDialog1 = new CustomDialog(ChurchDetailsActivity.this, null,
-                                "", getResources().getString(R.string.alt_checknet),
-                                "ONFAILED");
+                                "", getResources().getString(R.string.alt_checknet), "ONFAILED");
                         if (customDialog1.isShowing()) {
                             customDialog1.dismiss();
                         }
@@ -558,6 +556,19 @@ public class ChurchDetailsActivity extends ActivityManagePermission implements
                 ClipData clip = ClipData.newPlainText("Access Code", edt_code.getText().toString());
                 clipboard.setPrimaryClip(clip);
                 Toast.makeText(ChurchDetailsActivity.this, "Access Code Copied...", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+        BtnEditAbout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Gson gson = new Gson();
+                Intent intent = new Intent(ChurchDetailsActivity.this, EditChurchActivity.class);
+                intent.putExtra("mCHURCH_ID", mCHURCH_ID);
+                intent.putExtra("ChurchAboutData", gson.toJson(churchDetailResponse.getData()));
+                intent.putExtra("TITTLE", "Edit Church");
+                startActivity(intent);
             }
         });
     }
@@ -793,19 +804,14 @@ public class ChurchDetailsActivity extends ActivityManagePermission implements
     private void getChurchDetailRequest(String mCHURCH_ID) {
         showProgressDialog();
 
-        ApiInterface apiService =
-                ApiClient.getClient().create(ApiInterface.class);
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
 
-        callDetail = apiService.getChurchDetail(
-                BuildConfig.API_KEY,
-                Util.loadPrefrence(Util.PREF_USER_ID, "", ChurchDetailsActivity.this),
-                mCHURCH_ID);
+        callDetail = apiService.getChurchDetail(BuildConfig.API_KEY, Util.loadPrefrence(Util.PREF_USER_ID, "", ChurchDetailsActivity.this), mCHURCH_ID);
 
         callDetail.enqueue(new Callback<ChurchDetailResponse>() {
 
             @Override
-            public void onResponse(Call<ChurchDetailResponse> call,
-                                   Response<ChurchDetailResponse> response) {
+            public void onResponse(Call<ChurchDetailResponse> call, Response<ChurchDetailResponse> response) {
                 hideProgressDialog();
                 if (response.body() != null) {
                     Log.d("nik", response.body().toString());
@@ -1900,12 +1906,13 @@ public class ChurchDetailsActivity extends ActivityManagePermission implements
                 Util.isNull(mChurchData.getChurchZip()) + ", " +
                 Util.isNull(mChurchData.getChurchCountry())
         );
-        if (mChurchData.getAddedBy().equalsIgnoreCase(
-                Util.loadPrefrence(Util.PREF_USER_ID, "", ChurchDetailsActivity.this))) {
+        if (mChurchData.getAddedBy().equalsIgnoreCase(Util.loadPrefrence(Util.PREF_USER_ID, "", ChurchDetailsActivity.this))) {
             iv_edit_cover.setVisibility(View.VISIBLE);
             tvJoin.setVisibility(View.GONE);
+            BtnEditAbout.setVisibility(View.VISIBLE);
         } else {
             iv_edit_cover.setVisibility(View.GONE);
+            BtnEditAbout.setVisibility(View.GONE);
         }
         edt_code.setText(Util.isNull(mChurchData.getAccessCode()));
         tvChurchPhone.setText(mChurchData.getChurchPhoneNumber());
@@ -1971,11 +1978,11 @@ public class ChurchDetailsActivity extends ActivityManagePermission implements
         mBottomSheetDialog = new BottomSheetDialog(ChurchDetailsActivity.this);
         View sheetView = getLayoutInflater().inflate(R.layout.bottom_sheets_main_layout, null);
         mBottomSheetDialog.setContentView(sheetView);
-        hideSheetDialogButton = (LinearLayout) sheetView.findViewById(R.id.fragment_history_bottom_sheet_hide);
-        editSheetDialogButton = (LinearLayout) sheetView.findViewById(R.id.fragment_history_bottom_sheet_edit);
-        deleteSheetDialogButton = (LinearLayout) sheetView.findViewById(R.id.fragment_history_bottom_sheet_del);
-        favSheetDialogButton = (LinearLayout) sheetView.findViewById(R.id.fragment_history_bottom_sheet_fav);
-        reportSheetDialogButton = (LinearLayout) sheetView.findViewById(R.id.fragment_history_bottom_sheet_report);
+        hideSheetDialogButton = sheetView.findViewById(R.id.fragment_history_bottom_sheet_hide);
+        editSheetDialogButton = sheetView.findViewById(R.id.fragment_history_bottom_sheet_edit);
+        deleteSheetDialogButton = sheetView.findViewById(R.id.fragment_history_bottom_sheet_del);
+        favSheetDialogButton = sheetView.findViewById(R.id.fragment_history_bottom_sheet_fav);
+        reportSheetDialogButton = sheetView.findViewById(R.id.fragment_history_bottom_sheet_report);
         editSheetDialogButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

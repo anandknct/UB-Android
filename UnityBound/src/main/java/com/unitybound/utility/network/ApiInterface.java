@@ -333,6 +333,11 @@ public interface ApiInterface {
     Call<JoinByAccessCodeResponse> addChurch(@PartMap() Map<String, RequestBody> partMap,
                                              @Part MultipartBody.Part file);
 
+    @Multipart
+    @POST("edit-church")
+    Call<JoinByAccessCodeResponse> editChurchData(@PartMap() Map<String, RequestBody> partMap,
+                                             @Part MultipartBody.Part file);
+
     @FormUrlEncoded
     @POST("leave-church")
     Call<LeaveChurchResponse> leaveChurch(@Field("api_key") String api_key,

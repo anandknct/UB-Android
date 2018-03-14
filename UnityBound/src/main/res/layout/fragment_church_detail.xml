@@ -93,54 +93,53 @@
             </RelativeLayout>
 
             <!--Joined Header-->
-            <LinearLayout
-                android:id="@+id/top_linear_joined"
+
+            <TableLayout
                 android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:layout_below="@+id/rr_top"
+                android:layout_height="wrap_content"
                 android:background="@color/color_toolbar"
                 android:orientation="horizontal"
+                android:stretchColumns="*"
                 android:visibility="visible">
 
-                <TextView
-                    android:id="@+id/tv_membership_req_joined"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_weight="1.5"
-                    android:gravity="left|center_vertical"
-                    android:padding="@dimen/dimen_five"
-                    android:paddingLeft="@dimen/dimen_five"
-                    android:text="Membership Request"
-                    android:textAllCaps="true"
-                    android:textColor="@color/unselected_text_color"
-                    android:textSize="12dp" />
+                <TableRow
+                    android:paddingBottom="@dimen/_10sdp"
+                    android:paddingTop="@dimen/_10sdp">
 
-                <TextView
-                    android:id="@+id/tv_blocked_joined"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.8"
-                    android:gravity="right|center_vertical"
-                    android:padding="@dimen/dimen_five"
-                    android:text="Blocked User"
-                    android:textAllCaps="true"
-                    android:textColor="@color/unselected_text_color"
-                    android:textSize="12dp" />
+                    <TextView
+                        android:id="@+id/tv_membership_req_joined"
+                        android:text="Requests"
+                        android:textAlignment="center"
+                        android:textAllCaps="true"
+                        android:textColor="@color/unselected_text_color"
+                        android:textSize="12dp" />
 
-                <TextView
-                    android:id="@+id/tv_setting_joined"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.7"
-                    android:gravity="right|center_vertical"
-                    android:padding="@dimen/dimen_five"
-                    android:text="Setting"
-                    android:textAllCaps="true"
-                    android:textColor="@color/unselected_text_color"
-                    android:textSize="12dp" />
+                    <TextView
+                        android:id="@+id/tv_blocked_joined"
+                        android:text="Blocked User"
+                        android:textAlignment="center"
+                        android:textAllCaps="true"
+                        android:textColor="@color/unselected_text_color"
+                        android:textSize="12dp" />
 
-            </LinearLayout>
+                    <TextView
+                        android:id="@+id/TvBlockedIntive"
+                        android:text="Invite"
+                        android:textAlignment="center"
+                        android:textAllCaps="true"
+                        android:textColor="@color/unselected_text_color"
+                        android:textSize="12dp" />
+
+                    <TextView
+                        android:id="@+id/tv_setting_joined"
+                        android:text="Setting"
+                        android:textAlignment="center"
+                        android:textAllCaps="true"
+                        android:textColor="@color/unselected_text_color"
+                        android:textSize="12dp" />
+
+                </TableRow>
+            </TableLayout>
             <!-- -&##45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;#45;&#45;&#45;&#;&#45;&#45;&#45;&#45;-->
             <RelativeLayout
                 android:id="@+id/rr_description_layout"
@@ -159,6 +158,18 @@
                     android:text="Bibble Conversation"
                     android:textSize="14sp"
                     android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/BtnEditAbout"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:background="@color/color_orange"
+                    android:paddingLeft="@dimen/_5sdp"
+                    android:paddingRight="@dimen/_5sdp"
+                    android:text="Edit" />
 
                 <TextView
                     android:id="@+id/tv_poster_name"
@@ -237,8 +248,8 @@
                 layout="@layout/church_detail_library_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/_35sdp"
                 android:layout_below="@+id/top_linear_joined"
+                android:layout_marginBottom="@dimen/_35sdp"
                 android:visibility="gone" />
 
         </LinearLayout>
@@ -255,78 +266,80 @@
         android:orientation="horizontal"
         android:visibility="gone">
 
-        <TextView
-            android:id="@+id/tv_about_label"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1"
-            android:gravity="center_horizontal|center_vertical"
-            android:padding="@dimen/dimen_five"
-            android:text="About"
-            android:textColor="@color/color_white" />
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/_10sdp"
+            android:paddingTop="@dimen/_10sdp"
+            android:stretchColumns="*">
 
-        <TextView
-            android:id="@+id/tv_member_label"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_horizontal|center_vertical"
-            android:padding="@dimen/dimen_five"
-            android:text="Members"
-            android:textColor="@color/unselected_text_color" />
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/tv_about_label"
+                    android:text="About"
+                    android:textAlignment="center"
+                    android:textColor="@color/color_white" />
+
+                <TextView
+                    android:id="@+id/tv_member_label"
+                    android:text="Members"
+                    android:textAlignment="center"
+                    android:textColor="@color/unselected_text_color" />
+            </TableRow>
+        </TableLayout>
     </LinearLayout>
 
     <!--joined footer-->
     <LinearLayout
         android:id="@+id/bottom_linear_joined"
         android:layout_width="match_parent"
-        android:layout_height="35dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@color/color_toolbar"
         android:orientation="horizontal"
         android:visibility="gone">
 
-        <TextView
-            android:id="@+id/tv_post_label_joined"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"
-            android:layout_weight="1"
-            android:gravity="center_horizontal|center_vertical"
-            android:padding="@dimen/dimen_five"
-            android:text="Post"
-            android:textColor="@color/color_white" />
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="@dimen/_10sdp"
+            android:paddingTop="@dimen/_10sdp"
+            android:stretchColumns="*">
 
-        <TextView
-            android:id="@+id/tv_about_label_joined"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_horizontal|center_vertical"
-            android:padding="@dimen/dimen_five"
-            android:text="About"
-            android:textColor="@color/unselected_text_color" />
+            <TableRow>
 
-        <TextView
-            android:id="@+id/tv_library_joined"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_horizontal|center_vertical"
-            android:padding="@dimen/dimen_five"
-            android:text="Library"
-            android:textColor="@color/unselected_text_color" />
+                <TextView
+                    android:id="@+id/tv_post_label_joined"
+                    android:text="Post"
+                    android:textAlignment="center"
+                    android:textColor="@color/color_white" />
 
-        <TextView
-            android:id="@+id/tv_member_joined"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_horizontal|center_vertical"
-            android:padding="@dimen/dimen_five"
-            android:text="Members"
-            android:textColor="@color/unselected_text_color" />
+                <TextView
+                    android:id="@+id/TvPostPhoto"
+                    android:text="Photos"
+                    android:textAlignment="center"
+                    android:textColor="@color/unselected_text_color" />
+
+                <TextView
+                    android:id="@+id/tv_about_label_joined"
+                    android:text="About"
+                    android:textAlignment="center"
+                    android:textColor="@color/unselected_text_color" />
+
+                <TextView
+                    android:id="@+id/tv_library_joined"
+                    android:text="Library"
+                    android:textAlignment="center"
+                    android:textColor="@color/unselected_text_color" />
+
+                <TextView
+                    android:id="@+id/tv_member_joined"
+                    android:text="Members"
+                    android:textAlignment="center"
+                    android:textColor="@color/unselected_text_color" />
+            </TableRow>
+        </TableLayout>
     </LinearLayout>
 
     <android.support.design.widget.FloatingActionButton
@@ -335,10 +348,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:layout_marginBottom="@dimen/_35sdp"
-        app:backgroundTint="@color/fab_bg"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:background="@color/fab_bg"
-        android:src="@drawable/ic_create_post" />
+        android:src="@drawable/ic_create_post"
+        app:backgroundTint="@color/fab_bg" />
 
 </RelativeLayout>
