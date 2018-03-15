@@ -28,6 +28,7 @@ import com.unitybound.BuildConfig;
 import com.unitybound.R;
 import com.unitybound.account.activity.AddPostActivity;
 import com.unitybound.account.beans.hidePost.HidePostResponse;
+import com.unitybound.main.MainActivity;
 import com.unitybound.main.home.fragment.activity.FeedsCommentActivity;
 import com.unitybound.main.home.fragment.adapter.HomeFeedsAdapter;
 import com.unitybound.main.home.fragment.adapter.MyFeedsSpinnerAdapter;
@@ -53,6 +54,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Objects;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -64,8 +66,7 @@ import retrofit2.Response;
 /**
  * Live feed Fragment
  */
-public class HomeFeedsFragment extends Fragment implements
-        HomeFeedsAdapter.IListAdapterCallback, CustomDialog.IDialogListener {
+public class HomeFeedsFragment extends Fragment implements HomeFeedsAdapter.IListAdapterCallback, CustomDialog.IDialogListener {
 
     private static final String DEFAULT_FILTER = "Everyone";
     @BindView(R.id.recycler_view)
@@ -185,9 +186,7 @@ public class HomeFeedsFragment extends Fragment implements
         mFilterTypeArrayList.add("Testimonial");
         TypedArray imgs = getResources().obtainTypedArray(R.array.pinner_imgs);
 
-        MyFeedsSpinnerAdapter spAdapter = new MyFeedsSpinnerAdapter(
-                getContext(),
-                mFilterTypeArrayList, imgs);
+        MyFeedsSpinnerAdapter spAdapter = new MyFeedsSpinnerAdapter(getContext(), mFilterTypeArrayList, imgs);
         recyclerView.addItemDecoration(new SimpleDividerItemDecoration(getActivity()));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         spFeedsType.setAdapter(spAdapter);
@@ -301,6 +300,16 @@ public class HomeFeedsFragment extends Fragment implements
             public void onClick(View v) {
                 // Delete code here;
                 mBottomSheetDialog.dismiss();
+                if (allposts != null) {
+
+                    CustomDialog customDialog1 = new CustomDialog(getActivity(), HomeFeedsFragment.this,
+                            "Delete Post Alert", "Are you sure to delete this post ?",
+                            "delete");
+                    if (customDialog1.isShowing()) {
+                        customDialog1.dismiss();
+                    }
+                    customDialog1.show();
+                }
             }
         });
         favSheetDialogButton.setOnClickListener(new View.OnClickListener() {
@@ -574,8 +583,7 @@ public class HomeFeedsFragment extends Fragment implements
                     if (loginResponse.getAllposts() != null) {
                         allposts = loginResponse.getAllposts();
                         if (allposts != null && allposts.size() > 0) {
-                            HomeFeedsAdapter adapter = new HomeFeedsAdapter(getActivity(), allposts,
-                                    HomeFeedsFragment.this);
+                            HomeFeedsAdapter adapter = new HomeFeedsAdapter(getActivity(), allposts, HomeFeedsFragment.this);
                             recyclerView.setAdapter(adapter);
                             adapter.notifyDataSetChanged();
                             if (mLastSelectedPostion!=0) {
@@ -1136,17 +1144,16 @@ public class HomeFeedsFragment extends Fragment implements
         if (param.equalsIgnoreCase("PRAYER_ANSWER_COMMENTS")) {
             answerPrayerPost(message, mPostId4Answer);
         }
+        if (param.equalsIgnoreCase("delete")) {
+            deletePost(allposts.get(mForSheetPosition).getId(),mForSheetPosition);
+        }
     }
 
     private void answerPrayerPost(String prayerAnswer, String postId) {
 
         showProgressDialog();
-        ApiInterface apiService =
-                ApiClient.getClient().create(ApiInterface.class);
-        Call<PrayerAnswerResponse> call = apiService.PrayerAnsweredRequest(
-                BuildConfig.API_KEY,
-                Util.loadPrefrence(Util.PREF_USER_ID, "", getActivity()),
-                postId, prayerAnswer);
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+        Call<PrayerAnswerResponse> call = apiService.PrayerAnsweredRequest(BuildConfig.API_KEY, Util.loadPrefrence(Util.PREF_USER_ID, "", getActivity()), postId, prayerAnswer);
 
         call.enqueue(new Callback<PrayerAnswerResponse>() {
 
@@ -1189,17 +1196,14 @@ public class HomeFeedsFragment extends Fragment implements
                                 try {
                                     JSONObject jObjError = new JSONObject(response.errorBody().string());
                                     Gson gson = new Gson();
-                                    ErrorResponse error = gson.fromJson(jObjError.toString(),
-                                            ErrorResponse.class);
+                                    ErrorResponse error = gson.fromJson(jObjError.toString(), ErrorResponse.class);
                                     String msg = null;
                                     if (error != null) {
                                         msg = error.getMsg();
                                     } else {
                                         msg = "Something went wrong";
                                     }
-                                    new CustomDialog(getActivity(), null, "",
-                                            msg,
-                                            "ONFAILED").show();
+                                    new CustomDialog(getActivity(), null, "", msg, "ONFAILED").show();
                                     hideProgressDialog();
 
                                 } catch (JSONException | IOException e) {
@@ -1327,6 +1331,99 @@ public class HomeFeedsFragment extends Fragment implements
                                         body1.getMsg().length() > 0 ?
                                                 body1.getMsg()
                                                 : "Something went wrong" : "Something went wrong",
+                                "ONFAILED").show();
+                        hideProgressDialog();
+                        break;
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<HidePostResponse> call, Throwable t) {
+                // Log error here since request failed
+                Log.e("nik", t.toString());
+                hideProgressDialog();
+                new CustomDialog(getActivity(), null, "",
+                        t.getMessage() != null ?
+                                t.getMessage().length() > 0 ?
+                                        t.getMessage()
+                                        : "Something went wrong" : "Something went wrong",
+                        "ONFAILED").show();
+            }
+        });
+
+    }
+
+    private void deletePost(String postId, final int position) {
+
+        showProgressDialog();
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+        callHidePost = apiService.deletePost(BuildConfig.API_KEY, Util.loadPrefrence(Util.PREF_USER_ID, "", getActivity()), postId);
+
+        callHidePost.enqueue(new Callback<HidePostResponse>() {
+
+            @Override
+            public void onResponse(Call<HidePostResponse> call, Response<HidePostResponse> response) {
+                hideProgressDialog();
+                if (response.body() != null) {
+                    Log.d("nik", response.body().toString());
+                }
+                String sCode = response.code() + "";
+                String c = String.valueOf(sCode.charAt(0));
+
+                switch (c) {
+                    case "2": // TODO Success response  task here and progress loader
+                        HidePostResponse likePostResponse = response.body();
+                        Toast.makeText(getActivity(), "" + likePostResponse.getMsg(), Toast.LENGTH_SHORT).show();
+
+                        if (allposts != null) {
+                            allposts.remove(position);
+                        }
+                        recyclerView.getAdapter().notifyItemRemoved(position);
+                        break;
+                    case "4":
+                        if (sCode.equals("401")) {
+                            CustomDialog customDialog1 = new CustomDialog(getActivity(), null, "", "", "ONFAILED");
+                            if (customDialog1.isShowing()) {
+                                customDialog1.dismiss();
+                            }
+                            customDialog1.show();
+                        } else {
+                            if (response.body() == null) {
+                                try {
+                                    JSONObject jObjError = new JSONObject(response.errorBody().string());
+                                    Gson gson = new Gson();
+                                    ErrorResponse error = gson.fromJson(jObjError.toString(), ErrorResponse.class);
+                                    String msg = null;
+                                    if (error != null) {
+                                        msg = error.getMsg();
+                                    } else {
+                                        msg = "Something went wrong";
+                                    }
+                                    new CustomDialog(getActivity(), null, "", msg, "ONFAILED").show();
+                                    hideProgressDialog();
+
+                                } catch (JSONException | IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+                        break;
+                    case "5": // TODO Server Error and display retry
+                        HidePostResponse loginResponse1 = response.body();
+                        CustomDialog customDialog1 = new CustomDialog(getActivity(), null, "", loginResponse1.getMsg(), "ONFAILED");
+                        if (customDialog1.isShowing()) {
+                            customDialog1.dismiss();
+                        }
+                        customDialog1.show();
+                        hideProgressDialog();
+                        break;
+
+                    default: // TODO Handle error message and show dialog here
+                        HidePostResponse body1 = response.body();
+                        new CustomDialog(getActivity(), null, "",
+                                body1.getMsg() != null ? body1.getMsg().length() > 0 ? body1.getMsg() : "Something went wrong" : "Something went wrong",
                                 "ONFAILED").show();
                         hideProgressDialog();
                         break;

@@ -166,7 +166,7 @@ public class AddEventActivity extends ActivityManagePermission implements Custom
             btnCreate.setText("Update");
         }
         setUpToolbarLayout();
-        recyclerView = (RecyclerView) findViewById(R.id.rv_list_layout);
+        recyclerView = findViewById(R.id.rv_list_layout);
 //        getEventsDetailAboutRequest();
 
         if (Util.checkNetworkAvailablity(AddEventActivity.this)) {
@@ -876,13 +876,9 @@ public class AddEventActivity extends ActivityManagePermission implements Custom
     private void getEventsDetailAboutRequest() {
         showProgressDialog();
 
-        ApiInterface apiService =
-                ApiClient.getClient().create(ApiInterface.class);
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         String userId = Util.loadPrefrence(Util.PREF_USER_ID, "", AddEventActivity.this);
-        callProfileFriends = apiService.profileFriendRequestList(
-                BuildConfig.API_KEY,
-                userId,
-                userId);
+        callProfileFriends = apiService.profileFriendRequestList(BuildConfig.API_KEY, userId, userId);
 
         callProfileFriends.enqueue(new Callback<ProfileFriendsResponse>() {
 
@@ -900,9 +896,7 @@ public class AddEventActivity extends ActivityManagePermission implements Custom
                     case "2": // TODO Success response  task here and progress loader
                         ProfileFriendsResponse profileFriendsResponse = response.body();
                         if (profileFriendsResponse.getData() != null && profileFriendsResponse.getStatus().equalsIgnoreCase("success")) {
-                            adapter =
-                                    new ProfileFriendsAddEventAdapter(AddEventActivity.this,
-                                            profileFriendsResponse.getData().getFriends());
+                            adapter = new ProfileFriendsAddEventAdapter(AddEventActivity.this, profileFriendsResponse.getData().getFriends());
 
                             LinearLayoutManager lLayout = new LinearLayoutManager(AddEventActivity.this);
                             recyclerView.setLayoutManager(lLayout);

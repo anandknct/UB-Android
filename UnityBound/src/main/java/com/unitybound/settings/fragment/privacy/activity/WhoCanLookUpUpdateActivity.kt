@@ -161,9 +161,7 @@ class WhoCanLookUpUpdateActivity : AppCompatActivity() {
     }
 
     fun hideProgressDialog() {
-        if (mProgressDialog != null && mProgressDialog.isShowing) {
-            mProgressDialog.dismiss()
-        }
+        mProgressDialog.dismiss()
     }
 
 

@@ -29,9 +29,9 @@ class PrivacySettingsActivity : AppCompatActivity() {
     }
 
     private fun getAllSettingsAndSetonUI() {
-        val mSettingsData = intent.getParcelableExtra<UsersSettingsResponse>("data")
-//        tv_name.tv_look_up = mSettingsData.data.userInfo.firstName?.toString()
-//        tv_email.text = mSettingsData.data.userInfo.email?.toString()
+        /*val mSettingsData = intent.getParcelableExtra<UsersSettingsResponse>("data")
+        tv_name.tv_look_up = mSettingsData.data.userInfo.firstName?.toString()
+        tv_email.text = mSettingsData.data.userInfo.email?.toString()*/
     }
 
     fun initToolbar () {

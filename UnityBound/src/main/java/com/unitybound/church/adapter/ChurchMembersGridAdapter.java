@@ -31,6 +31,7 @@ public class ChurchMembersGridAdapter extends RecyclerView.Adapter<RecyclerView.
     private List<ChurchUserDetailsItem> mViewListRecord;
     private List<com.unitybound.church.beans.churchJoinedMembers.ChurchUserDetailsItem> mJoinedMembers = null;
     int LIST_TYPE = 0;
+    private String ChurchAddedBy = "";
 
 //    public interface AdapterClickListener {
 //        void onBlockMemberClick(String blockedUserId, int positionToRemove);
@@ -49,11 +50,13 @@ public class ChurchMembersGridAdapter extends RecyclerView.Adapter<RecyclerView.
 
     public ChurchMembersGridAdapter(ChurchDetailsActivity context,
                                     List<ChurchUserDetailsItem> allChurchMembers,
-                                    IchurchDetailMemberRow adapterClickListener) {
+                                    IchurchDetailMemberRow adapterClickListener, String churchadd) {
         this.context = context;
         this.mViewListRecord = allChurchMembers;
         this.ichurchDetailMemberRow = adapterClickListener;
         LIST_TYPE = 0;
+
+        ChurchAddedBy = churchadd;
     }
 
     public ChurchMembersGridAdapter(Context churchDetailsActivity,
@@ -122,6 +125,16 @@ public class ChurchMembersGridAdapter extends RecyclerView.Adapter<RecyclerView.
                 .skipMemoryCache(false).centerCrop()
                 .into(holder.ivIcon);
 
+        if(ChurchAddedBy.equals(mData.getId())) {
+            holder.iv_delete.setVisibility(View.GONE);
+            holder.iv_disable.setVisibility(View.GONE);
+        }
+        else
+        {
+            holder.iv_delete.setVisibility(View.VISIBLE);
+            holder.iv_disable.setVisibility(View.VISIBLE);
+        }
+
         holder.iv_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -181,12 +194,12 @@ public class ChurchMembersGridAdapter extends RecyclerView.Adapter<RecyclerView.
          */
         public ViewHolder(View view) {
             super(view);
-            ivIcon = (ImageView) view.findViewById(R.id.iv_icon);
-            tv_address = (TextView) view.findViewById(R.id.tv_address);
-            tv_name = (TextView) view.findViewById(R.id.tv_name);
-            tv_country = (TextView) view.findViewById(R.id.tv_country);
-            iv_disable = (ImageView) view.findViewById(R.id.iv_disable);
-            iv_delete = (ImageView) view.findViewById(R.id.iv_delete);
+            ivIcon = view.findViewById(R.id.iv_icon);
+            tv_address = view.findViewById(R.id.tv_address);
+            tv_name = view.findViewById(R.id.tv_name);
+            tv_country = view.findViewById(R.id.tv_country);
+            iv_disable = view.findViewById(R.id.iv_disable);
+            iv_delete = view.findViewById(R.id.iv_delete);
         }
     }
 

@@ -237,6 +237,13 @@ public interface ApiInterface {
                                            @Field("user_id") String username);
 
     @FormUrlEncoded
+    @POST("invite-members")
+    Call<DeleteChurchMemberResponse> churchSendInvite(@Field("api_key") String api_key,
+                                              @Field("user_id") String userId,
+                                              @Field("church_id") String mCHURCH_ID,
+                                              @Field("churchFriends") String FrondJsonString);
+
+    @FormUrlEncoded
     @POST("near-me")
     Call<ChurchListResponse> getNearByChurchList(@Field("api_key") String api_key,
                                                 @Field("user_id") String username,
@@ -725,6 +732,12 @@ public interface ApiInterface {
     @FormUrlEncoded
     @POST("hide-post")
     Call<HidePostResponse> hidePost(@Field("api_key") String api_key,
+                                    @Field("user_id") String username,
+                                    @Field("post_id") String post_id);
+
+    @FormUrlEncoded
+    @POST("delete-post")
+    Call<HidePostResponse> deletePost(@Field("api_key") String api_key,
                                     @Field("user_id") String username,
                                     @Field("post_id") String post_id);
 

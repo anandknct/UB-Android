@@ -107,8 +107,7 @@ public class HomeFeedsAdapter extends RecyclerView.Adapter<HomeFeedsAdapter.MyVi
      * @param allposts
      * @param allProductsActivity
      */
-    public HomeFeedsAdapter(Context mContext, ArrayList<AllPostsItem> allposts,
-                            IListAdapterCallback allProductsActivity) {
+    public HomeFeedsAdapter(Context mContext, ArrayList<AllPostsItem> allposts, IListAdapterCallback allProductsActivity) {
         this.mContext = mContext;
         this.mAllposts = allposts;
         this.allProductsActivity = allProductsActivity;
@@ -197,29 +196,39 @@ public class HomeFeedsAdapter extends RecyclerView.Adapter<HomeFeedsAdapter.MyVi
             holder.tv_postedBy_name.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    allProductsActivity.onUserNameClickListner(mAllposts.get(position).getPostBy().getId()+""
-                            , position);
+                    allProductsActivity.onUserNameClickListner(mAllposts.get(position).getPostBy().getId()+"", position);
                 }
             });
             final AllPostsItem mAllPostItem = mAllposts.get(position);
             PostBy mPostBy = mAllposts.get(position).getPostBy();
             holder.tv_postedBy_name.setText(mPostBy.getName());
             try {
-                holder.tv_time_ago.setReferenceTime(
-                        (dateFormat.parse(mAllPostItem.getCreatedAt()).getTime()));
+                holder.tv_time_ago.setReferenceTime((dateFormat.parse(mAllPostItem.getCreatedAt()).getTime()));
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            holder.tv_like_counts.setText(new StringBuilder()
-                    .append(mAllPostItem.getPostLike()).append(" likes and ").toString());
-            holder.tv_comment_counts.setText(new StringBuilder()
-                    .append(mAllPostItem.getPostComments()).append(" comments").toString());
+            holder.tv_like_counts.setText(new StringBuilder().append(mAllPostItem.getPostLike()).append(" likes and ").toString());
+            holder.tv_comment_counts.setText(new StringBuilder().append(mAllPostItem.getPostComments()).append(" comments").toString());
 
-            if (mAllPostItem!=null && mAllPostItem.getPrayerAnswer()!=0 && mAllPostItem.getPrayerAnswer()>=1) {
+
+            if (mAllPostItem.getPrayerAnswer() != 0 && mAllPostItem.getPrayerAnswer() >= 1) {
                 holder.answerLayout.setVisibility(View.VISIBLE);
                 holder.tvAnswerPrayer.setText(Util.isNull(mAllPostItem.getPrayerAnswerComment().trim()));
+                holder.id_dove_icon.setImageResource(R.drawable.ic_dove_active);
+                holder.id_dove_icon.setClickable(false);
+                holder.id_dove_icon.setOnClickListener(null);
             } else {
                 holder.answerLayout.setVisibility(View.GONE);
+                holder.id_dove_icon.setImageResource(R.drawable.ic_dove);
+                holder.id_dove_icon.setClickable(true);
+                holder.id_dove_icon.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (mAllPostItem.getPostBy().getId().equalsIgnoreCase(Util.loadPrefrence(Util.PREF_USER_ID, "", mContext))) {
+                            allProductsActivity.onDoveClickListener(mAllPostItem.getId(), position);
+                        }
+                    }
+                });
             }
 
             holder.tv_description_header.setVisibility(View.GONE);
@@ -252,9 +261,7 @@ public class HomeFeedsAdapter extends RecyclerView.Adapter<HomeFeedsAdapter.MyVi
 
             changePostTypeIconVisibility(holder, mAllPostItem.getPostType());
 
-            if (mAllPostItem.getPostBy().getId()
-                    .equalsIgnoreCase(
-                            Util.loadPrefrence(Util.PREF_USER_ID, "", mContext)) && mAllPostItem.getPostType().equalsIgnoreCase("prayer")) {
+            if (mAllPostItem.getPostBy().getId().equalsIgnoreCase(Util.loadPrefrence(Util.PREF_USER_ID, "", mContext)) && mAllPostItem.getPostType().equalsIgnoreCase("prayer")) {
                 holder.id_dove_icon.setVisibility(View.VISIBLE);
                 holder.id_bookmark_icon.setVisibility(View.GONE);
             } else if (mAllPostItem.getPostType().equalsIgnoreCase("prayer")){
@@ -262,23 +269,13 @@ public class HomeFeedsAdapter extends RecyclerView.Adapter<HomeFeedsAdapter.MyVi
                 holder.id_bookmark_icon.setVisibility(View.VISIBLE);
             }
 
+
+
             if (mAllPostItem.isBookmarkLocal()) {
                 holder.id_bookmark_icon.setImageResource(R.drawable.ic_bookmark_active);
             } else {
                 holder.id_bookmark_icon.setImageResource(R.drawable.ic_bookmark);
             }
-
-
-            holder.id_dove_icon.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (mAllPostItem.getPostBy().getId()
-                            .equalsIgnoreCase(
-                                    Util.loadPrefrence(Util.PREF_USER_ID, "", mContext))) {
-                        allProductsActivity.onDoveClickListener(mAllPostItem.getId(), position);
-                    }
-                }
-            });
 
             holder.id_bookmark_icon.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -322,8 +319,7 @@ public class HomeFeedsAdapter extends RecyclerView.Adapter<HomeFeedsAdapter.MyVi
                         mAllposts.get(position).setPostLike(mAllposts.get(position).getPostLike() + 1);
                     }
 
-                    holder.tv_like_counts.setText(new StringBuilder()
-                            .append(mAllposts.get(position).getPostLike()).append(" likes and ").toString());
+                    holder.tv_like_counts.setText(new StringBuilder().append(mAllposts.get(position).getPostLike()).append(" likes and ").toString());
 
                     allProductsActivity.onLikeClickListner(mAllposts.get(position), position);
                 }
@@ -367,19 +363,31 @@ public class HomeFeedsAdapter extends RecyclerView.Adapter<HomeFeedsAdapter.MyVi
             holder.tv_description_header.setVisibility(View.GONE);
             holder.tv_description_secondary.setText(dataItem.getPost());
 
-            if (dataItem!=null && dataItem.getPrayerAnswer()!=0 && dataItem.getPrayerAnswer()>=1) {
+            if (dataItem.getPrayerAnswer() != 0 && dataItem.getPrayerAnswer() >= 1) {
                 holder.answerLayout.setVisibility(View.VISIBLE);
                 holder.tvAnswerPrayer.setText(Util.isNull(dataItem.getPrayerAnswerComment().trim()));
+                holder.id_dove_icon.setImageResource(R.drawable.ic_dove_active);
+                holder.id_dove_icon.setClickable(false);
+                holder.id_dove_icon.setOnClickListener(null);
             } else {
                 holder.answerLayout.setVisibility(View.GONE);
+                holder.id_dove_icon.setImageResource(R.drawable.ic_dove);
+                holder.id_dove_icon.setClickable(true);
+                holder.id_dove_icon.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if (dataItem.getPostBy().getId().equalsIgnoreCase(Util.loadPrefrence(Util.PREF_USER_ID, "", mContext))) {
+                            allProductsActivity.onDoveClickListener(dataItem.getId(), position);
+                        }
+                    }
+                });
             }
 
 //            Log.e("nik", "User IMAGE + " + mPostBy.getProfileImage());
 //            Log.e("nik", "Post IMAGE + " + dataItem.getPostImage());
             changePostTypeIconVisibility(holder, dataItem.getPostType());
 
-            if (dataItem.getPostBy().getId()
-                    .equalsIgnoreCase(
+            if (dataItem.getPostBy().getId().equalsIgnoreCase(
                             Util.loadPrefrence(Util.PREF_USER_ID, "", mContext))  && dataItem.getPostType().equalsIgnoreCase("prayer")) {
                 holder.id_dove_icon.setVisibility(View.VISIBLE);
                 holder.id_bookmark_icon.setVisibility(View.GONE);
@@ -397,9 +405,7 @@ public class HomeFeedsAdapter extends RecyclerView.Adapter<HomeFeedsAdapter.MyVi
             holder.id_dove_icon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (dataItem.getPostBy().getId()
-                            .equalsIgnoreCase(
-                                    Util.loadPrefrence(Util.PREF_USER_ID, "", mContext))) {
+                    if (dataItem.getPostBy().getId().equalsIgnoreCase(Util.loadPrefrence(Util.PREF_USER_ID, "", mContext))) {
                         allProductsActivity.onDoveClickListener(dataItem.getId(), position);
                     }
                 }
@@ -414,8 +420,7 @@ public class HomeFeedsAdapter extends RecyclerView.Adapter<HomeFeedsAdapter.MyVi
 
             if (dataItem.getPostImage() != null && dataItem.getPostImage().length() > 0) {
                 holder.iv_image_prev.setVisibility(View.VISIBLE);
-                Glide.with(mContext)
-                        .load(dataItem.getPostImage())    // you can pass url too
+                Glide.with(mContext).load(dataItem.getPostImage())    // you can pass url too
                         .asBitmap()
                         .into(new SimpleTarget<Bitmap>() {
                             @Override

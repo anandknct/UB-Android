@@ -40,6 +40,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -51,6 +52,7 @@ import com.thebrownarrow.permissionhelper.PermissionUtils;
 import com.unitybound.BuildConfig;
 import com.unitybound.R;
 import com.unitybound.account.activity.AddPostActivity;
+import com.unitybound.account.beans.ProfileFriendsResponse;
 import com.unitybound.account.beans.hidePost.HidePostResponse;
 import com.unitybound.church.activity.EditChurchActivity;
 import com.unitybound.church.adapter.ChurchBlockedUsersListAdapter;
@@ -79,7 +81,10 @@ import com.unitybound.church.beans.refreshAccessCode.RefreshAccessCodeResponse;
 import com.unitybound.church.listners.IchurchBlockUsers;
 import com.unitybound.church.listners.IchurchDetailMemberRow;
 import com.unitybound.church.listners.MembershipRequestListner;
+import com.unitybound.events.fragment.activity.AddEventActivity;
 import com.unitybound.events.fragment.adapter.EventsListAdapter;
+import com.unitybound.events.fragment.adapter.ProfileFriendsAddEventAdapter;
+import com.unitybound.events.fragment.beans.addEvent.AddEventResponse;
 import com.unitybound.main.home.fragment.adapter.HomeFeedsAdapter;
 import com.unitybound.main.home.fragment.beans.favUnfav.FavouriteUnfavResponse;
 import com.unitybound.main.home.fragment.beans.like.LikePostResponse;
@@ -125,9 +130,8 @@ public class ChurchDetailsActivity extends ActivityManagePermission implements
     private static final int FILE_CHOOSER = 222;
     private ChurchBlockedUsersListAdapter adapter;
     private ChurchLibraryAdapter churchLibraryAdapter = null;
-    private TextView tv_about_label = null, tv_member_label = null;
+    private TextView tv_about_label = null, tv_member_label = null, TvIntiveFrnd = null, tvJoin = null;
     private ImageView iv_church_image = null;
-    private TextView tvJoin = null;
     private ProgressDialog mProgressDialog = null;
     private RecyclerView rv_grid_layout = null;
     private String mCHURCH_ID = null;
@@ -139,8 +143,8 @@ public class ChurchDetailsActivity extends ActivityManagePermission implements
     private ChurchDetailResponse churchDetailResponse = null;
     private Call<JoinChurchResponse> callJoin = null;
     private Call<JoinByAccessCodeResponse> callJoinByCode;
-    private LinearLayout bottomLinearNotJoin = null, bottomLinearJoined = null;
-    private RelativeLayout top_linear_joined = null;
+    private LinearLayout bottomLinearNotJoin = null, bottomLinearJoined = null, LinLayInviteMember = null;
+    private TableLayout top_linear_joined = null;
     private TextView tv_post_label_joined = null, tv_about_label_joined = null,
             tv_library_joined = null, tv_member_joined = null;
     private TextView tv_membership_req_joined = null, tv_blocked_joined = null, tv_setting_joined = null;
@@ -180,7 +184,12 @@ public class ChurchDetailsActivity extends ActivityManagePermission implements
     private Call<LibraryListResponse> callLibrary = null;
     private List<ChurchDocumentItem> allChurchDocuments = null;
     private EditText edt_upload_tittle = null, edt_tittle = null;
-    private Button BtnEditAbout = null;
+    private Button BtnEditAbout = null, BtnInviteMember = null;
+
+    private Call<ProfileFriendsResponse> callProfileFriends = null;
+    private Call<DeleteChurchMemberResponse> callInviteUsers = null;
+    private RecyclerView recyclerView;
+    private ProfileFriendsAddEventAdapter ProfileAdapter = null;
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
@@ -228,8 +237,7 @@ public class ChurchDetailsActivity extends ActivityManagePermission implements
         if (Util.checkNetworkAvailablity(ChurchDetailsActivity.this)) {
             getChurchDetailRequest(mCHURCH_ID);
         } else {
-            CustomDialog customDialog1 = new CustomDialog(ChurchDetailsActivity.this, null,
-                    "", getResources().getString(R.string.alt_checknet), "ONFAILED");
+            CustomDialog customDialog1 = new CustomDialog(ChurchDetailsActivity.this, null, "", getResources().getString(R.string.alt_checknet), "ONFAILED");
             if (customDialog1.isShowing()) {
                 customDialog1.dismiss();
             }
@@ -269,6 +277,7 @@ public class ChurchDetailsActivity extends ActivityManagePermission implements
         iv_church_image = findViewById(R.id.iv_church_image);
         iv_church_image.setOnClickListener(this);
         iv_edit_cover = findViewById(R.id.iv_edit_cover);
+        TvIntiveFrnd  = findViewById(R.id.TvIntiveFrnd);
         iv_edit_cover.setOnClickListener(this);
         mProgressDialog = new ProgressDialog(this, R.style.newDialog);
 
@@ -290,6 +299,7 @@ public class ChurchDetailsActivity extends ActivityManagePermission implements
         rr_description_layout = findViewById(R.id.rr_description_layout);
         settings_layout = findViewById(R.id.settings_layout);
         library_layout = findViewById(R.id.library_layout);
+        LinLayInviteMember = findViewById(R.id.LinLayInviteMember);
         // Not Joined bottom layout below
         tv_about_label = findViewById(R.id.tv_about_label);
         tv_member_label = findViewById(R.id.tv_member_label);
@@ -312,12 +322,21 @@ public class ChurchDetailsActivity extends ActivityManagePermission implements
         edt_code = findViewById(R.id.edt_code);
         btn_copy_code = findViewById(R.id.btn_copy_code);
         tv_refresh_code = findViewById(R.id.tv_refresh_code);
+        recyclerView = findViewById(R.id.rv_list_layout);
+        BtnInviteMember = findViewById(R.id.BtnInviteMember);
 
         setUponClickDetailButtons();
         setUpBottomSheet();
     }
 
     private void setUponClickDetailButtons() {
+
+        BtnInviteMember.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SendInviteToServer();
+            }
+        });
         fabCreatePost.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -366,9 +385,20 @@ public class ChurchDetailsActivity extends ActivityManagePermission implements
             @Override
             public void onClick(View view) {
                 tv_member_label.setTextColor(ContextCompat.getColor(ChurchDetailsActivity.this, R.color.unselected_text_color));
-                tv_about_label.setTextColor(ContextCompat.getColor(ChurchDetailsActivity.this, R.color.color_white));
+                tv_member_label.setTextColor(ContextCompat.getColor(ChurchDetailsActivity.this, R.color.unselected_text_color));
+                TvIntiveFrnd.setTextColor(ContextCompat.getColor(ChurchDetailsActivity.this, R.color.color_white));
 
                 showLayoutFor(2);
+            }
+        });
+
+        TvIntiveFrnd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                tv_member_label.setTextColor(ContextCompat.getColor(ChurchDetailsActivity.this, R.color.unselected_text_color));
+                tv_about_label.setTextColor(ContextCompat.getColor(ChurchDetailsActivity.this, R.color.unselected_text_color));
+                TvIntiveFrnd.setTextColor(ContextCompat.getColor(ChurchDetailsActivity.this, R.color.color_white));
+                showLayoutFor(8);
             }
         });
         tv_member_label.setOnClickListener(new View.OnClickListener() {
@@ -661,12 +691,14 @@ public class ChurchDetailsActivity extends ActivityManagePermission implements
                 rr_description_layout.setVisibility(View.GONE);
                 settings_layout.setVisibility(View.GONE);
                 library_layout.setVisibility(View.GONE);
+                LinLayInviteMember.setVisibility(View.GONE);
                 break;
             case 2:
                 rv_grid_layout.setVisibility(View.GONE);
                 rr_description_layout.setVisibility(View.VISIBLE);
                 settings_layout.setVisibility(View.GONE);
                 library_layout.setVisibility(View.GONE);
+                LinLayInviteMember.setVisibility(View.GONE);
                 break;
             case 3:
                 fabCreatePost.setVisibility(View.GONE);
@@ -674,31 +706,44 @@ public class ChurchDetailsActivity extends ActivityManagePermission implements
                 rr_description_layout.setVisibility(View.GONE);
                 settings_layout.setVisibility(View.GONE);
                 library_layout.setVisibility(View.VISIBLE);
+                LinLayInviteMember.setVisibility(View.GONE);
                 break;
             case 4:
                 rv_grid_layout.setVisibility(View.VISIBLE);
                 rr_description_layout.setVisibility(View.GONE);
                 settings_layout.setVisibility(View.GONE);
                 library_layout.setVisibility(View.GONE);
+                LinLayInviteMember.setVisibility(View.GONE);
                 break;
             case 5:
                 rv_grid_layout.setVisibility(View.VISIBLE);
                 rr_description_layout.setVisibility(View.GONE);
                 settings_layout.setVisibility(View.GONE);
+                LinLayInviteMember.setVisibility(View.GONE);
                 break;
             case 6:
                 rv_grid_layout.setVisibility(View.VISIBLE);
                 rr_description_layout.setVisibility(View.GONE);
                 settings_layout.setVisibility(View.GONE);
                 library_layout.setVisibility(View.GONE);
+                LinLayInviteMember.setVisibility(View.GONE);
                 break;
             case 7:
                 rv_grid_layout.setVisibility(View.GONE);
                 rr_description_layout.setVisibility(View.GONE);
                 settings_layout.setVisibility(View.VISIBLE);
                 library_layout.setVisibility(View.GONE);
+                LinLayInviteMember.setVisibility(View.GONE);
                 break;
 
+            case 8:
+                rv_grid_layout.setVisibility(View.GONE);
+                rr_description_layout.setVisibility(View.GONE);
+                settings_layout.setVisibility(View.GONE);
+                library_layout.setVisibility(View.GONE);
+                LinLayInviteMember.setVisibility(View.VISIBLE);
+                getEventsDetailAboutRequest();
+                break;
         }
     }
 
@@ -840,17 +885,14 @@ public class ChurchDetailsActivity extends ActivityManagePermission implements
                                 try {
                                     JSONObject jObjError = new JSONObject(response.errorBody().string());
                                     Gson gson = new Gson();
-                                    ErrorResponse error = gson.fromJson(jObjError.toString(),
-                                            ErrorResponse.class);
+                                    ErrorResponse error = gson.fromJson(jObjError.toString(), ErrorResponse.class);
                                     String msg = null;
                                     if (error != null) {
                                         msg = error.getMsg();
                                     } else {
                                         msg = "Something went wrong";
                                     }
-                                    new CustomDialog(ChurchDetailsActivity.this, null, "",
-                                            msg,
-                                            "ONFAILED").show();
+                                    new CustomDialog(ChurchDetailsActivity.this, null, "", msg, "ONFAILED").show();
                                     hideProgressDialog();
 
                                 } catch (JSONException | IOException e) {
@@ -861,9 +903,7 @@ public class ChurchDetailsActivity extends ActivityManagePermission implements
                         break;
                     case "5": // TODO Server Error and display retry
                         ChurchDetailResponse loginResponse1 = response.body();
-                        CustomDialog customDialog1 = new CustomDialog(ChurchDetailsActivity.this,
-                                null, "", loginResponse1.getMsg(),
-                                "ONFAILED");
+                        CustomDialog customDialog1 = new CustomDialog(ChurchDetailsActivity.this, null, "", loginResponse1.getMsg(), "ONFAILED");
                         if (customDialog1.isShowing()) {
                             customDialog1.dismiss();
                         }
@@ -924,7 +964,7 @@ public class ChurchDetailsActivity extends ActivityManagePermission implements
                             if (allChurchMembers != null && allChurchMembers.size() > 0) {
                                 rv_grid_layout.setAdapter(null);
                                 ChurchMembersGridAdapter churchMembersGridAdapter = new ChurchMembersGridAdapter(ChurchDetailsActivity.this,
-                                        allChurchMembers, ChurchDetailsActivity.this);
+                                        allChurchMembers, ChurchDetailsActivity.this, churchDetailResponse.getData().getChurch().getAddedBy());
 
                                 GridLayoutManager lLayout = new GridLayoutManager(ChurchDetailsActivity.this, 2);
                                 rv_grid_layout.setLayoutManager(lLayout);
@@ -3452,6 +3492,127 @@ public class ChurchDetailsActivity extends ActivityManagePermission implements
             }
         } catch (IOException e) {
             return false;
+        }
+    }
+    private void getEventsDetailAboutRequest() {
+        showProgressDialog();
+
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+        String userId = Util.loadPrefrence(Util.PREF_USER_ID, "", ChurchDetailsActivity.this);
+        callProfileFriends = apiService.profileFriendRequestList(BuildConfig.API_KEY, userId, userId);
+
+        callProfileFriends.enqueue(new Callback<ProfileFriendsResponse>() {
+
+            @Override
+            public void onResponse(Call<ProfileFriendsResponse> call,
+                                   Response<ProfileFriendsResponse> response) {
+                hideProgressDialog();
+                if (response.body() != null) {
+                    Log.d("nik", response.body().toString());
+                }
+                String sCode = response.code() + "";
+                String c = String.valueOf(sCode.charAt(0));
+
+                switch (c) {
+                    case "2": // TODO Success response  task here and progress loader
+                        ProfileFriendsResponse profileFriendsResponse = response.body();
+                        if (profileFriendsResponse.getData() != null && profileFriendsResponse.getStatus().equalsIgnoreCase("success")) {
+                            ProfileAdapter = new ProfileFriendsAddEventAdapter(ChurchDetailsActivity.this, profileFriendsResponse.getData().getFriends());
+
+                            LinearLayoutManager lLayout = new LinearLayoutManager(ChurchDetailsActivity.this);
+                            recyclerView.setLayoutManager(lLayout);
+                            recyclerView.setHasFixedSize(true);
+                            recyclerView.setAdapter(ProfileAdapter);
+                        } else {
+                            recyclerView.setAdapter(null);
+                            CustomDialog customDialog1 = new CustomDialog(ChurchDetailsActivity.this, null, "", profileFriendsResponse.getMsg(), "ONFAILED");
+                            if (customDialog1.isShowing()) {
+                                customDialog1.dismiss();
+                            }
+                            customDialog1.show();
+                        }
+                        break;
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ProfileFriendsResponse> call, Throwable t) {
+                // Log error here since request failed
+                Log.e("nik", t.toString());
+            }
+        });
+    }
+
+    public void SendInviteToServer()
+    {
+        ArrayList<String> AllFriends;
+        AllFriends = ProfileAdapter.getAllCheckedBox();
+
+        if(AllFriends.size() == 0)
+        {
+            CustomDialog customDialog1 = new CustomDialog(ChurchDetailsActivity.this, null, "", "Please select friend to send invite", "ONFAILED");
+            if (customDialog1.isShowing()) {
+                customDialog1.dismiss();
+            }
+            customDialog1.show();
+        }
+        else
+        {
+            showProgressDialog();
+
+            Gson gson = new Gson();
+            String FrondJsonString = gson.toJson(AllFriends).toString();
+
+            ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+            String userId = Util.loadPrefrence(Util.PREF_USER_ID, "", ChurchDetailsActivity.this);
+            callInviteUsers = apiService.churchSendInvite(BuildConfig.API_KEY, userId, mCHURCH_ID, FrondJsonString);
+
+            callInviteUsers.enqueue(new Callback<DeleteChurchMemberResponse>() {
+
+                @Override
+                public void onResponse(Call<DeleteChurchMemberResponse> call, Response<DeleteChurchMemberResponse> response) {
+                    hideProgressDialog();
+                    if (response.body() != null) {
+                        Log.d("nik", response.body().toString());
+                    }
+                    String sCode = response.code() + "";
+                    String c = String.valueOf(sCode.charAt(0));
+
+
+                    switch (c) {
+                        case "2":
+                            DeleteChurchMemberResponse loginResponse = response.body();
+                            if (loginResponse.getStatus().equalsIgnoreCase("success")) {
+//                            Toast.makeText(AddEventActivity.this, loginResponse.getMsg(), Toast.LENGTH_SHORT).show();
+                                CustomDialog customDialog = new CustomDialog(ChurchDetailsActivity.this,
+                                        "Invite Friends", loginResponse.getMsg(), ChurchDetailsActivity.this);
+                                customDialog.show();
+
+//                            CustomDialog customDialog = new CustomDialog(AddEventActivity.this,
+//                                    "Thank you for creating Event",
+//                                    "Lorem Ipsum is simply dummy text of the printing and typesetting " +
+//                                            "industry. " +
+//                                            "Lorem Ipsum has been the industry's standard dummy text ever" +
+//                                            " since the 1500s, when an unknown printer took a galley of" +
+//                                            " type and scrambled it to make a type specimen book.",
+//                                    AddEventActivity.this);
+//                            customDialog.show();
+                            } else {
+                                CustomDialog customDialog1 = new CustomDialog(ChurchDetailsActivity.this, null, "", loginResponse.getMsg(), "ONFAILED");
+                                if (customDialog1.isShowing()) {
+                                    customDialog1.dismiss();
+                                }
+                                customDialog1.show();
+                            }
+                            break;
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<DeleteChurchMemberResponse> call, Throwable t) {
+                    Log.d("nik", t.getMessage());
+                }
+            });
         }
     }
 

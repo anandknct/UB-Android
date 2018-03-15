@@ -60,11 +60,8 @@ public class ProfileFriendsAddEventAdapter extends RecyclerView.Adapter<Recycler
      * @param POSITION the adapter position
      */
     private void bindViewListData(final ProfileFriendsAddEventAdapter.ViewHolder holder, final int POSITION) {
-        Glide.with(context)
-                .load(Util.isNull(mViewListRecord.get(POSITION).getProfileImage()))
-                .placeholder(R.drawable.ic_me)
-                .skipMemoryCache(false)
-                .into(holder.ivIcon);
+        Glide.with(context).load(Util.isNull(mViewListRecord.get(POSITION).getProfileImage()))
+                .placeholder(R.drawable.ic_me).skipMemoryCache(false).into(holder.ivIcon);
         holder.tv_user_name.setText(Util.isNull(mViewListRecord.get(POSITION).getName()));
         holder.cbUserSelection.setVisibility(View.VISIBLE);
         holder.cbUserSelection.setOnClickListener(new View.OnClickListener() {
@@ -113,9 +110,9 @@ public class ProfileFriendsAddEventAdapter extends RecyclerView.Adapter<Recycler
          */
         public ViewHolder(View view) {
             super(view);
-            ivIcon = (ImageView) view.findViewById(R.id.iv_icon);
-            tv_user_name = (TextView) view.findViewById(R.id.tv_user_name);
-            cbUserSelection = (CheckBox) view.findViewById(R.id.cb_user_selection);
+            ivIcon = view.findViewById(R.id.iv_icon);
+            tv_user_name = view.findViewById(R.id.tv_user_name);
+            cbUserSelection = view.findViewById(R.id.cb_user_selection);
         }
     }
 
