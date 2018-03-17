@@ -172,6 +172,12 @@ public class FeedsCommentActivity extends ActivityManagePermission
     }
 
     @Override
+    public void onEditClickListener(String s, int position) {
+        CommentsItem GetCommentData = allComments.get(position);
+        edt_comments.setText(GetCommentData.getComments().toString());
+    }
+
+    @Override
     public void onSendCommentClickListener(String commentMessage, String postId, int position) {
 
     }

@@ -62,18 +62,20 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.MyView
 
         public void onDeleteClickListener(String s, int position);
 
+        public void onEditClickListener(String s, int position);
+
         public void onSendCommentClickListener(String commentMessage,String postId, int position);
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private RelativeTimeTextView tv_time_ago = null;
-        public TextView tv_tittle_text;
-        public TextView tv_description, tv_reply, tv_comment,tv_like, tv_delete_comment;
-        public ImageView iv_user_image = null,btn_send_comment = null;
+        TextView tv_tittle_text;
+        TextView tv_description, tv_reply, tv_comment,tv_like, tv_delete_comment, tv_edit_comment;
+        ImageView iv_user_image = null,btn_send_comment = null;
         private ImageView iv_image_prev = null;
 
 
-        public MyViewHolder(View view) {
+        MyViewHolder(View view) {
             super(view);
             tv_tittle_text = view.findViewById(R.id.tv_tittle_text);
             tv_description = view.findViewById(R.id.tv_description);
@@ -86,6 +88,7 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.MyView
             edt_comments = view.findViewById(R.id.edt_comments);
             iv_image_prev = view.findViewById(R.id.iv_image_prev);
             tv_delete_comment = view.findViewById(R.id.tv_delete_comment);
+            tv_edit_comment = view.findViewById(R.id.tv_edit_comment);
         }
 
     }
@@ -117,8 +120,7 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.MyView
                 e.printStackTrace();
             }
 
-            holder.tv_like.setText(new StringBuilder()
-                    .append(commentsList.get(position).getCommentLike()).append(" Likes ").toString());
+            holder.tv_like.setText(new StringBuilder().append(commentsList.get(position).getCommentLike()).append(" Likes ").toString());
 
             Glide.with(mContext)
                     .load(commentsList.get(position).getCommentBy().getProfileImage())
@@ -195,8 +197,7 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.MyView
                 e.printStackTrace();
             }
 
-            holder.tv_like.setText(new StringBuilder()
-                    .append(mCommentData.getTotalLike()).append(" Likes ").toString());
+            holder.tv_like.setText(new StringBuilder().append(mCommentData.getTotalLike()).append(" Likes ").toString());
 
             Glide.with(mContext)
                     .load(mCommentData.getReplyCommentBy().getProfileImage())
@@ -224,9 +225,7 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.MyView
                         mCommentData.setTotalLike(mCommentData.getTotalLike() + 1);
                     }
 
-                    holder.tv_like.setText(new StringBuilder()
-                            .append(mCommentData.getTotalLike()).append(" Likes").toString());
-
+                    holder.tv_like.setText(new StringBuilder().append(mCommentData.getTotalLike()).append(" Likes").toString());
                     allProductsActivity.onLikeClickListener(mCommentData.getId(), position);
                 }
             });
@@ -264,6 +263,13 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.MyView
             @Override
             public void onClick(View v) {
                 allProductsActivity.onDeleteClickListener(commentsList.get(position).getId(), position);
+            }
+        });
+
+        holder.tv_edit_comment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                allProductsActivity.onEditClickListener(commentsList.get(position).getId(), position);
             }
         });
     }

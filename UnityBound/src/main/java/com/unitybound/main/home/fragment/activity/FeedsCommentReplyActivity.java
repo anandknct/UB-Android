@@ -119,6 +119,11 @@ public class FeedsCommentReplyActivity extends AppCompatActivity implements Comm
     }
 
     @Override
+    public void onEditClickListener(String s, int position) {
+
+    }
+
+    @Override
     public void onSendCommentClickListener(String commentMessage, String postId, int position) {
 
     }
