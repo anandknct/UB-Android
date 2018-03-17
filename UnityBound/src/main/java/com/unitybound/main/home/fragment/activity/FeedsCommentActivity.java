@@ -30,6 +30,7 @@ import com.thebrownarrow.permissionhelper.PermissionResult;
 import com.thebrownarrow.permissionhelper.PermissionUtils;
 import com.unitybound.BuildConfig;
 import com.unitybound.R;
+import com.unitybound.main.home.fragment.HomeFeedsFragment;
 import com.unitybound.main.home.fragment.adapter.CommentsAdapter;
 import com.unitybound.main.home.fragment.beans.addCommentsList.AddCommentsResponse;
 import com.unitybound.main.home.fragment.beans.commentsPost.CommentsItem;
@@ -75,6 +76,8 @@ public class FeedsCommentActivity extends ActivityManagePermission
     private String mFilePath = null;
     private RelativeLayout rl_mainlayout = null;
     private CommentsAdapter adapter = null;
+    String CommentID = "";
+    int CommentRowPosition = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -156,6 +159,19 @@ public class FeedsCommentActivity extends ActivityManagePermission
     }
 
     @Override
+    public void onDeleteClickListener(String StrCommentID, int position) {
+        CustomDialog customDialog1 = new CustomDialog(FeedsCommentActivity.this, FeedsCommentActivity.this,
+                "Delete Comment Alert", "Are you sure to delete this comment ?",
+                "delete");
+        if (customDialog1.isShowing()) {
+            customDialog1.dismiss();
+        }
+        customDialog1.show();
+        CommentID = StrCommentID;
+        CommentRowPosition = position;
+    }
+
+    @Override
     public void onSendCommentClickListener(String commentMessage, String postId, int position) {
 
     }
@@ -175,16 +191,97 @@ public class FeedsCommentActivity extends ActivityManagePermission
         }
     }
 
+    public void DeleteComment(String CommentID)
+    {
+        showProgressDialog();
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
+        Call<LikeCommentResponse> callLikePost = apiService.deleteCommentRequest(BuildConfig.API_KEY, Util.loadPrefrence(Util.PREF_USER_ID, "", FeedsCommentActivity.this), CommentID);
+
+        callLikePost.enqueue(new Callback<LikeCommentResponse>() {
+
+            @Override
+            public void onResponse(Call<LikeCommentResponse> call, Response<LikeCommentResponse> response) {
+                hideProgressDialog();
+                if (response.body() != null) {
+                    Log.d("nik", response.body().toString());
+                }
+                String sCode = response.code() + "";
+                String c = String.valueOf(sCode.charAt(0));
+
+                switch (c) {
+                    case "2": // TODO Success response  task here and progress loader
+                        LikeCommentResponse likePostResponse = response.body();
+                        Toast.makeText(FeedsCommentActivity.this, "" + likePostResponse.getMsg(), Toast.LENGTH_SHORT).show();
+
+                        allComments.remove(CommentRowPosition);
+                        rv_list_layout.getAdapter().notifyItemRemoved(CommentRowPosition);
+                        break;
+                    case "4":
+                        if (sCode == "401") {
+                            CustomDialog customDialog1 = new CustomDialog(FeedsCommentActivity.this, null, "", "", "ONFAILED");
+                            if (customDialog1.isShowing()) {
+                                customDialog1.dismiss();
+                            }
+                            customDialog1.show();
+                        } else {
+                            if (response.body() == null) {
+                                try {
+                                    JSONObject jObjError = new JSONObject(response.errorBody().string());
+                                    Gson gson = new Gson();
+                                    ErrorResponse error = gson.fromJson(jObjError.toString(), ErrorResponse.class);
+                                    String msg = null;
+                                    if (error != null) {
+                                        msg = error.getMsg();
+                                    } else {
+                                        msg = "Something went wrong";
+                                    }
+                                    new CustomDialog(FeedsCommentActivity.this, null, "", msg, "ONFAILED").show();
+                                    hideProgressDialog();
+
+                                } catch (JSONException | IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+                        break;
+                    case "5": // TODO Server Error and display retry
+                        LikeCommentResponse loginResponse1 = response.body();
+                        CustomDialog customDialog1 = new CustomDialog(FeedsCommentActivity.this, null, "", loginResponse1.getMsg(), "ONFAILED");
+                        if (customDialog1.isShowing()) {
+                            customDialog1.dismiss();
+                        }
+                        customDialog1.show();
+                        hideProgressDialog();
+                        break;
+
+                    default: // TODO Handle error message and show dialog here
+                        LikeCommentResponse body1 = response.body();
+                        new CustomDialog(FeedsCommentActivity.this, null, "",
+                                body1.getMsg() != null ?
+                                        body1.getMsg().length() > 0 ? body1.getMsg()
+                                                : "Something went wrong" : "Something went wrong",
+                                "ONFAILED").show();
+                        hideProgressDialog();
+                        break;
+
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<LikeCommentResponse> call, Throwable t) {
+                // Log error here since request failed
+                Log.e("nik", t.toString());
+            }
+        });
+    }
+
     private void getAllPostRequest() {
         showProgressDialog();
 
-        ApiInterface apiService =
-                ApiClient.getClient().create(ApiInterface.class);
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
 
-        callComments = apiService.getAllPostComments(
-                BuildConfig.API_KEY,
-                Util.loadPrefrence(Util.PREF_USER_ID, "",
-                        FeedsCommentActivity.this), mPostId);
+        callComments = apiService.getAllPostComments(BuildConfig.API_KEY, Util.loadPrefrence(Util.PREF_USER_ID, "", FeedsCommentActivity.this), mPostId);
 
         callComments.enqueue(new Callback<CommentsPostResponse>() {
 
@@ -824,6 +921,14 @@ public class FeedsCommentActivity extends ActivityManagePermission
 
     @Override
     public void onYesPress(String param, String message) {
+        if (param.equalsIgnoreCase("delete")) {
+            DeleteComment(CommentID);
+        }
+
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
 }

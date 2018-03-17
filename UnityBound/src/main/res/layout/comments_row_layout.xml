@@ -109,6 +109,35 @@ a g hajghkja ghakjghkja ghakj gha ghah"
                     android:text="Reply"
                     android:textColor="@color/colorPrimary"
                     android:textStyle="bold" />
+
+
+
+                <TextView
+                    android:id="@+id/tv_edit_comment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dimen_five"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:padding="2dp"
+                    android:scrollbarAlwaysDrawVerticalTrack="true"
+                    android:text="Edit"
+                    android:textColor="@color/colorPrimary"
+                    />
+
+
+                <TextView
+                    android:id="@+id/tv_delete_comment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dimen_five"
+                    android:gravity="center"
+                    android:maxLines="2"
+                    android:padding="2dp"
+                    android:scrollbarAlwaysDrawVerticalTrack="true"
+                    android:text="Delete"
+                    android:textColor="@color/colorPrimary"
+                    />
             </LinearLayout>
         </RelativeLayout>
 

@@ -38,9 +38,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class FeedsCommentReplyActivity extends AppCompatActivity
-        implements
-        CommentsAdapter.IListAdapterCallback, View.OnClickListener, CustomDialog.IDialogListener {
+public class FeedsCommentReplyActivity extends AppCompatActivity implements CommentsAdapter.IListAdapterCallback, View.OnClickListener, CustomDialog.IDialogListener {
 
     RecyclerView rv_list_layout = null;
     private String mComments_Id = null;
@@ -113,6 +111,11 @@ public class FeedsCommentReplyActivity extends AppCompatActivity
     @Override
     public void onLikeClickListener(String mPostId, int position) {
         likePost(mPostId, position);
+    }
+
+    @Override
+    public void onDeleteClickListener(String s, int position) {
+
     }
 
     @Override
@@ -501,4 +504,8 @@ public class FeedsCommentReplyActivity extends AppCompatActivity
 
     }
 
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
 }

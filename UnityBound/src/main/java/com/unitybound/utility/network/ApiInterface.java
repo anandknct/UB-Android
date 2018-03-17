@@ -176,6 +176,12 @@ public interface ApiInterface {
                                                  @Field("comment_id") String comment_id);
 
     @FormUrlEncoded
+    @POST("delete-comments")
+    Call<LikeCommentResponse> deleteCommentRequest(@Field("api_key") String api_key,
+                                                 @Field("user_id") String username,
+                                                 @Field("comment_id") String comment_id);
+
+    @FormUrlEncoded
     @POST("reply-comment")
     Call<AddCommentsResponse> replyCommentRequest(@Field("api_key") String api_key,
                                                @Field("user_id") String user_id,

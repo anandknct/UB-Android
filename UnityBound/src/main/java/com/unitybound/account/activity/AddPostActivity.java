@@ -72,7 +72,7 @@ import retrofit2.Response;
 
 public class AddPostActivity extends ActivityManagePermission implements CustomDialog.IDialogListener {
 
-
+    boolean EditPost = false;
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.edt_message)
@@ -101,6 +101,8 @@ public class AddPostActivity extends ActivityManagePermission implements CustomD
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_post_activity_layout);
         ButterKnife.bind(this);
+
+        EditPost = false;
         /**
          * SetUp Spinner
          */
@@ -133,7 +135,9 @@ public class AddPostActivity extends ActivityManagePermission implements CustomD
                     allPostFilterItem = getIntent().getExtras().getParcelable("data");
                     setAllDataOnUi(allPostFilterItem);
                 }
+                spDropDown.setVisibility(View.GONE);
             }
+            EditPost = true;
             btnPost.setText("Update");
             ;
         }
@@ -214,9 +218,12 @@ public class AddPostActivity extends ActivityManagePermission implements CustomD
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowTitleEnabled(true);
-        if (mTittle != null && mTittle.length() > 0) {
-            getSupportActionBar().setTitle(mTittle);
-        } else {
+        if(EditPost)
+        {
+            getSupportActionBar().setTitle("Update Post");
+        }
+        else
+        {
             getSupportActionBar().setTitle("Create Post");
         }
 
@@ -865,98 +872,36 @@ public class AddPostActivity extends ActivityManagePermission implements CustomD
 
         MultipartBody.Part body = null;
         if (file != null) {
-            RequestBody requestFile =
-                    RequestBody.create(
-                            MediaType.parse(fileType),
-                            file
-                    );
+            RequestBody requestFile = RequestBody.create(MediaType.parse(fileType), file);
             // MultipartBody.Part is used to send also the actual file name
-            body =
-                    MultipartBody.Part.createFormData("myfile", file.getName(), requestFile);
+            body = MultipartBody.Part.createFormData("myfile", file.getName(), requestFile);
         }
         // create a map of data to pass along
         RequestBody api_key = Util.createPartFromString(BuildConfig.API_KEY);
         RequestBody user_id = Util.createPartFromString(""
-                + Util.loadPrefrence(Util.PREF_USER_ID, "",
-                AddPostActivity.this));
+                + Util.loadPrefrence(Util.PREF_USER_ID, "", AddPostActivity.this));
         String post = arrayList1.get(spDropDown.getSelectedItemPosition()).equalsIgnoreCase("Devotional") ? "Devotional" :
                 arrayList1.get(spDropDown.getSelectedItemPosition()).equalsIgnoreCase("Prayers") ? "Prayer" :
                         arrayList1.get(spDropDown.getSelectedItemPosition()).equalsIgnoreCase("Praise") ? "Praise" :
                                 arrayList1.get(spDropDown.getSelectedItemPosition()).equalsIgnoreCase("Testimonials") ? "Testimonial" : "";
         RequestBody mypost = Util.createPartFromString(edtMessage.getText().toString());
         RequestBody postType = Util.createPartFromString(post);
+        RequestBody RqBdyPostID = Util.createPartFromString(mPOST_ID);
         HashMap<String, RequestBody> map = new HashMap<>();
         map.put("api_key", api_key);
         map.put("user_id", user_id);
         map.put("mypost", mypost);
         map.put("postType", postType);
-        if (mTittle != null) {
-            if (mTittle.contains("Event")) {
-                RequestBody Event = Util.createPartFromString("event");
-                map.put("discussion_type", Event);
-                RequestBody discussion_type_id = Util.createPartFromString(mEVENT_ID);
-                map.put("discussion_type_id", discussion_type_id);
-            } else if (mTittle.contains("Group")) {
-                RequestBody Group = Util.createPartFromString("group");
-                map.put("discussion_type", Group);
-                RequestBody discussion_type_id = Util.createPartFromString(mGROUP_ID);
-                map.put("discussion_type_id", discussion_type_id);
-            } else if (mTittle.contains("Church")) {
-                RequestBody Church = Util.createPartFromString("church");
-                map.put("discussion_type", Church);
-                RequestBody discussion_type_id = Util.createPartFromString(mCHURCH_ID);
-                map.put("discussion_type_id", discussion_type_id);
-            }
-        } else {
-                if (allpostsItem !=null) {
-                    if (allpostsItem.getDiscussionTypeId() == null) {
-                        Toast.makeText(AddPostActivity.this,
-                                "In API response Discussion type ID cannot be null\nServer end issues",
-                                Toast.LENGTH_LONG).show();
-                        return;
-                    }
-                    RequestBody Church = Util.createPartFromString(allpostsItem.getDiscussionType());
-                    map.put("discussion_type", Church);
-                    RequestBody discussion_type_id = Util.createPartFromString(allpostsItem.getDiscussionTypeId());
-                    map.put("discussion_type_id", discussion_type_id);
-                } else if (allPostHomeItem!=null) {
-                    if (allPostHomeItem.getDiscussionTypeId() == null) {
-                        Toast.makeText(AddPostActivity.this,
-                                "In API response Discussion type ID cannot be null\nServer end issues",
-                                Toast.LENGTH_LONG).show();
-                        return;
-                    }
-                    RequestBody Church = Util.createPartFromString(allPostHomeItem.getDiscussionType());
-                    map.put("discussion_type", Church);
-                    RequestBody discussion_type_id = Util.createPartFromString(allPostHomeItem.getDiscussionTypeId());
-                    map.put("discussion_type_id", discussion_type_id);
-                } else if (allPostFilterItem!=null) {
-                    if (allPostFilterItem.getDiscussionTypeId() == null) {
-                        Toast.makeText(AddPostActivity.this,
-                                "In API response Discussion type ID cannot be null\nServer end issues",
-                                Toast.LENGTH_LONG).show();
-                        return;
-                    }
-                    RequestBody Church = Util.createPartFromString(allPostFilterItem.getDiscussionType());
-                    map.put("discussion_type", Church);
-                    RequestBody discussion_type_id = Util.createPartFromString(allPostFilterItem.getDiscussionTypeId());
-                    map.put("discussion_type_id", discussion_type_id);
-                }
-        }
+        map.put("post_id", RqBdyPostID);
 
-        ApiInterface apiService =
-                ApiClient.getClient().create(ApiInterface.class);
+        ApiInterface apiService = ApiClient.getClient().create(ApiInterface.class);
         // finally, execute the request
-        Call<AddPostResponse> call = apiService.
-                editPostFeed(
-                        map,
-                        body);
+        Call<AddPostResponse> call = apiService.editPostFeed(map, body);
 
         call.enqueue(new Callback<AddPostResponse>() {
 
             @Override
-            public void onResponse(Call<AddPostResponse> call,
-                                   Response<AddPostResponse> response) {
+            public void onResponse(Call<AddPostResponse> call, Response<AddPostResponse> response) {
                 hideProgressDialog();
                 if (response.body() != null) {
                     Log.d("nik", response.body().toString());

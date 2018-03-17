@@ -60,29 +60,32 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.MyView
 
         public void onLikeClickListener(String s, int position);
 
+        public void onDeleteClickListener(String s, int position);
+
         public void onSendCommentClickListener(String commentMessage,String postId, int position);
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         private RelativeTimeTextView tv_time_ago = null;
         public TextView tv_tittle_text;
-        public TextView tv_description, tv_reply, tv_comment,tv_like;
+        public TextView tv_description, tv_reply, tv_comment,tv_like, tv_delete_comment;
         public ImageView iv_user_image = null,btn_send_comment = null;
         private ImageView iv_image_prev = null;
 
 
         public MyViewHolder(View view) {
             super(view);
-            tv_tittle_text = (TextView) view.findViewById(R.id.tv_tittle_text);
-            tv_description = (TextView) view.findViewById(R.id.tv_description);
-            tv_like = (TextView) view.findViewById(R.id.tv_like);
-            tv_reply = (TextView) view.findViewById(R.id.tv_reply);
-            iv_user_image = (ImageView) view.findViewById(R.id.iv_user_image);
-            btn_send_comment = (ImageView) view.findViewById(R.id.btn_send_comment);
-            tv_comment = (TextView) view.findViewById(R.id.tv_comment);
-            tv_time_ago = (RelativeTimeTextView) view.findViewById(R.id.tv_time_ago);
-            edt_comments = (EditText) view.findViewById(R.id.edt_comments);
-            iv_image_prev = (ImageView) view.findViewById(R.id.iv_image_prev);
+            tv_tittle_text = view.findViewById(R.id.tv_tittle_text);
+            tv_description = view.findViewById(R.id.tv_description);
+            tv_like = view.findViewById(R.id.tv_like);
+            tv_reply = view.findViewById(R.id.tv_reply);
+            iv_user_image = view.findViewById(R.id.iv_user_image);
+            btn_send_comment = view.findViewById(R.id.btn_send_comment);
+            tv_comment = view.findViewById(R.id.tv_comment);
+            tv_time_ago = view.findViewById(R.id.tv_time_ago);
+            edt_comments = view.findViewById(R.id.edt_comments);
+            iv_image_prev = view.findViewById(R.id.iv_image_prev);
+            tv_delete_comment = view.findViewById(R.id.tv_delete_comment);
         }
 
     }
@@ -96,8 +99,7 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.MyView
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.comments_row_layout, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.comments_row_layout, parent, false);
         return new MyViewHolder(itemView);
     }
 
@@ -110,8 +112,7 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.MyView
             holder.tv_tittle_text.setText(commentsList.get(position).getCommentBy().getName());
             holder.tv_description.setText(Html.fromHtml(commentsList.get(position).getComments()));
             try {
-                holder.tv_time_ago.setReferenceTime(
-                        (dateFormat.parse(commentsList.get(position).getCreatedAt()).getTime()));
+                holder.tv_time_ago.setReferenceTime((dateFormat.parse(commentsList.get(position).getCreatedAt()).getTime()));
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -145,8 +146,7 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.MyView
                         commentsList.get(position).setCommentLike(commentsList.get(position).getCommentLike() + 1);
                     }
 
-                    holder.tv_like.setText(new StringBuilder()
-                            .append(commentsList.get(position).getCommentLike()).append(" Likes").toString());
+                    holder.tv_like.setText(new StringBuilder().append(commentsList.get(position).getCommentLike()).append(" Likes").toString());
 
                     allProductsActivity.onLikeClickListener(commentsList.get(position).getId(), position);
                 }
@@ -259,6 +259,13 @@ public class CommentsAdapter extends RecyclerView.Adapter<CommentsAdapter.MyView
 //                holder.iv_image_prev.setVisibility(View.GONE);
 //            }
         }
+
+        holder.tv_delete_comment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                allProductsActivity.onDeleteClickListener(commentsList.get(position).getId(), position);
+            }
+        });
     }
 
 

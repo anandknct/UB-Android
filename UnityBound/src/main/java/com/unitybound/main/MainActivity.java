@@ -75,6 +75,8 @@ public class MainActivity extends BaseActivity implements
     ImageView imgCloseMenu;
     @BindView(R.id.view_container)
     RelativeLayout viewContainer;
+    @BindView(R.id.tv_name)
+    TextView SideBarUserName;
     private ArrayList<SideMenu> menuArrayList;
     public static int sNavItemIndex = 100;
     public final int HOME_INDEX = 100;
@@ -155,7 +157,8 @@ public class MainActivity extends BaseActivity implements
                 loadFragment(null);
             }
         }
-    }
+
+        SideBarUserName.setText(Util.isNull(Util.loadPrefrence(Util.PREF_FIRST_NAME, "", this)) + " " +  Util.isNull(Util.loadPrefrence(Util.PREF_LAST_NAME, "", this)));}
 
     private void initUserImage() {
         String url = Util.isNull(Util.loadPrefrence(Util.PREF_USER_IMAGE, "", this));
@@ -211,8 +214,7 @@ public class MainActivity extends BaseActivity implements
             public void onDrawerClosed(View drawerView) {
                 // Code here will be triggered once the mDrawer closes as we dont want anything to happen so we leave this blank
                 super.onDrawerClosed(drawerView);
-                InputMethodManager inputMethodManager = (InputMethodManager)
-                        getSystemService(Context.INPUT_METHOD_SERVICE);
+                InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 inputMethodManager.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
             }
 
@@ -375,8 +377,8 @@ public class MainActivity extends BaseActivity implements
         // For home Icon & text count
         final MenuItem actionHomeMenuItem = menu.findItem(R.id.action_home);
         FrameLayout rootHView = (FrameLayout) actionHomeMenuItem.getActionView();
-        mHredCircle = (ImageView) rootHView.findViewById(R.id.iv_home_count);
-        tv_home_count = (TextView) rootHView.findViewById(R.id.tv_home_count);
+        mHredCircle = rootHView.findViewById(R.id.iv_home_count);
+        tv_home_count = rootHView.findViewById(R.id.tv_home_count);
         rootHView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -387,8 +389,8 @@ public class MainActivity extends BaseActivity implements
         // For notification Icon & text count
         final MenuItem actionNotificationMenuItem = menu.findItem(R.id.action_notification);
         FrameLayout rootNView = (FrameLayout) actionNotificationMenuItem.getActionView();
-        mNredCircle = (ImageView) rootNView.findViewById(R.id.iv_noti_count);
-        tv_noti_count = (TextView) rootNView.findViewById(R.id.tv_noti_count);
+        mNredCircle = rootNView.findViewById(R.id.iv_noti_count);
+        tv_noti_count = rootNView.findViewById(R.id.tv_noti_count);
         rootNView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -399,8 +401,8 @@ public class MainActivity extends BaseActivity implements
         // For notification Icon & text count
         final MenuItem actionFriendRequestMenuItem = menu.findItem(R.id.action_friend_request);
         FrameLayout rootFView = (FrameLayout) actionFriendRequestMenuItem.getActionView();
-        mFredCircle = (ImageView) rootFView.findViewById(R.id.iv_frnd_req_count);
-        tv_frnd_req_count = (TextView) rootFView.findViewById(R.id.tv_frnd_req_count);
+        mFredCircle = rootFView.findViewById(R.id.iv_frnd_req_count);
+        tv_frnd_req_count = rootFView.findViewById(R.id.tv_frnd_req_count);
         rootFView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -498,8 +500,7 @@ public class MainActivity extends BaseActivity implements
             case FRIEND_SEARCH_INDEX:
 //                sNavItemIndex = POSITION;
 //                fragment = new MyPrayerRequestFragment();
-                Toast.makeText(this, getString(R.string.str_under_progress),
-                        Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, getString(R.string.str_under_progress), Toast.LENGTH_SHORT).show();
                 break;
         }
 
@@ -511,8 +512,7 @@ public class MainActivity extends BaseActivity implements
 //                    removeAllFragmentStack();
                     // update the main content by replacing fragments
                     FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                    fragmentTransaction.setCustomAnimations(android.R.anim.fade_in,
-                            android.R.anim.fade_out);
+                    fragmentTransaction.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
                     fragmentTransaction.addToBackStack(null);
                     fragmentTransaction.replace(R.id.frame, finalFragment, CURRENT_TAG);
                     fragmentTransaction.commit();
